@@ -19,7 +19,7 @@ router.post("/signup", (req, res) => {
 		formData.password = hash;
 		db.query(
 			"SELECT mail_address FROM customer WHERE mail_address= ?",
-			[formData.mail_adress],
+			[formData.mail_address],
 			(err, results) => {
 				if (err) {
 					console.log(err);
@@ -38,7 +38,7 @@ router.post("/signup", (req, res) => {
 					});
 				} else {
 					return res.status(401).json({
-						message: "An account already exist associated to that mail adress",
+						message: "An account already exists associated to that mail adress",
 					});
 				}
 			}
