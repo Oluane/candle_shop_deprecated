@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const passport = require("passport");
+const api = require("./routes");
 
 const {
 	CONFIG: { backendPort },
@@ -16,11 +17,7 @@ app.use(passport.initialize());
 
 /*-------------------------------------------------- Public Routes */
 
-app.get("/", (req, res) => {
-	const msg = "Hello World";
-	//console.log(msg);
-	res.status(200).send(msg);
-});
+app.use("/api", api);
 
 /*-------------------------------------------------- Server launch */
 
