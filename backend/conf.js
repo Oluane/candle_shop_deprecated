@@ -3,6 +3,8 @@ const mysql = require("mysql");
 
 let CONFIG = {
 	backendPort: process.env.BACKEND_PORT || "4200",
+	jwtSecret: process.env.JWT_SECRET || "secretSentence",
+	saltRounds: process.env.SALT_ROUNDS || "5",
 };
 
 const db = mysql.createPool({
