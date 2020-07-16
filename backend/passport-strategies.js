@@ -2,6 +2,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const { Strategy: JWTStrategy, ExtractJwt } = require("passport-jwt");
 const bcrypt = require("bcrypt");
+const cookieExtractor = require("./middlewares/cookieExtractor");
 const {
 	CONFIG: { jwtSecret },
 	db,
@@ -15,7 +16,7 @@ passport.use(
 		},
 		(formMail, formPassword, done) => {
 			db.query(
-				"SELECT first_name, last_name, mail_address, password FROM customer WHERE mail_address = ?",
+				"SELECT id, first_name, last_name, mail_address, password FROM customer WHERE mail_address = ?",
 				[formMail],
 				(err, results) => {
 					if (err) {
@@ -38,14 +39,14 @@ passport.use(
 	)
 );
 
+//unused
 passport.use(
 	new JWTStrategy(
 		{
-			jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+			jwtFromRequest: cookieExtractor,
 			secretOrKey: jwtSecret,
 		},
 		(jwtPayload, done) => {
-			const user = jwtPayload;
 			return done(null, user);
 		}
 	)

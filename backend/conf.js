@@ -5,6 +5,7 @@ let CONFIG = {
 	backendPort: process.env.BACKEND_PORT || "4200",
 	jwtSecret: process.env.JWT_SECRET || "secretSentence",
 	saltRounds: process.env.SALT_ROUNDS || "5",
+	accessTokenExpiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN || 10000000,
 };
 
 const db = mysql.createPool({
