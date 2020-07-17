@@ -39,15 +39,19 @@ passport.use(
 	)
 );
 
-//unused
+let opts = {};
+opts.jwtFromRequest = cookieExtractor;
+opts.secretOrKey = jwtSecret;
+opts.issuer = "candleshop.com";
+
 passport.use(
-	new JWTStrategy(
-		{
-			jwtFromRequest: cookieExtractor,
-			secretOrKey: jwtSecret,
-		},
-		(jwtPayload, done) => {
-			return done(null, user);
+	new JWTStrategy(opts, (jwtPayload, done) => {
+		if (!jwtPayload) {
+			console.log(jwtPayload);
+			return done(err, false);
 		}
-	)
+
+		//TODO adding some verifications or logic here
+		return done(null, jwtPayload);
+	})
 );
