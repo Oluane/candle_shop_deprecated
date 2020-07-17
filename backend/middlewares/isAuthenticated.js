@@ -25,8 +25,11 @@ const isAuthenticated = (req, res, next) => {
 			return res.status(401).json({ message: "OOPS! Bad xsrf token" });
 		}
 
-		const userId = decodedToken.sub;
+		if (Date.now() / 1000 > decodedToken.exp) {
+			return res.status(401).json({ message: "OOPS! Expired token" });
+		}
 
+		const userId = decodedToken.sub;
 		req.user = userId;
 
 		return next();

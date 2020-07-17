@@ -81,12 +81,15 @@ router.post("/login", (req, res) => {
 
 			const accessToken = jwt.sign(
 				{
-					userId: user.id,
 					mailAddress: user.mail_address,
 					xsrfToken,
 				},
 				jwtSecret,
-				{ expiresIn: accessTokenExpiresIn / 1000, subject: user.id.toString() }
+				{
+					expiresIn: accessTokenExpiresIn / 1000,
+					subject: user.id.toString(),
+					issuer: "candleshop.com",
+				}
 			);
 
 			res.cookie("access_token", accessToken, {
@@ -100,19 +103,20 @@ router.post("/login", (req, res) => {
 	})(req, res);
 });
 
-router.get("/", (req, res) => {
-	let response = "no cookie bro";
-
-	if (req.cookies.authCookie) {
-		response = "cookie found !";
-		console.log(req.cookies.authCookie);
-	}
-
-	return res.status(200).json(response);
+router.get("/", isAuthenticated, (req, res) => {
+	const userId = req.user;
+	return res.status(200).json({ isValid: true, userId });
 });
 
-router.get("/protected", isAuthenticated, (req, res) => {
+// router.get("/protected", isAuthenticated, (req, res) => {
+// 	const { user } = req;
+// 	console.log(req);
+// 	res.status(200).send(user);
+// });
+
+router.get("/protected", passport.authenticate("jwt", { session: false }), (req, res) => {
 	const { user } = req;
+	//console.log(req);
 	res.status(200).send(user);
 });
 
