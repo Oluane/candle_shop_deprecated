@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { routes } from "../../services/routes";
 import { Switch, Route, Redirect } from "react-router-dom";
+import axios from "axios";
 
 const PrivateRoute = ({ component: Component, auth, ...rest }) => (
 	<Route
@@ -11,19 +12,39 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => (
 
 const Router = () => {
 	const [isLoggedUser, setIsLoggedUser] = useState(false);
+	const [customerId, setCustomerId] = useState(null);
 
-	// const checkingAuth = () => {
-	//
-	// }
+	useEffect(() => {
+		let xsrfToken = null;
+		if (localStorage.getItem("xsrfToken")) {
+			xsrfToken = localStorage.getItem("xsrfToken");
+		}
+		axios.get("/api/auth", { headers: { "x-xsrf-token": xsrfToken } }).then((res) => {
+			if (res.data.isValid) {
+				setIsLoggedUser(true);
+				setCustomerId(res.data.userId);
+			}
+		});
+	}, []);
 
 	return (
 		<Switch>
 			{Object.keys(routes).map((route, key) => {
 				const { path, component, isPrivate } = routes[route];
+
 				if (!isPrivate) {
-					return <Route path={path} component={component} />;
+					return (
+						<Route exact path={path} component={component} customerId={customerId} />
+					);
 				} else {
-					return <PrivateRoute path={path} component={component} auth={false} />;
+					return (
+						<PrivateRoute
+							path={path}
+							component={component}
+							auth={isLoggedUser}
+							customerId={customerId}
+						/>
+					);
 				}
 			})}
 		</Switch>
