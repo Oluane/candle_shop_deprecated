@@ -19,21 +19,22 @@ const LoginForm = () => {
 		);
 	};
 
-	useEffect(() => {
-		let xsrfToken = null;
-		if (localStorage.getItem("xsrfToken")) {
-			xsrfToken = localStorage.getItem("xsrfToken");
-		}
+	// useEffect(() => {
+	// 	let xsrfToken = null;
+	// 	if (localStorage.getItem("xsrfToken")) {
+	// 		xsrfToken = localStorage.getItem("xsrfToken");
+	// 	}
 
-		axios.get("/api/auth/protected", { headers: { "x-xsrf-token": xsrfToken } }).then(
-			(response) => {
-				console.log(response);
-			},
-			(err) => {
-				console.log(err);
-			}
-		);
-	}, []);
+	// 	axios.get("/api/auth/protected", { headers: { "x-xsrf-token": xsrfToken } }).then(
+	// 		(response) => {
+	// 			console.log(response);
+	// 		},
+	// 		(err) => {
+	// 			console.log(err);
+	// 		}
+	// 	);
+	// }, []);
+
 	return (
 		<div>
 			<form onSubmit={(e) => tester(e)}>

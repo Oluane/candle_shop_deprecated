@@ -1,11 +1,19 @@
 import React from "react";
 import LoginForm from "../../Components/LoginForm/LoginForm";
+import { useEffect } from "react";
+import { Redirect } from "react-router-dom";
 
-const Login = () => {
+const Login = (props) => {
 	return (
-		<div>
-			<LoginForm />
-		</div>
+		<>
+			{props.customerId ? (
+				<Redirect to={`/account/${props.customerId}`} />
+			) : (
+				<div>
+					<LoginForm />
+				</div>
+			)}
+		</>
 	);
 };
 
