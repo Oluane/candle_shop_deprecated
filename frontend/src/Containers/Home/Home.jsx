@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import BannerHeader from "../../Components/BannerHeader/BannerHeader";
 
 const Home = (props) => {
 	console.log(props.customerId);
 	return (
-		<main>
+		<main style={{ "margin-top": "50px" }}>
 			{" "}
-			<h1>This is the homepage, welcome !</h1>
+			<BannerHeader />
+			{/* <h1>This is the homepage, welcome !</h1> */}
 			<ul>
 				<li>
 					<Link to="/login">Login</Link>

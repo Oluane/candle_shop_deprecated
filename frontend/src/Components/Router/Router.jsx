@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { routes } from "../../services/routes";
 import { Switch, Route, Redirect } from "react-router-dom";
 import axios from "axios";
+import Navbar from "../Navbar/Navbar";
 
 const PrivateRoute = ({ component: Component, auth, ...rest }) => (
 	<Route
@@ -28,26 +29,34 @@ const Router = () => {
 	}, []);
 
 	return (
-		<Switch>
-			{Object.keys(routes).map((route, key) => {
-				const { path, component, isPrivate } = routes[route];
+		<>
+			<Navbar />
+			<Switch>
+				{Object.keys(routes).map((route, key) => {
+					const { path, component, isPrivate } = routes[route];
 
-				if (!isPrivate) {
-					return (
-						<Route exact path={path} component={component} customerId={customerId} />
-					);
-				} else {
-					return (
-						<PrivateRoute
-							path={path}
-							component={component}
-							auth={isLoggedUser}
-							customerId={customerId}
-						/>
-					);
-				}
-			})}
-		</Switch>
+					if (!isPrivate) {
+						return (
+							<Route
+								exact
+								path={path}
+								component={component}
+								customerId={customerId}
+							/>
+						);
+					} else {
+						return (
+							<PrivateRoute
+								path={path}
+								component={component}
+								auth={isLoggedUser}
+								customerId={customerId}
+							/>
+						);
+					}
+				})}
+			</Switch>
+		</>
 	);
 };
 
