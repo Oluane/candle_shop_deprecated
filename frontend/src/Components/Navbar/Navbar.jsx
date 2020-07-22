@@ -1,7 +1,7 @@
 import React from "react";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
-import { FaUser } from "react-icons/fa";
+import IconSvg from "../IconSvg/IconSvg";
 
 const Navbar = () => {
 	return (
@@ -36,8 +36,18 @@ const Navbar = () => {
 						</Link>
 					</li>
 				</ul>
-				<div>
-					<FaUser />
+				<div className="userAccountIcons">
+					<span className="navIcon userIcon">
+						<IconSvg iconName="user" />
+					</span>
+					<div className="userCart">
+						<span className="navIcon cartIcon">
+							<IconSvg iconName="shoppingCart" />
+						</span>
+						<div className="itemsCountContainer">
+							<span className="smallText itemsCount">0</span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</nav>
