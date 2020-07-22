@@ -1,0 +1,72 @@
+@import "../../style/generalVariables.scss";
+nav {
+	background-color: $roseGold;
+	display: flex;
+	justify-content: space-between;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	padding: 15px;
+	box-shadow: 0px 0px 15px 0px $brown;
+
+	.navLeft,
+	.navRight {
+		display: flex;
+		ul {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: auto;
+			li {
+				padding: 0 35px;
+				color: $brown;
+			}
+		}
+	}
+
+	.navRight {
+		margin-right: 80px;
+	}
+
+	.navLeft {
+		margin-left: 80px;
+	}
+
+	span {
+		padding: 0 45px;
+		font-family: "Monsieur La Doulaise", cursive;
+		font-size: 45px;
+		color: $brown;
+	}
+
+	.navLinks {
+		position: relative;
+		&:before,
+		&:after {
+			content: "";
+			position: absolute;
+			bottom: -5px;
+			width: 0px;
+			height: 2px;
+			margin: 5px 0 0;
+			transition: all 0.65s ease-in-out;
+			opacity: 0;
+			background-color: $brown;
+		}
+
+		&:before {
+			left: 50%;
+		}
+
+		&:after {
+			right: 50%;
+		}
+
+		&:hover:before,
+		&:hover:after {
+			cursor: pointer;
+			opacity: 1;
+			width: 50%;
+		}
+	}
+}

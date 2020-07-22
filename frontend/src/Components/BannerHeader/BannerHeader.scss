@@ -1,0 +1,33 @@
+@import "../../style/generalVariables.scss";
+
+.heroImage {
+	width: 100%;
+	height: 100vh;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-image: url("../../style/img/Devostock+Decoration+Candle+Decor+10785.jpg");
+	z-index: 0;
+	img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+.bannerHeader {
+	.bannerText {
+		position: absolute;
+		top: 50%;
+		left: 70%;
+	}
+
+	.textHighlight {
+		color: $brown;
+	}
+
+	.descText {
+		width: 65%;
+		text-align: justify;
+	}
+}
