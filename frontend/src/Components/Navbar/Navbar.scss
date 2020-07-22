@@ -1,13 +1,14 @@
 @import "../../style/generalVariables.scss";
 nav {
-	background-color: $roseGold;
+	background-color: $secondary;
 	display: flex;
 	justify-content: space-between;
 	position: fixed;
 	top: 0;
 	width: 100%;
-	padding: 15px;
-	box-shadow: 0px 0px 15px 0px $brown;
+	padding: 10px;
+	box-shadow: 0px 0px 10px 0px $lightDark;
+	z-index: 1;
 
 	.navLeft,
 	.navRight {
@@ -19,7 +20,7 @@ nav {
 			margin: auto;
 			li {
 				padding: 0 35px;
-				color: $brown;
+				color: $lightDark;
 			}
 		}
 	}
@@ -36,11 +37,13 @@ nav {
 		padding: 0 45px;
 		font-family: "Monsieur La Doulaise", cursive;
 		font-size: 45px;
-		color: $brown;
+		color: $lightDark;
 	}
 
 	.navLinks {
 		position: relative;
+		font-size: 13px;
+
 		&:before,
 		&:after {
 			content: "";
@@ -51,7 +54,7 @@ nav {
 			margin: 5px 0 0;
 			transition: all 0.65s ease-in-out;
 			opacity: 0;
-			background-color: $brown;
+			background-color: $roseGold;
 		}
 
 		&:before {
