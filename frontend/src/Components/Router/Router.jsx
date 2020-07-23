@@ -31,31 +31,33 @@ const Router = () => {
 	return (
 		<>
 			<Navbar />
-			<Switch>
-				{Object.keys(routes).map((route, key) => {
-					const { path, component, isPrivate } = routes[route];
+			<main style={{ marginTop: "50px" }}>
+				<Switch>
+					{Object.keys(routes).map((route, key) => {
+						const { path, component, isPrivate } = routes[route];
 
-					if (!isPrivate) {
-						return (
-							<Route
-								exact
-								path={path}
-								component={component}
-								customerId={customerId}
-							/>
-						);
-					} else {
-						return (
-							<PrivateRoute
-								path={path}
-								component={component}
-								auth={isLoggedUser}
-								customerId={customerId}
-							/>
-						);
-					}
-				})}
-			</Switch>
+						if (!isPrivate) {
+							return (
+								<Route
+									exact
+									path={path}
+									component={component}
+									customerId={customerId}
+								/>
+							);
+						} else {
+							return (
+								<PrivateRoute
+									path={path}
+									component={component}
+									auth={isLoggedUser}
+									customerId={customerId}
+								/>
+							);
+						}
+					})}
+				</Switch>
+			</main>
 		</>
 	);
 };

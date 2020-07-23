@@ -2,7 +2,6 @@ import React from "react";
 import "./BannerHeader.scss";
 
 const BannerHeader = () => {
-	const heroImage = require("../../style/img/Devostock+Decoration+Candle+Decor+10785.jpg");
 	return (
 		<header className="bannerHeader">
 			<div className="bannerTitle">

@@ -5,7 +5,7 @@ import BannerHeader from "../../Components/BannerHeader/BannerHeader";
 const Home = (props) => {
 	console.log(props.customerId);
 	return (
-		<main style={{ "margin-top": "50px" }}>
+		<>
 			{" "}
 			<BannerHeader />
 			{/* <h1>This is the homepage, welcome !</h1> */}
@@ -17,7 +17,7 @@ const Home = (props) => {
 					<Link to={`/account/${props.customerId}`}>Account</Link>
 				</li>
 			</ul>
-		</main>
+		</>
 	);
 };
 
