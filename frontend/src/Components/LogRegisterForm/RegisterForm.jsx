@@ -49,7 +49,7 @@ const RegisterForm = () => {
 		<div className="formWrapper">
 			<div className="formContent lightDarkColor">
 				<h2 className="formHeader alignCenter">REGISTER</h2>
-				<form className="formContainer" onSubmit={(e) => tester(e)} autoComplete="on">
+				<form className="formContainer" autoComplete="on">
 					<div className={"inputLabel" + (isInputFilled(mailAddress) ? " filled" : "")}>
 						<input
 							type="email"

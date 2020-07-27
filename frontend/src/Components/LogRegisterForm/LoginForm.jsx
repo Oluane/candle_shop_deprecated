@@ -26,7 +26,7 @@ const LoginForm = () => {
 		<div className="formWrapper">
 			<div className="formContent lightDarkColor">
 				<h2 className="formHeader alignCenter">LOGIN</h2>
-				<form className="formContainer" onSubmit={(e) => tester(e)} autoComplete="off">
+				<form className="formContainer" onSubmit={(e) => tester(e)} autoComplete="on">
 					<div className={"inputLabel" + (isInputFilled(mailAddress) ? " filled" : "")}>
 						<input
 							type="email"
