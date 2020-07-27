@@ -6,6 +6,8 @@ a {
 	color: inherit;
 }
 
+//font size & family def
+
 h1 {
 	font-family: "Montserrat", sans-serif;
 	font-weight: 700;
@@ -52,4 +54,49 @@ h4 {
 	font-family: "Montserrat", sans-serif;
 	font-weight: 400;
 	font-size: 12px;
+}
+
+//font style def
+
+.bold {
+	font-weight: 700;
+}
+
+.mediumBold {
+	font-weight: 600;
+}
+
+.lightGreyColor {
+	color: $lightGrey;
+}
+
+.lightDarkColor {
+	color: $lightDark;
+}
+
+//placmeent & alignment def
+
+.alignCenter {
+	text-align: center;
+}
+
+//specific element style
+
+.decoratedLinks {
+	color: $lightDark;
+	&:hover {
+		color: $roseGold;
+		text-decoration: underline;
+	}
+}
+
+input[type="checkbox"],
+input[type="checkbox"]:checked {
+	-moz-appearance: none;
+	appearance: none;
+	-webkit-appearance: none;
+}
+
+input:focus {
+	outline: none;
 }
