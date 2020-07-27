@@ -1,0 +1,102 @@
+@import "./generalVariables.scss";
+@import "./fonts.scss";
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+//font size & family def
+
+h1 {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 700;
+	font-size: 48px;
+}
+
+h2 {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 700;
+	font-size: 38px;
+}
+
+h3 {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 600;
+	font-size: 24px;
+}
+
+h4 {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 600;
+	font-size: 18px;
+}
+
+.largeText {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 400;
+	font-size: 18px;
+}
+
+.usualText {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+}
+
+.mediumText {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+.smallText {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 400;
+	font-size: 12px;
+}
+
+//font style def
+
+.bold {
+	font-weight: 700;
+}
+
+.mediumBold {
+	font-weight: 600;
+}
+
+.lightGreyColor {
+	color: $lightGrey;
+}
+
+.lightDarkColor {
+	color: $lightDark;
+}
+
+//placmeent & alignment def
+
+.alignCenter {
+	text-align: center;
+}
+
+//specific element style
+
+.decoratedLinks {
+	color: $lightDark;
+	&:hover {
+		color: $roseGold;
+		text-decoration: underline;
+	}
+}
+
+input[type="checkbox"],
+input[type="checkbox"]:checked {
+	-moz-appearance: none;
+	appearance: none;
+	-webkit-appearance: none;
+}
+
+input:focus {
+	outline: none;
+}
