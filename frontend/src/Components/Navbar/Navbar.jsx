@@ -37,9 +37,12 @@ const Navbar = () => {
 					</li>
 				</ul>
 				<div className="userAccountIcons">
-					<span className="navIcon userIcon">
-						<IconSvg iconName="user" />
-					</span>
+					<Link to="/account/login">
+						<span className="navIcon userIcon">
+							<IconSvg iconName="user" />
+						</span>
+					</Link>
+
 					<div className="userCart">
 						<span className="navIcon cartIcon">
 							<IconSvg iconName="shoppingCart" />
