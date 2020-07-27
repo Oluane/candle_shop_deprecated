@@ -3,8 +3,7 @@ import axios from "axios";
 import "./LogRegisterForm.scss";
 import { Link } from "react-router-dom";
 import IconSvg from "../IconSvg/IconSvg";
-
-const isInputFilled = (string) => string != "";
+import { isInputFilled } from "../../services/utils/inputsUtils";
 
 const RegisterForm = () => {
 	const [mailAddress, setMailAddress] = useState("");
@@ -16,19 +15,19 @@ const RegisterForm = () => {
 	const [birthdate, setBirthdate] = useState("");
 	const [newsletterIn, setNewsletterIn] = useState("");
 
-	const tester = (e) => {
-		e.preventDefault();
-		const userData = { mail_address: mailAddress, password: password };
-		axios.post("/api/auth/login", userData).then(
-			(response) => {
-				const xsrfToken = response.data.xsrfToken;
-				localStorage.setItem("xsrfToken", xsrfToken);
-			},
-			(err) => {
-				console.log(err);
-			}
-		);
-	};
+	// const tester = (e) => {
+	// 	e.preventDefault();
+	// 	const userData = { mail_address: mailAddress, password: password };
+	// 	axios.post("/api/auth/login", userData).then(
+	// 		(response) => {
+	// 			const xsrfToken = response.data.xsrfToken;
+	// 			localStorage.setItem("xsrfToken", xsrfToken);
+	// 		},
+	// 		(err) => {
+	// 			console.log(err);
+	// 		}
+	// 	);
+	// };
 
 	const isPasswordsIso = (e) => {
 		if (e.target.name == "password" && passwordConfirm != "") {

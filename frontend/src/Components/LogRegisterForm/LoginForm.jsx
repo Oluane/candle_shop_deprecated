@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./LogRegisterForm.scss";
 import { Link } from "react-router-dom";
-
-const isInputFilled = (string) => string != "";
+import { isInputFilled } from "../../services/utils/inputsUtils";
 
 const LoginForm = () => {
 	const [mailAddress, setMailAddress] = useState("");
