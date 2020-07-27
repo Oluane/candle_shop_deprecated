@@ -20,8 +20,6 @@
 	},
 	"homepage": "https://github.com/Oluane/candle_shop#readme",
 	"dependencies": {
-		"concurrently": "^5.2.0",
-		"redux-devtools-extension": "^2.13.8",
-		"redux-thunk": "^2.3.0"
+		"concurrently": "^5.2.0"
 	}
 }
