@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./LogRegisterForm.scss";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import "./LogRegisterForm.scss";
 import IconSvg from "../IconSvg/IconSvg";
 import { isInputFilled } from "../../services/utils/inputsUtils";
+import apiInstance from "../../services/api";
+import userActions from "../../redux/actions/userActions";
 
 const RegisterForm = () => {
 	const [mailAddress, setMailAddress] = useState("");
@@ -14,6 +17,8 @@ const RegisterForm = () => {
 	const [lastName, setLastName] = useState("");
 	const [birthdate, setBirthdate] = useState("");
 	const [newsletterIn, setNewsletterIn] = useState(false);
+
+	const dispatch = useDispatch();
 
 	const createNewCustomer = (e) => {
 		e.preventDefault();
@@ -27,15 +32,19 @@ const RegisterForm = () => {
 			newsletter_checked: newsletterIn,
 		};
 
-		axios.post("/api/auth/signup", userData).then(
-			(response) => {
-				const xsrfToken = response.data.xsrfToken;
+		axios
+			.post("/api/auth/signup", userData)
+			.then(({ data }) => {
+				const xsrfToken = data.xsrfToken;
 				localStorage.setItem("xsrfToken", xsrfToken);
-			},
-			(err) => {
-				console.log(err);
-			}
-		);
+				return apiInstance
+					.get(`/user/${data.userId}`)
+					.then(({ data }) => {
+						dispatch({ ...userActions.USER_LOGIN, payload: data[0] });
+					})
+					.catch((err) => console.log(err));
+			})
+			.catch((err) => console.log(err));
 	};
 
 	const isPasswordsIso = (e) => {

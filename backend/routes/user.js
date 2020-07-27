@@ -12,7 +12,7 @@ router.get("/:userId", isAuthenticated, (req, res) => {
 	}
 
 	db.query(
-		"SELECT id, first_name, last_name, mail_address, address, address_complement, city, zip_code, phone_number, cgu_checked, newsletter_checked FROM customer WHERE id = ?",
+		"SELECT id, first_name as firstName, last_name as lastName, mail_address as mailAddress, address, address_complement as addressComplement, city, zip_code as zipCode, phone_number as phoneNumber, cgu_checked as cguChecked, newsletter_checked as newsletterChecked FROM customer WHERE id = ?",
 		[userId],
 		(err, results) => {
 			if (err) {

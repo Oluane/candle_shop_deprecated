@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import "./LogRegisterForm.scss";
 import { Link } from "react-router-dom";
 import { isInputFilled } from "../../services/utils/inputsUtils";
 import apiInstance from "../../services/api";
+import userActions from "../../redux/actions/userActions";
 
 const LoginForm = () => {
 	const [mailAddress, setMailAddress] = useState("");
 	const [password, setPassword] = useState("");
 
-	const tester = (e) => {
+	const dispatch = useDispatch();
+
+	const login = (e) => {
 		e.preventDefault();
 		const userData = { mail_address: mailAddress, password: password };
 		apiInstance
@@ -20,7 +24,9 @@ const LoginForm = () => {
 				const userId = response.data.userId;
 				return apiInstance
 					.get(`/user/${userId}`)
-					.then((res) => console.log(res))
+					.then(({ data }) => {
+						dispatch({ ...userActions.USER_LOGIN, payload: data[0] });
+					})
 					.catch((err) => console.log(err));
 			})
 			.catch((err) => {
@@ -32,7 +38,7 @@ const LoginForm = () => {
 		<div className="formWrapper">
 			<div className="formContent lightDarkColor">
 				<h2 className="formHeader alignCenter">LOGIN</h2>
-				<form className="formContainer" onSubmit={(e) => tester(e)} autoComplete="on">
+				<form className="formContainer" onSubmit={(e) => login(e)} autoComplete="on">
 					<div className={"inputLabel" + (isInputFilled(mailAddress) ? " filled" : "")}>
 						<input
 							type="email"

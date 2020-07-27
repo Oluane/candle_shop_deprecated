@@ -2,16 +2,29 @@ import userActions from "../actions/userActions";
 
 const initial = {
 	isLoggedIn: false,
-	data: {},
+	data: {
+		id: -1,
+		firstName: "",
+		lastName: "",
+		mailAddress: "",
+		address: "",
+		addressComplement: "",
+		city: "",
+		zipCode: "",
+		phoneNumber: "",
+		cguChecked: 0,
+		newsletterChecked: 0,
+	},
 };
 
 export default (state = initial, action) => {
 	switch (action.type) {
 		case userActions.USER_LOGIN.type:
+			console.log(action);
 			return {
 				...state,
 				isLoggedIn: true,
-				data: action.user,
+				data: { ...action.payload },
 			};
 
 		default:

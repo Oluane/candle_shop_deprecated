@@ -46,15 +46,13 @@ router.post("/signup", (req, res) => {
 							}
 						);
 
-						formData.id = results.insertId;
-
 						res.cookie("access_token", accessToken, {
 							httpOnly: true,
 							sameSite: true,
 							maxAge: accessTokenExpiresIn,
 						});
 						return res.status(201).send({
-							user: formData,
+							userId: results.insertId,
 							xsrfToken: xsrfToken,
 						});
 					});
