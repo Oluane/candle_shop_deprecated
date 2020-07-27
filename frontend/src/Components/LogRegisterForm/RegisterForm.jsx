@@ -13,21 +13,30 @@ const RegisterForm = () => {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [birthdate, setBirthdate] = useState("");
-	const [newsletterIn, setNewsletterIn] = useState("");
+	const [newsletterIn, setNewsletterIn] = useState(false);
 
-	// const tester = (e) => {
-	// 	e.preventDefault();
-	// 	const userData = { mail_address: mailAddress, password: password };
-	// 	axios.post("/api/auth/login", userData).then(
-	// 		(response) => {
-	// 			const xsrfToken = response.data.xsrfToken;
-	// 			localStorage.setItem("xsrfToken", xsrfToken);
-	// 		},
-	// 		(err) => {
-	// 			console.log(err);
-	// 		}
-	// 	);
-	// };
+	const createNewCustomer = (e) => {
+		e.preventDefault();
+
+		const userData = {
+			mail_address: mailAddress,
+			password: password,
+			first_name: firstName,
+			last_name: lastName,
+			birthdate: birthdate,
+			newsletter_checked: newsletterIn,
+		};
+
+		axios.post("/api/auth/signup", userData).then(
+			(response) => {
+				const xsrfToken = response.data.xsrfToken;
+				localStorage.setItem("xsrfToken", xsrfToken);
+			},
+			(err) => {
+				console.log(err);
+			}
+		);
+	};
 
 	const isPasswordsIso = (e) => {
 		if (e.target.name == "password" && passwordConfirm != "") {
@@ -49,7 +58,11 @@ const RegisterForm = () => {
 		<div className="formWrapper">
 			<div className="formContent lightDarkColor">
 				<h2 className="formHeader alignCenter">REGISTER</h2>
-				<form className="formContainer" autoComplete="on">
+				<form
+					className="formContainer"
+					onSubmit={(e) => createNewCustomer(e)}
+					autoComplete="on"
+				>
 					<div className={"inputLabel" + (isInputFilled(mailAddress) ? " filled" : "")}>
 						<input
 							type="email"

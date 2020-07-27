@@ -28,25 +28,35 @@ router.post("/signup", (req, res) => {
 							console.error("Failure!" + err);
 							return res.status(400).send("Invalid user creation request");
 						}
+
 						formData.password = undefined;
-						let jwtPayload = {
-							iss: "http://localhost:5000",
-							exp: 900000,
-							sub: formData.mail_address,
-							xsrfToken: uid.sync(18),
-						};
-						const token = jwt.sign(JSON.stringify(payload), jwtSecret);
-						return res
-							.cookie("authCookie", token, {
-								httpOnly: true,
-								maxAge: 1000000,
-								sameSite: true,
-							})
-							.status(201)
-							.send({
-								user: formData,
-								xsrfToken: payload.xsrfToken,
-							});
+
+						const xsrfToken = crypto.randomBytes(64).toString("hex");
+
+						const accessToken = jwt.sign(
+							{
+								mailAddress: formData.mail_address,
+								xsrfToken,
+							},
+							jwtSecret,
+							{
+								expiresIn: accessTokenExpiresIn / 1000,
+								subject: results.insertId.toString(),
+								issuer: "candleshop.com",
+							}
+						);
+
+						formData.id = results.insertId;
+
+						res.cookie("access_token", accessToken, {
+							httpOnly: true,
+							sameSite: true,
+							maxAge: accessTokenExpiresIn,
+						});
+						return res.status(201).send({
+							user: formData,
+							xsrfToken: xsrfToken,
+						});
 					});
 				} else {
 					return res.status(401).json({
