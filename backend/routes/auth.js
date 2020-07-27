@@ -108,7 +108,9 @@ router.post("/login", (req, res) => {
 				maxAge: accessTokenExpiresIn,
 			});
 
-			return res.status(200).json({ accessTokenExpiresIn: accessTokenExpiresIn, xsrfToken });
+			return res
+				.status(200)
+				.json({ accessTokenExpiresIn: accessTokenExpiresIn, xsrfToken, userId: user.id });
 		});
 	})(req, res);
 });

@@ -3,6 +3,7 @@ import axios from "axios";
 import "./LogRegisterForm.scss";
 import { Link } from "react-router-dom";
 import { isInputFilled } from "../../services/utils/inputsUtils";
+import apiInstance from "../../services/api";
 
 const LoginForm = () => {
 	const [mailAddress, setMailAddress] = useState("");
@@ -11,15 +12,20 @@ const LoginForm = () => {
 	const tester = (e) => {
 		e.preventDefault();
 		const userData = { mail_address: mailAddress, password: password };
-		axios.post("/api/auth/login", userData).then(
-			(response) => {
+		apiInstance
+			.post("/auth/login", userData)
+			.then((response) => {
 				const xsrfToken = response.data.xsrfToken;
 				localStorage.setItem("xsrfToken", xsrfToken);
-			},
-			(err) => {
+				const userId = response.data.userId;
+				return apiInstance
+					.get(`/user/${userId}`)
+					.then((res) => console.log(res))
+					.catch((err) => console.log(err));
+			})
+			.catch((err) => {
 				console.log(err);
-			}
-		);
+			});
 	};
 
 	return (

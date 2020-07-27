@@ -3,12 +3,10 @@ import { Link } from "react-router-dom";
 import BannerHeader from "../../Components/BannerHeader/BannerHeader";
 
 const Home = (props) => {
-	console.log(props.customerId);
 	return (
 		<>
 			{" "}
 			<BannerHeader />
-			{/* <h1>This is the homepage, welcome !</h1> */}
 			<ul>
 				<li>
 					<Link to="/login">Login</Link>
