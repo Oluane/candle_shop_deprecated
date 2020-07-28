@@ -4,8 +4,8 @@ const isAuthenticated = require("../middlewares/isAuthenticated");
 
 const { db } = require("../conf");
 
-router.get("/:userId", isAuthenticated, (req, res) => {
-	const userId = req.params.userId;
+router.get("/", isAuthenticated, (req, res) => {
+	const userId = req.user;
 
 	if (!userId) {
 		return res.status(401).json({ message: "OOPS! Missing userId" });

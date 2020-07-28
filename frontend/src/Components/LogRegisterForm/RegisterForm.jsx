@@ -38,7 +38,7 @@ const RegisterForm = () => {
 				const xsrfToken = data.xsrfToken;
 				localStorage.setItem("xsrfToken", xsrfToken);
 				return apiInstance
-					.get(`/user/${data.userId}`)
+					.get(`/user`)
 					.then(({ data }) => {
 						dispatch({ ...userActions.USER_LOGIN, payload: data[0] });
 					})

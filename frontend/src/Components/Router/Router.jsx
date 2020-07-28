@@ -1,31 +1,37 @@
-import React, { useState, useEffect } from "react";
-import { routes } from "../../services/routes";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
-import axios from "axios";
+import { routes } from "../../services/routes";
 import Navbar from "../Navbar/Navbar";
+import apiInstance from "../../services/api";
+import userActions from "../../redux/actions/userActions";
 
 const PrivateRoute = ({ component: Component, auth, ...rest }) => (
 	<Route
 		{...rest}
-		render={(props) => (auth === true ? <Component {...props} /> : <Redirect to="/login" />)}
+		render={(props) =>
+			auth === true ? <Component {...props} /> : <Redirect to="/account/login" />
+		}
 	/>
 );
 
 const Router = () => {
-	const [isLoggedUser, setIsLoggedUser] = useState(false);
-	const [customerId, setCustomerId] = useState(null);
+	const dispatch = useDispatch();
+
+	const isLoggedUser = useSelector((state) => state.user.isLoggedIn);
 
 	useEffect(() => {
 		let xsrfToken = null;
-		if (localStorage.getItem("xsrfToken")) {
-			xsrfToken = localStorage.getItem("xsrfToken");
+		xsrfToken = localStorage.getItem("xsrfToken");
+
+		if (xsrfToken !== null) {
+			apiInstance
+				.get("/user")
+				.then(({ data }) => {
+					dispatch({ ...userActions.USER_LOGIN, payload: data[0] });
+				})
+				.catch((err) => console.log(err));
 		}
-		axios.get("/api/auth", { headers: { "x-xsrf-token": xsrfToken } }).then((res) => {
-			if (res.data.isValid) {
-				setIsLoggedUser(true);
-				setCustomerId(res.data.userId);
-			}
-		});
 	}, []);
 
 	return (
@@ -37,21 +43,15 @@ const Router = () => {
 						const { path, component, isPrivate } = routes[route];
 
 						if (!isPrivate) {
-							return (
-								<Route
-									exact
-									path={path}
-									component={component}
-									customerId={customerId}
-								/>
-							);
+							return <Route exact path={path} component={component} key={key} />;
 						} else {
 							return (
 								<PrivateRoute
+									exact
 									path={path}
 									component={component}
 									auth={isLoggedUser}
-									customerId={customerId}
+									key={key}
 								/>
 							);
 						}

@@ -12,7 +12,7 @@ const Home = (props) => {
 					<Link to="/login">Login</Link>
 				</li>
 				<li>
-					<Link to={`/account/${props.customerId}`}>Account</Link>
+					<Link to={`/account/user`}>Account</Link>
 				</li>
 			</ul>
 		</>

@@ -21,9 +21,8 @@ const LoginForm = () => {
 			.then((response) => {
 				const xsrfToken = response.data.xsrfToken;
 				localStorage.setItem("xsrfToken", xsrfToken);
-				const userId = response.data.userId;
 				return apiInstance
-					.get(`/user/${userId}`)
+					.get(`/user`)
 					.then(({ data }) => {
 						dispatch({ ...userActions.USER_LOGIN, payload: data[0] });
 					})
