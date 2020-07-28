@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./LogRegisterPage.scss";
 import LoginForm from "../../Components/LogRegisterForm/LoginForm";
 import { useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import RegisterForm from "../../Components/LogRegisterForm/RegisterForm";
 
 const LogRegisterPage = (props) => {

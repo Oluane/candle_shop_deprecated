@@ -20,7 +20,6 @@ const initial = {
 export default (state = initial, action) => {
 	switch (action.type) {
 		case userActions.USER_LOGIN.type:
-			console.log(action);
 			return {
 				...state,
 				isLoggedIn: true,

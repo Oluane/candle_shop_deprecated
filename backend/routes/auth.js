@@ -52,7 +52,6 @@ router.post("/signup", (req, res) => {
 							maxAge: accessTokenExpiresIn,
 						});
 						return res.status(201).send({
-							userId: results.insertId,
 							xsrfToken: xsrfToken,
 						});
 					});

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import axios from "axios";
+
 import "./LogRegisterForm.scss";
 import { Link } from "react-router-dom";
 import { isInputFilled } from "../../services/utils/inputsUtils";

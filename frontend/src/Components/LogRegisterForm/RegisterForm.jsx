@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -48,14 +48,14 @@ const RegisterForm = () => {
 	};
 
 	const isPasswordsIso = (e) => {
-		if (e.target.name == "password" && passwordConfirm != "") {
-			if (e.target.value == passwordConfirm) {
+		if (e.target.name === "password" && passwordConfirm !== "") {
+			if (e.target.value === passwordConfirm) {
 				setArePasswordSame(true);
 			} else {
 				setArePasswordSame(false);
 			}
-		} else if (e.target.name == "passwordConfirm" && password != "") {
-			if (e.target.value == password) {
+		} else if (e.target.name === "passwordConfirm" && password !== "") {
+			if (e.target.value === password) {
 				setArePasswordSame(true);
 			} else {
 				setArePasswordSame(false);
