@@ -31,7 +31,7 @@ const Router = () => {
 	return (
 		<>
 			<Navbar />
-			<main style={{ marginTop: "50px" }}>
+			<main style={{ marginTop: "65px" }}>
 				<Switch>
 					{Object.keys(routes).map((route, key) => {
 						const { path, component, isPrivate } = routes[route];
