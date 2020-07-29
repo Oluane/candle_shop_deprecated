@@ -1,9 +1,8 @@
 @import "./generalVariables.scss";
 @import "./fonts.scss";
 
-a {
-	text-decoration: none;
-	color: inherit;
+body {
+	background-color: $primary;
 }
 
 //font size & family def
@@ -28,7 +27,7 @@ h3 {
 
 h4 {
 	font-family: "Montserrat", sans-serif;
-	font-weight: 600;
+	font-weight: 400;
 	font-size: 18px;
 }
 
@@ -99,4 +98,16 @@ input[type="checkbox"]:checked {
 
 input:focus {
 	outline: none;
+}
+
+.sectionTitle {
+	margin-bottom: 25px;
+	text-align: center;
+	font-weight: 400;
+	letter-spacing: 0.15em;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
 }

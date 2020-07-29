@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BannerHeader from "../../Components/BannerHeader/BannerHeader";
+import ScentsCategories from "../../Components/ScentsCategories/ScentsCategories";
 
 const Home = (props) => {
-	console.log(props.customerId);
 	return (
 		<>
 			{" "}
 			<BannerHeader />
 			{/* <h1>This is the homepage, welcome !</h1> */}
+			<ScentsCategories />
 			<ul>
 				<li>
 					<Link to="/login">Login</Link>
