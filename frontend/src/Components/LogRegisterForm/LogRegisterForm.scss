@@ -6,7 +6,7 @@
 	width: 100%;
 
 	.formContent {
-		background-color: $secondary;
+		background-color: $primary;
 		padding: 30px 45px;
 	}
 
@@ -110,7 +110,7 @@
 		.checkIcon {
 			width: 12px;
 			height: 12px;
-			color: $secondary;
+			color: $primary;
 			position: absolute;
 			left: 5px;
 			top: 3px;
@@ -126,7 +126,7 @@
 		transition: all 0.3s ease;
 
 		& > span {
-			color: $secondary;
+			color: $primary;
 		}
 	}
 
