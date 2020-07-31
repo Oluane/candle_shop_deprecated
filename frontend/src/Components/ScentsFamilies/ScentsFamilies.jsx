@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./ScentsCategories.scss";
+import "./ScentsFamilies.scss";
 import { Link } from "react-router-dom";
 
-const ScentsCategories = () => {
-	const [scentsCategories, setScentsCategories] = useState([]);
+const ScentsFamilies = () => {
+	const [scentsFamilies, setScentsFamilies] = useState([]);
 
 	useEffect(() => {
 		axios
-			.get("/api/scents/categories")
+			.get("/api/scents_families")
 			.then(({ data }) => {
-				setScentsCategories(data);
+				setScentsFamilies(data);
 			})
 			.catch((err) => console.log(err));
 	}, []);
@@ -22,11 +22,11 @@ const ScentsCategories = () => {
 				Discover our differents scents universes and find the one that fits you best{" "}
 			</p>
 			<div className="categoriesItemsWrapper">
-				{scentsCategories.length > 0 &&
-					scentsCategories.map((cat, key) => {
+				{scentsFamilies.length > 0 &&
+					scentsFamilies.map((cat, key) => {
 						return (
 							<Link
-								to={`/scent_category/${cat.id}`}
+								to={`/scents_families/${cat.id}`}
 								className="scentsItems"
 								style={{
 									backgroundImage: `url("/images/scents_categories/normal_${cat.id}.jpg")`,
@@ -46,4 +46,4 @@ const ScentsCategories = () => {
 	);
 };
 
-export default ScentsCategories;
+export default ScentsFamilies;

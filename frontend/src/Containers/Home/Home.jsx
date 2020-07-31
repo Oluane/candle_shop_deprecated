@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BannerHeader from "../../Components/BannerHeader/BannerHeader";
-import ScentsCategories from "../../Components/ScentsCategories/ScentsCategories";
+import ScentsFamilies from "../../Components/ScentsFamilies/ScentsFamilies";
 
 const Home = (props) => {
 	return (
@@ -9,7 +9,7 @@ const Home = (props) => {
 			{" "}
 			<BannerHeader />
 			{/* <h1>This is the homepage, welcome !</h1> */}
-			<ScentsCategories />
+			<ScentsFamilies />
 			<ul>
 				<li>
 					<Link to="/login">Login</Link>

@@ -5,16 +5,6 @@
 	margin: auto;
 	position: relative;
 
-	// .bgImg {
-	// 	width: 100%;
-	// 	height: 250px;
-	// 	position: absolute;
-	// 	mask-image: radial-gradient(ellipse, rgba(0, 0, 0, 1) 0%, rgba(251, 248, 245, 0.6) 100%);
-
-	// 	filter: saturate(60%);
-	// 	z-index: -1;
-	// }
-
 	.categoryHeader {
 		width: 100%;
 		height: 350px;
@@ -49,16 +39,6 @@
 		.titleDesc {
 			text-align: justify;
 		}
-
-		// .titleDesc:before {
-		// 	content: "";
-		// 	position: absolute;
-		// 	top: 100px;
-		// 	left: 200px;
-		// 	height: 1px;
-		// 	width: 450px;
-		// 	background-color: $lightDark;
-		// }
 	}
 
 	.scrollContainer::-webkit-scrollbar {
@@ -74,24 +54,60 @@
 		align-items: center;
 		width: 100%;
 		overflow-x: scroll;
+		overflow-y: hidden;
 		position: relative;
 		margin-top: 50px;
 		max-height: 120px;
-		//margin-left: 30px;
+
 		scrollbar-width: none;
 
 		.scentItem {
-			min-width: 150px;
-			height: 100px;
+			min-width: 300px;
+			height: 99px;
 			background-color: $tertiary;
-			//margin-right: 50px;
+			position: relative;
+			border-radius: 2px;
+			cursor: pointer;
+
+			h4 {
+				position: absolute;
+				top: 0;
+				color: $primary;
+				line-height: 99px;
+				width: 100%;
+				text-align: center;
+				border-radius: 2px;
+			}
+			.scentThumbnail {
+				width: 100%;
+				mask-image: linear-gradient($lightGrey, 0%, $lightGrey 100%);
+				vertical-align: middle;
+				filter: blur(0.5px);
+				transition: all 0.2s ease 0s;
+				border-radius: 2px;
+			}
+
+			&.active {
+				//box-shadow: 0px 0px 5px 1px $lightGrey;
+				h4 {
+					//border: solid 3px $tertiary;
+					// line-height: 93px;
+					font-weight: 600;
+					text-shadow: 1px 1px 2px $lightGrey;
+				}
+
+				.scentThumbnail {
+					mask-image: none;
+					filter: none;
+				}
+			}
 		}
 
 		.separation {
 			width: 1px;
-			height: 75px;
+			height: 50px;
 			background-color: $lightGrey;
-			margin: 0 30px;
+			margin: 0 20px;
 			flex-shrink: 0;
 		}
 	}
@@ -106,8 +122,14 @@
 		z-index: 10;
 		width: 30px;
 		height: 100%;
-		color: $lightDark;
+		color: $lightGrey;
 		cursor: pointer;
+	}
+
+	.rightArrowContainer:hover,
+	.leftArrowContainer:hover {
+		background-color: rgba(35, 35, 35, 0.2);
+		color: $primary;
 	}
 
 	.rightArrowContainer {
@@ -121,5 +143,11 @@
 	.directionArrow {
 		width: 30px;
 		height: 100%;
+	}
+
+	.scentInfoWrapper {
+		margin-top: 50px;
+		background-color: $secondary;
+		border-radius: 2px;
 	}
 }

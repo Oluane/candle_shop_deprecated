@@ -3,11 +3,11 @@ const app = express();
 const router = express.Router();
 const auth = require("./auth");
 const user = require("./user");
-const scents = require("./scents");
+const scentsFamilies = require("./scentsFamilies");
 
 router.use("/auth", auth);
 router.use("/user", user);
-router.use("/scents", scents);
+router.use("/scents_families", scentsFamilies);
 
 router.get("/", (req, res) => {
 	const msg = "Hello World";
