@@ -25,7 +25,8 @@ export default (state = initial, action) => {
 				isLoggedIn: true,
 				data: { ...action.payload },
 			};
-
+		case userActions.USER_LOGOUT.type:
+			return initial;
 		default:
 			return state;
 	}
