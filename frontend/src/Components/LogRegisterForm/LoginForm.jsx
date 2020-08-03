@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import "./LogRegisterForm.scss";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { isInputFilled } from "../../services/utils/inputsUtils";
 import apiInstance from "../../services/api";
 import userActions from "../../redux/actions/userActions";
@@ -12,6 +12,8 @@ const LoginForm = () => {
 	const [password, setPassword] = useState("");
 
 	const dispatch = useDispatch();
+
+	const history = useHistory();
 
 	const login = (e) => {
 		e.preventDefault();
@@ -25,6 +27,11 @@ const LoginForm = () => {
 					.get(`/user`)
 					.then(({ data }) => {
 						dispatch({ ...userActions.USER_LOGIN, payload: data[0] });
+						const redirectUrl =
+							history.location.state !== undefined
+								? history.location.state.from
+								: "/";
+						history.push(redirectUrl);
 					})
 					.catch((err) => console.log(err));
 			})

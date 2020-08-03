@@ -3,18 +3,19 @@ import "./LogRegisterPage.scss";
 import LoginForm from "../../Components/LogRegisterForm/LoginForm";
 import { useEffect } from "react";
 import RegisterForm from "../../Components/LogRegisterForm/RegisterForm";
+import { useParams } from "react-router-dom";
 
 const LogRegisterPage = (props) => {
 	const [isLogIn, setIsLogIn] = useState(false);
 	const [isRegister, setIsRegister] = useState(false);
+	const { type } = useParams();
 
 	useEffect(() => {
-		const queryParam = props.match.params;
-		if (queryParam.type === "login") {
+		if (type === "login") {
 			setIsLogIn(true);
 			setIsRegister(false);
 		}
-		if (queryParam.type === "register") {
+		if (type === "register") {
 			setIsRegister(true);
 			setIsLogIn(false);
 		}
