@@ -1,6 +1,6 @@
 @import "../../style/generalVariables.scss";
 nav {
-	background-color: $secondary;
+	background-color: $primary;
 	display: flex;
 	justify-content: space-between;
 	position: fixed;
@@ -124,7 +124,7 @@ nav {
 
 			.itemsCount {
 				font-weight: 600;
-				color: $secondary;
+				color: $primary;
 				position: absolute;
 				top: 5px;
 				left: 7px;

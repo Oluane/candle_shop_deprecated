@@ -1,0 +1,153 @@
+@import "../../style/generalVariables.scss";
+
+.scentCategoryContainer {
+	width: 75%;
+	margin: auto;
+	position: relative;
+
+	.categoryHeader {
+		width: 100%;
+		height: 350px;
+		background: url("/images/scents_categories/banner_sweet_1_lr.jpg");
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		filter: saturate(40%);
+		display: flex;
+		margin: auto;
+
+		.categoryTitle {
+			width: 90%;
+			border: 4px solid $tertiary;
+			margin: auto;
+			padding: 40px 55px;
+			background-color: $secondaryTrans;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			position: relative;
+		}
+		h1 {
+			color: $lightDark;
+			text-align: center;
+			font-weight: 600;
+			text-transform: uppercase;
+			word-spacing: 0.2em;
+			margin-bottom: 45px;
+		}
+
+		.titleDesc {
+			text-align: justify;
+		}
+	}
+
+	.scrollContainer::-webkit-scrollbar {
+		display: none;
+	}
+
+	.scentWrapper {
+		position: relative;
+	}
+
+	#scrollContainer {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		overflow-x: scroll;
+		overflow-y: hidden;
+		position: relative;
+		margin-top: 50px;
+		max-height: 120px;
+
+		scrollbar-width: none;
+
+		.scentItem {
+			min-width: 300px;
+			height: 99px;
+			background-color: $tertiary;
+			position: relative;
+			border-radius: 2px;
+			cursor: pointer;
+
+			h4 {
+				position: absolute;
+				top: 0;
+				color: $primary;
+				line-height: 99px;
+				width: 100%;
+				text-align: center;
+				border-radius: 2px;
+			}
+			.scentThumbnail {
+				width: 100%;
+				mask-image: linear-gradient($lightGrey, 0%, $lightGrey 100%);
+				vertical-align: middle;
+				filter: blur(0.5px);
+				transition: all 0.2s ease 0s;
+				border-radius: 2px;
+			}
+
+			&.active {
+				//box-shadow: 0px 0px 5px 1px $lightGrey;
+				h4 {
+					//border: solid 3px $tertiary;
+					// line-height: 93px;
+					font-weight: 600;
+					text-shadow: 1px 1px 2px $lightGrey;
+				}
+
+				.scentThumbnail {
+					mask-image: none;
+					filter: none;
+				}
+			}
+		}
+
+		.separation {
+			width: 1px;
+			height: 50px;
+			background-color: $lightGrey;
+			margin: 0 20px;
+			flex-shrink: 0;
+		}
+	}
+
+	.rightArrowContainer,
+	.leftArrowContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		top: 0;
+		z-index: 10;
+		width: 30px;
+		height: 100%;
+		color: $lightGrey;
+		cursor: pointer;
+	}
+
+	.rightArrowContainer:hover,
+	.leftArrowContainer:hover {
+		background-color: rgba(35, 35, 35, 0.2);
+		color: $primary;
+	}
+
+	.rightArrowContainer {
+		right: 0;
+	}
+
+	.leftArrowContainer {
+		left: 0;
+	}
+
+	.directionArrow {
+		width: 30px;
+		height: 100%;
+	}
+
+	.scentInfoWrapper {
+		margin-top: 50px;
+		background-color: $secondary;
+		border-radius: 2px;
+	}
+}
