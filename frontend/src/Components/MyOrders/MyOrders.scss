@@ -1,0 +1,27 @@
+@import "../../style/generalVariables.scss";
+
+.myOrders {
+	padding: 25px;
+}
+
+.noOrderContainer {
+	margin-top: 100px;
+	.emptyBoxIcon {
+		width: 120px;
+		height: 120px;
+		color: $tertiary;
+		margin: 25px auto;
+	}
+
+	.buttonLink {
+		width: 35%;
+		background-color: $lightDark;
+		color: $primary;
+		padding: 15px;
+		margin: 60px auto 0 auto;
+		display: inline-block;
+		&:hover {
+			background-color: $roseGold;
+		}
+	}
+}

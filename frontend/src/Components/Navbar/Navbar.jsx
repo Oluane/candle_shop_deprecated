@@ -1,11 +1,13 @@
 import React from "react";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import IconSvg from "../IconSvg/IconSvg";
 
 const Navbar = () => {
+	const isLoggedUser = useSelector((state) => state.user.isLoggedIn);
 	return (
-		<nav>
+		<nav className="mainNavbar">
 			<div className="navLeft smallText">
 				<ul>
 					<li>
@@ -37,7 +39,7 @@ const Navbar = () => {
 					</li>
 				</ul>
 				<div className="userAccountIcons">
-					<Link to="/account/login">
+					<Link to={isLoggedUser ? "/account/user" : "/account/login"}>
 						<span className="navIcon userIcon">
 							<IconSvg iconName="user" />
 						</span>

@@ -1,5 +1,5 @@
 @import "../../style/generalVariables.scss";
-nav {
+.mainNavbar {
 	background-color: $primary;
 	display: flex;
 	justify-content: space-between;
@@ -30,12 +30,11 @@ nav {
 	.brandLogo {
 		position: absolute;
 		left: 40%;
-	}
-
-	span {
-		font-family: "Monsieur La Doulaise", cursive;
-		font-size: 45px;
-		color: $lightDark;
+		span {
+			font-family: "Monsieur La Doulaise", cursive;
+			font-size: 45px;
+			color: $lightDark;
+		}
 	}
 
 	.navLinks {
