@@ -5,10 +5,11 @@ import "./Account.scss";
 import userActions from "../../redux/actions/userActions";
 
 import MyOrders from "../../Components/MyOrders/MyOrders";
+import MyProfile from "../../Components/MyProfile/MyProfile";
 
 const navSections = [
+	{ id: "profile", name: "MY PROFILE", component: <MyProfile /> },
 	{ id: "orders", name: "MY ORDERS", component: <MyOrders /> },
-	{ id: "profile", name: "MY PROFILE", component: null },
 	{ id: "addresses", name: "MY ADDRESSES", component: null },
 	{ id: "wishlist", name: "MY WISHLIST", component: null },
 ];
@@ -25,7 +26,7 @@ const Account = () => {
 		history.push("/");
 	};
 
-	const [displayedSection, setDisplayedSection] = useState("orders");
+	const [displayedSection, setDisplayedSection] = useState("profile");
 
 	return (
 		<div className="account">
