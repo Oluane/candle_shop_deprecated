@@ -1,1 +1,1 @@
-export const isInputFilled = (string) => string !== "";
+export const isInputFilled = (string) => (string ? true : false);
