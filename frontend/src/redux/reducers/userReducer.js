@@ -14,6 +14,8 @@ const initial = {
 		phoneNumber: "",
 		cguChecked: 0,
 		newsletterChecked: 0,
+		birthdate: "",
+		signUpDate: "",
 	},
 };
 
@@ -27,6 +29,12 @@ export default (state = initial, action) => {
 			};
 		case userActions.USER_LOGOUT.type:
 			return initial;
+
+		case userActions.USER_EDIT.type:
+			return {
+				...state,
+				data: { ...state.data, ...action.payload },
+			};
 		default:
 			return state;
 	}

@@ -12,7 +12,10 @@ router.get("/", isAuthenticated, (req, res) => {
 	}
 
 	db.query(
-		"SELECT id, first_name as firstName, last_name as lastName, mail_address as mailAddress, address, address_complement as addressComplement, city, zip_code as zipCode, phone_number as phoneNumber, cgu_checked as cguChecked, newsletter_checked as newsletterChecked FROM customer WHERE id = ?",
+		`SELECT id, first_name , last_name , mail_address , 
+        address, address_complement , city, zip_code , 
+        DATE_FORMAT(birthdate, '%Y-%m-%d') as birthdate, phone_number, cgu_checked , 
+        newsletter_checked, DATE_FORMAT(sign_up_datetime, '%Y-%m-%d') as signUpDate FROM customer WHERE id = ?`,
 		[userId],
 		(err, results) => {
 			if (err) {
@@ -24,6 +27,24 @@ router.get("/", isAuthenticated, (req, res) => {
 			}
 		}
 	);
+});
+
+router.put("/", isAuthenticated, (req, res) => {
+	const userId = req.user;
+	const customerData = req.body;
+
+	if (!userId) {
+		return res.status(401).json({ message: "OOPS! Missing userId" });
+	}
+
+	db.query(`UPDATE customer SET ? WHERE id = ?`, [customerData, userId], (err, results) => {
+		if (err) {
+			console.log(err);
+			return res.status(500).json({ message: "Internal Error" });
+		} else {
+			res.status(204).send();
+		}
+	});
 });
 
 module.exports = router;
