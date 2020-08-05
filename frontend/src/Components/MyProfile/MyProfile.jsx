@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./MyProfile.scss";
-import IconSvg from "../../Components/IconSvg/IconSvg";
 import userActions from "../../redux/actions/userActions";
 import Input from "../Input/Input";
 import apiInstance from "../../services/api";
@@ -68,7 +66,7 @@ const MyProfile = () => {
 				<Input
 					type="email"
 					name="email"
-					initValue={mailAddress}
+					value={mailAddress}
 					onChange={setMailAddress}
 					isMidWidth={false}
 					placeHolder="Email"
@@ -77,7 +75,7 @@ const MyProfile = () => {
 					<Input
 						type="text"
 						name="firstname"
-						initValue={firstName}
+						value={firstName}
 						onChange={setFirstName}
 						isMidWidth={true}
 						placeHolder="First name"
@@ -85,7 +83,7 @@ const MyProfile = () => {
 					<Input
 						type="text"
 						name="lastname"
-						initValue={lastName}
+						value={lastName}
 						onChange={setLastName}
 						isMidWidth={true}
 						placeHolder="Last name"
@@ -95,7 +93,7 @@ const MyProfile = () => {
 				<Input
 					type="date"
 					name="birthdate"
-					initValue={birthdate}
+					value={birthdate}
 					onChange={setBirthdate}
 					isMidWidth={false}
 					placeHolder="Birthdate"
@@ -104,7 +102,7 @@ const MyProfile = () => {
 				<Input
 					type="text"
 					name="address"
-					initValue={address}
+					value={address}
 					onChange={setAddress}
 					isMidWidth={false}
 					placeHolder="Address"
@@ -114,7 +112,7 @@ const MyProfile = () => {
 					<Input
 						type="text"
 						name="addressComplement"
-						initValue={addressComplement}
+						value={addressComplement}
 						onChange={setAddressComplement}
 						isMidWidth={true}
 						placeHolder="Additional address"
@@ -122,7 +120,7 @@ const MyProfile = () => {
 					<Input
 						type="text"
 						name="zipCode"
-						initValue={zipCode}
+						value={zipCode}
 						onChange={setZipCode}
 						isMidWidth={true}
 						placeHolder="ZIP Code"
@@ -132,7 +130,7 @@ const MyProfile = () => {
 					<Input
 						type="text"
 						name="city"
-						initValue={city}
+						value={city}
 						onChange={setCity}
 						isMidWidth={true}
 						placeHolder="City"
@@ -140,7 +138,7 @@ const MyProfile = () => {
 					<Input
 						type="text"
 						name="phoneNumber"
-						initValue={phoneNumber}
+						value={phoneNumber}
 						onChange={setPhoneNumber}
 						isMidWidth={true}
 						placeHolder="Phone number"

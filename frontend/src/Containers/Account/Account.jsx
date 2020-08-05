@@ -59,8 +59,9 @@ const Account = () => {
 
 				{navSections.map((section, i) => {
 					if (section.id === displayedSection) {
-						return section.component;
+						return <React.Fragment key={i}>{section.component}</React.Fragment>;
 					}
+					return null;
 				})}
 			</div>
 		</div>

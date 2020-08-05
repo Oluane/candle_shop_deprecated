@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 //import { useSelector, useDispatch } from "react-redux";
 import "./MyOrders.scss";
 import IconSvg from "../../Components/IconSvg/IconSvg";
-import userActions from "../../redux/actions/userActions";
 
 const MyOrders = () => {
 	// const currentUser = useSelector((state) => state.user.data);

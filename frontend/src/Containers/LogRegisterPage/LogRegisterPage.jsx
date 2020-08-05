@@ -19,7 +19,7 @@ const LogRegisterPage = (props) => {
 			setIsRegister(true);
 			setIsLogIn(false);
 		}
-	}, [props.match.params]);
+	}, [type]);
 
 	return (
 		<div className="logRegisterContainer">

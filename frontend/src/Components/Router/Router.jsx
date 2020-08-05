@@ -33,6 +33,8 @@ const PrivateRoute = ({ component: Component, auth, authenticationRequestState, 
 						default:
 							return null;
 					}
+				default:
+					return null;
 			}
 		}}
 	/>
@@ -68,7 +70,7 @@ const Router = () => {
 				setAuthenticationRequestState("noToken");
 			}
 		}
-	}, [isLoggedUser]);
+	}, [isLoggedUser, dispatch]);
 
 	return (
 		<>

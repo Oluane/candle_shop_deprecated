@@ -1,14 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Input.scss";
 import { isInputFilled } from "../../services/utils/inputsUtils";
 
-const Input = ({ type, name, initValue, onChange, specialClasses, isMidWidth, placeHolder }) => {
-	const [value, setValue] = useState(initValue);
-
-	useEffect(() => {
-		onChange(value);
-	}, [value]);
-
+const Input = ({ type, name, value, onChange, specialClasses, isMidWidth, placeHolder }) => {
 	return (
 		<div
 			className={
@@ -16,7 +10,7 @@ const Input = ({ type, name, initValue, onChange, specialClasses, isMidWidth, pl
 				(isMidWidth ? " midWidthInput" : "") +
 				(specialClasses !== undefined
 					? " specialDisplay"
-					: isInputFilled(initValue)
+					: isInputFilled(value)
 					? " filled"
 					: "")
 			}
@@ -24,8 +18,8 @@ const Input = ({ type, name, initValue, onChange, specialClasses, isMidWidth, pl
 			<input
 				type={type}
 				name={name}
-				value={value}
-				onChange={({ target: { value } }) => setValue(value)}
+				value={value === null ? "" : value}
+				onChange={({ target: { value } }) => onChange(value)}
 				className="formInput usualText"
 			/>
 			<span className="smallText inputPlaceholder">{placeHolder}</span>

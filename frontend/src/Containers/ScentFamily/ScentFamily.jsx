@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import IconSvg from "../../Components/IconSvg/IconSvg";
 import "./ScentFamily.scss";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const ScentFamily = (props) => {
 	const [currentFamily, setCurrentFamily] = useState(null);
 	const [scents, setScents] = useState(null);
+	const { catId } = useParams();
 
 	useEffect(() => {
-		const catId = props.match.params.catId;
-
 		axios
 			.get("/api/scents_families/" + catId)
 			.then(({ data }) => {
@@ -20,9 +20,7 @@ const ScentFamily = (props) => {
 				});
 			})
 			.catch((err) => console.log(err));
-
-		console.log(typeof getRatio());
-	}, []);
+	}, [catId]);
 
 	const [scrollIndex, setScrollIndex] = useState(0);
 	const [isScrollMax, setIsScrollMax] = useState(false);
@@ -84,15 +82,13 @@ const ScentFamily = (props) => {
 						<div id="scrollContainer">
 							{scents !== null &&
 								scents.map((scent, i) => {
-									console.log(scents.length > Math.ceil(getRatio()));
 									return (
-										<>
+										<React.Fragment key={i}>
 											<div
 												className={
 													"scentItem " +
 													(selectedScent.id === scent.id ? "active" : "")
 												}
-												key={i}
 												onClick={() => setSelectedScent(scent)}
 											>
 												<img
@@ -105,7 +101,7 @@ const ScentFamily = (props) => {
 											{i < scents.length - 1 && (
 												<div className="separation"></div>
 											)}
-										</>
+										</React.Fragment>
 									);
 								})}
 						</div>
