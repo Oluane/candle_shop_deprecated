@@ -169,7 +169,7 @@ const RegisterForm = () => {
 						</span>
 					</div>
 
-					<button type="submit" value="Login" className="submitButton">
+					<button type="submit" value="Register" className="submitButton">
 						<span className="mediumText bold">Register</span>
 					</button>
 				</form>

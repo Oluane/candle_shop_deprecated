@@ -2,4 +2,56 @@
 
 .myProfile {
 	padding: 25px;
+
+	.profileSummary {
+		background-color: $secondaryTrans;
+		padding: 25px;
+		border-radius: 2px;
+		display: flex;
+	}
+
+	.formContainer {
+		max-width: 550px;
+		margin: auto;
+
+		h4 {
+			margin: 20px 0 50px 0;
+			position: relative;
+
+			&:after {
+				content: "";
+				display: block;
+				width: 85px;
+				height: 1px;
+				background-color: $lightGrey;
+				position: absolute;
+				bottom: -25px;
+				left: 50%;
+				margin-left: -40px;
+			}
+		}
+
+		.submitButton {
+			width: 100%;
+			padding: 15px;
+			background-color: $lightDark;
+			border: solid 1px $lightDark;
+			cursor: pointer;
+			transition: all 0.3s ease;
+
+			& > span {
+				color: $primary;
+			}
+		}
+
+		.submitButton:hover {
+			background-color: $roseGold;
+			border-color: $roseGold;
+		}
+	}
+
+	.midWidthInputWrapper {
+		display: flex;
+		justify-content: space-between;
+	}
 }
