@@ -1,4 +1,5 @@
 import axios from "axios";
+import { convertCamelToSnake, convertSnakeToCamel } from "../services/utils/stringUtils";
 
 const apiInstance = axios.create({
 	baseURL: "/api",
@@ -11,11 +12,35 @@ const apiInstance = axios.create({
 
 apiInstance.interceptors.request.use((req) => {
 	const token = localStorage.getItem("xsrfToken");
-
 	if (token) {
 		req.headers["x-xsrf-token"] = token;
 	}
+
+	//intercepting request data to convert its keys to snake case to fits with DB naming convention
+
+	const reqData = req.data;
+
+	if (typeof reqData === "object") {
+		let data = {};
+		Object.keys(reqData).map((e) => {
+			return (data[convertCamelToSnake(e)] = reqData[e]);
+		});
+		req.data = data;
+	}
 	return req;
+});
+
+apiInstance.interceptors.response.use((res) => {
+	//intercepting response data to convert its keys to camel case to fits with JS front naming convention
+	const resData = res.data[0];
+	if (typeof resData === "object") {
+		let data = {};
+		Object.keys(resData).map((e) => {
+			return (data[convertSnakeToCamel(e)] = resData[e]);
+		});
+		res.data[0] = data;
+	}
+	return res;
 });
 
 export default apiInstance;
