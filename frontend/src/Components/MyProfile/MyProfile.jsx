@@ -4,6 +4,7 @@ import "./MyProfile.scss";
 import userActions from "../../redux/actions/userActions";
 import Input from "../Input/Input";
 import apiInstance from "../../services/api";
+import { format } from "date-fns";
 
 const MyProfile = () => {
 	const currentUser = useSelector((state) => state.user.data);
@@ -42,23 +43,28 @@ const MyProfile = () => {
 			.catch((err) => console.log(err));
 	};
 
+	// const dateFormat = (str) => {
+	// 	const dateArr = str.split("-");
+	// 	return format(new Date(dateArr[0], dateArr[1], dateArr[2]), "MMMM do yyyy");
+	// };
+
 	return (
 		<div className="myProfile alignCenter">
 			<h2 className="sectionTitle">MY PROFILE</h2>
 
-			{/* <div className="profileSummary">
+			{/* <div className="profileSummary usualText">
 				<div className="leftProfile">
+					<span>Name</span>
 					<p>
-						<span>Name</span>
 						{currentUser.firstName} {currentUser.lastName}
 					</p>
-                    <p>
-						<span>Idend</span>
-						{currentUser.firstName} {currentUser.lastName}
-					</p>
-					<p>Member since {}</p>
+
+					<p>Member since {dateFormat(currentUser.signUpDate)}</p>
 				</div>
-				<div className="rightProfile"></div>
+				<div className="rightProfile">
+					<span>Last order : </span>
+					<p>no order yet !</p>
+				</div>
 			</div> */}
 
 			<form className="formContainer" onSubmit={(e) => editCustomer(e)}>

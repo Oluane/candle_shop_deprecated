@@ -3,12 +3,40 @@
 .myProfile {
 	padding: 25px;
 
-	.profileSummary {
-		background-color: $secondaryTrans;
-		padding: 25px;
-		border-radius: 2px;
-		display: flex;
-	}
+	// .profileSummary {
+	// 	background-color: $secondaryTrans;
+	// 	padding: 10px;
+	// 	border-radius: 2px;
+	// 	display: flex;
+	// 	justify-content: space-between;
+
+	// 	.leftProfile,
+	// 	.rightProfile {
+	// 		text-align: left;
+	// 		width: 40%;
+	// 		padding: 25px;
+
+	// 		span {
+	// 			font-size: 13px;
+	// 			margin-bottom: 6px;
+	// 			display: inline-block;
+	// 		}
+	// 	}
+
+	// 	.rightProfile {
+	// 		position: relative;
+	// 	}
+
+	// 	.rightProfile:before {
+	// 		content: "";
+	// 		width: 1px;
+	// 		height: 100px;
+	// 		background-color: $lightGrey;
+	// 		position: absolute;
+	// 		top: 0;
+	// 		left: 0;
+	// 	}
+	// }
 
 	.formContainer {
 		max-width: 550px;
