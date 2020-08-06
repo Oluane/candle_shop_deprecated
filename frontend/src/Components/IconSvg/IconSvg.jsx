@@ -4,6 +4,8 @@ import iconInfos from "../../style/icons/iconsLib";
 //const defaultStyles = { display: "inline-block", verticalAlign: "middle" };
 
 const IconSvg = ({ iconName, className }) => {
+	const pathArr = iconInfos[iconName].path;
+
 	return (
 		<svg
 			className={className}
@@ -13,7 +15,9 @@ const IconSvg = ({ iconName, className }) => {
 			xmlns="http://www.w3.org/2000/svg"
 			xmlnsXlink="http://www.w3.org/1999/xlink"
 		>
-			<path fill="currentColor" d={iconInfos[iconName].path} />
+			{pathArr.map((path, i) => {
+				return <path key={i} fill={path.fillColor} d={path.d} />;
+			})}
 		</svg>
 	);
 };
