@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import IconSvg from "../../Components/IconSvg/IconSvg";
 import "./ScentFamily.scss";
-import axios from "axios";
 import { useParams } from "react-router-dom";
+import CandleTypes from "../../Components/CandleTypes/CandleTypes";
+import apiInstance from "../../services/api";
 
 const ScentFamily = (props) => {
 	const [currentFamily, setCurrentFamily] = useState(null);
@@ -10,11 +11,11 @@ const ScentFamily = (props) => {
 	const { catId } = useParams();
 
 	useEffect(() => {
-		axios
-			.get("/api/scents_families/" + catId)
+		apiInstance
+			.get("/scents_families/" + catId)
 			.then(({ data }) => {
 				setCurrentFamily(data);
-				return axios.get("/api/scents_families/" + catId + "/scents").then(({ data }) => {
+				return apiInstance.get("/scents_families/" + catId + "/scents").then(({ data }) => {
 					setScents(data);
 					setSelectedScent(data[0]);
 				});
@@ -73,8 +74,8 @@ const ScentFamily = (props) => {
 						}}
 					>
 						<div className="categoryTitle">
-							<h1>{currentFamily[0].en_name} scents</h1>
-							<p className="titleDesc usualText">{currentFamily[0].en_desc}</p>
+							<h1>{currentFamily[0].enName} scents</h1>
+							<p className="titleDesc usualText">{currentFamily[0].enDesc}</p>
 						</div>
 					</header>
 
@@ -93,10 +94,10 @@ const ScentFamily = (props) => {
 											>
 												<img
 													src={`/images/scents/thumbnail_${scent.id}.jpg`}
-													alt={`${scent.en_name} perfume`}
+													alt={`${scent.enName} perfume`}
 													className="scentThumbnail"
 												/>
-												<h4>{scent.en_name}</h4>
+												<h4>{scent.enName}</h4>
 											</div>
 											{i < scents.length - 1 && (
 												<div className="separation"></div>
@@ -126,11 +127,12 @@ const ScentFamily = (props) => {
 							</div>
 						)}
 					</section>
-					<section className="scentInfoWrapper">
-						{selectedScent.id}
-
-						<h3>{selectedScent.en_name}</h3>
-						<p>{selectedScent.en_desc}</p>
+					<section className="scentInfoWrapper bgSecondary">
+						<h3 className="sectionTitle">{selectedScent.enName}</h3>
+						<p className="usualText">{selectedScent.enDesc}</p>
+					</section>
+					<section className="bgSecondary">
+						<CandleTypes scent={selectedScent} />
 					</section>
 				</>
 			)}

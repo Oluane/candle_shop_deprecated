@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "./ScentsFamilies.scss";
 import { Link } from "react-router-dom";
+import apiInstance from "../../services/api";
 
 const ScentsFamilies = () => {
 	const [scentsFamilies, setScentsFamilies] = useState([]);
 
 	useEffect(() => {
-		axios
-			.get("/api/scents_families")
+		apiInstance
+			.get("/scents_families")
 			.then(({ data }) => {
 				setScentsFamilies(data);
 			})
@@ -35,7 +35,7 @@ const ScentsFamilies = () => {
 							>
 								<div className="scentsNameWrapper">
 									<h4 className="alignCenter scentsName">
-										{cat.en_name.toUpperCase()}
+										{cat.enName.toUpperCase()}
 									</h4>
 								</div>
 							</Link>
