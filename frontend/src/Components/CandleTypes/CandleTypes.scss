@@ -1,0 +1,45 @@
+@import "../../style/generalVariables.scss";
+
+.typesWrapper {
+	padding: 30px 50px;
+	.title {
+		margin-bottom: 25px;
+	}
+
+	.borderContainer {
+		border: solid 1px $tertiary;
+		border-radius: inherit;
+		padding: 20px;
+	}
+}
+.typesContainer {
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+
+	.typeCard {
+		background-color: $primary;
+		padding: 10px;
+		border-radius: 3px;
+		cursor: pointer;
+	}
+
+	.selected {
+		box-shadow: 0px 0px 5px 1px $tertiary;
+	}
+
+	.typeSvg {
+		width: 150px;
+		height: 150px;
+		margin-bottom: 15px;
+	}
+}
+
+.typeDisplay {
+	width: 100%;
+	margin: 50px auto 0 auto;
+	padding: 10px;
+	background-color: $primary;
+	border-radius: 3px;
+	transition: all 0.2s linear;
+}
