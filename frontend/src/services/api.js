@@ -32,14 +32,21 @@ apiInstance.interceptors.request.use((req) => {
 
 apiInstance.interceptors.response.use((res) => {
 	//intercepting response data to convert its keys to camel case to fits with JS front naming convention
-	const resData = res.data[0];
-	if (typeof resData === "object") {
-		let data = {};
-		Object.keys(resData).map((e) => {
-			return (data[convertSnakeToCamel(e)] = resData[e]);
+
+	if (res.data.length !== undefined) {
+		const resData = res.data;
+
+		resData.map((item, i) => {
+			if (typeof item === "object") {
+				let data = {};
+				Object.keys(item).map((e) => {
+					return (data[convertSnakeToCamel(e)] = item[e]);
+				});
+				res.data[i] = data;
+			}
 		});
-		res.data[0] = data;
 	}
+
 	return res;
 });
 
