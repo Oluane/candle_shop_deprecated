@@ -22,6 +22,7 @@
 		padding: 10px;
 		border-radius: 3px;
 		cursor: pointer;
+		transition: box-shadow 0.5s ease;
 	}
 
 	.selected {
@@ -41,5 +42,67 @@
 	padding: 10px;
 	background-color: $primary;
 	border-radius: 3px;
-	transition: all 0.2s linear;
+	transition: all 0.2s ease;
+}
+
+.typePresentation {
+	margin-bottom: 45px;
+	h4 {
+		margin: 15px 0;
+	}
+
+	p {
+		padding: 15px;
+	}
+}
+
+.quickShop {
+	display: flex;
+	flex-wrap: no-wrap;
+	align-items: center;
+
+	.productSpecs {
+		padding: 0 10px;
+		flex-basis: 100%;
+
+		h6 {
+			line-height: 25px;
+			margin-bottom: 15px;
+		}
+	}
+
+	.sizeDisplay {
+		display: flex;
+		p {
+			padding: 20px;
+			width: 33.3%;
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+			transition: background-color 0.3s ease 0s;
+		}
+
+		.active {
+			background-color: $tertiary;
+			font-weight: 600;
+		}
+	}
+
+	.specDetailsArr {
+		.specDetailsArrRows {
+			display: flex;
+
+			margin-bottom: 1px;
+			background-color: $tertiary;
+
+			&:last-child {
+				border-bottom-right-radius: 3px;
+				border-bottom-left-radius: 3px;
+			}
+		}
+
+		.columns {
+			width: 50%;
+			padding: 20px;
+		}
+	}
 }
