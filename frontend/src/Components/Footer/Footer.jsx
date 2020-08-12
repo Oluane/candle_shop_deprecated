@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import "./Footer.scss";
 import IconSvg from "../IconSvg/IconSvg";
 import EngagementSection from "../EngagementSection/EngagementSection";
 
 const Footer = () => {
+	const [isHomepage, setIsHomepage] = useState(false);
+
+	const location = useLocation();
+
+	useEffect(() => {
+		console.log("toto");
+		setIsHomepage(location.pathname === "/" ? true : false);
+	}, [location]);
 	return (
 		<>
-			<EngagementSection />
+			{!isHomepage && <EngagementSection />}
 			<footer>
 				<div className="socialContainer">
 					<div footerLogo></div>
@@ -33,7 +42,7 @@ const Footer = () => {
 						<h6 className="menuTitle smallText">About</h6>
 						<ul className="menuItems">
 							<li>
-								<a href="">Who are we ?</a>
+								<a href="/about_us">Who are we ?</a>
 							</li>
 							<li>
 								<a href="">Our products</a>
