@@ -17,7 +17,10 @@ const ScentsFamilies = () => {
 
 	return (
 		<section className="scentsSection">
-			<h3 className="sectionTitle">OUR SCENTS UNIVERSES</h3>
+			<h3 className="sectionTitle">
+				<span className="titleSpan">Discover </span>
+				OUR SCENTS UNIVERSES
+			</h3>
 			<p className="usualText alignCenter">
 				Discover our differents scents universes and find the one that fits you best{" "}
 			</p>

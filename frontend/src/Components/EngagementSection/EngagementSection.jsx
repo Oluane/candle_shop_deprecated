@@ -7,6 +7,9 @@ const EngagementSection = () => {
 		<section className="engagementSection alignCenter">
 			<div className="engagementSectionItem">
 				<p className="largeText">Secured payment</p>
+				<div className="engagementIcon">
+					<IconSvg iconName="creditCard" />
+				</div>
 				<p className="mediumText alignJustify engagementText">
 					Jelly topping marshmallow gummi bears topping cake wafer. Dough coffee sugar
 					plum bagel.
@@ -25,7 +28,7 @@ const EngagementSection = () => {
 			<div className="engagementSectionItem">
 				<p className="largeText">Any problem with delivery ?</p>
 				<div className="engagementIcon">
-					<IconSvg iconName="parcelReturn" />
+					<IconSvg iconName="parcelIssue" />
 				</div>
 				<p className="mediumText alignJustify engagementText">
 					Danish dessert halvah caramels chupa chups jelly candy. Pudding biscuit gummi.
@@ -34,7 +37,7 @@ const EngagementSection = () => {
 			<div className="engagementSectionItem">
 				<p className="largeText">Loyalty</p>
 				<div className="engagementIcon">
-					<IconSvg iconName="loyaltyStar" />
+					<IconSvg iconName="loyaltyGift" />
 				</div>
 				<p className="mediumText alignJustify engagementText">
 					Cake tiramisu sesame snaps dragée pie sugar plum. Pastry candy canes dessert
