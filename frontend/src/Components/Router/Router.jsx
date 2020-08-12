@@ -5,6 +5,7 @@ import { routes } from "../../services/routes";
 import Navbar from "../Navbar/Navbar";
 import apiInstance from "../../services/api";
 import userActions from "../../redux/actions/userActions";
+import Footer from "../Footer/Footer";
 
 const PrivateRoute = ({ component: Component, auth, authenticationRequestState, ...rest }) => (
 	<Route
@@ -98,6 +99,7 @@ const Router = () => {
 					<Redirect from="*" to="/" />
 				</Switch>
 			</main>
+			<Footer />
 		</>
 	);
 };

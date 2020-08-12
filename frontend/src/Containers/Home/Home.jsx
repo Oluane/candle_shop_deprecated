@@ -9,14 +9,6 @@ const Home = (props) => {
 			{" "}
 			<BannerHeader />
 			<ScentsFamilies />
-			<ul>
-				<li>
-					<Link to="/login">Login</Link>
-				</li>
-				<li>
-					<Link to={`/account/user`}>Account</Link>
-				</li>
-			</ul>
 		</>
 	);
 };
