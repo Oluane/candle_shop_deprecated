@@ -22,7 +22,6 @@
 			margin: 0 25px;
 			font-size: 13px;
 			word-spacing: 0.15px;
-
 			transition: all 0.1s ease 0s;
 			&:not(:last-child) {
 				&:after {
@@ -41,7 +40,6 @@
 		.active {
 			color: $roseGold;
 			font-weight: 600;
-			//margin: 0 24px;
 		}
 
 		button {
