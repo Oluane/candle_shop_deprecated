@@ -1,0 +1,41 @@
+@import "../../style/generalVariables.scss";
+
+.aboutUs {
+	.bannerHeaderWrapper {
+		height: 400px;
+		width: 100%;
+		background-color: beige;
+		position: relative;
+
+		.headerTextContent {
+			max-width: 500px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			padding: 0 30px;
+			z-index: 1;
+			color: $primary;
+		}
+
+		.headerImgContainer {
+			height: 100%;
+			position: relative;
+			overflow: hidden;
+			z-index: 0;
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: block;
+			}
+		}
+	}
+
+	.ourValuesWrapper {
+		padding: 50px 15px;
+	}
+}
