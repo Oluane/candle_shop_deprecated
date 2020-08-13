@@ -39,7 +39,13 @@ const Navbar = () => {
 					</li>
 				</ul>
 				<div className="userAccountIcons">
-					<Link to={isLoggedUser ? "/account/user" : "/account/login"}>
+					<Link
+						to={
+							isLoggedUser
+								? "/account/user"
+								: { pathname: "/account/login", state: { from: "/account/user" } }
+						}
+					>
 						<span className="navIcon userIcon">
 							<IconSvg iconName="user" />
 						</span>

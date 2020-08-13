@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./LogRegisterForm.scss";
 import IconSvg from "../IconSvg/IconSvg";
 import { isInputFilled } from "../../services/utils/inputsUtils";
@@ -19,6 +19,7 @@ const RegisterForm = () => {
 	const [newsletterIn, setNewsletterIn] = useState(false);
 
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	const createNewCustomer = (e) => {
 		e.preventDefault();
@@ -41,6 +42,11 @@ const RegisterForm = () => {
 					.get(`/user`)
 					.then(({ data }) => {
 						dispatch({ ...userActions.USER_LOGIN, payload: data[0] });
+						const redirectUrl =
+							history.location.state !== undefined
+								? history.location.state.from
+								: "/";
+						history.push(redirectUrl);
 					})
 					.catch((err) => console.log(err));
 			})
