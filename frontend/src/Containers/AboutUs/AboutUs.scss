@@ -4,7 +4,7 @@
 	.bannerHeaderWrapper {
 		height: 400px;
 		width: 100%;
-		background-color: beige;
+		background-color: $primary;
 		position: relative;
 
 		.headerTextContent {
@@ -128,6 +128,36 @@
 
 		.valuesTitle {
 			margin-bottom: 8px;
+		}
+	}
+}
+
+@media screen and (max-width: 688px) {
+	.aboutUs {
+		.bannerHeaderWrapper {
+			.headerTextContent {
+				min-width: 250px;
+				padding: 0 20px;
+				line-height: 26px;
+			}
+		}
+
+		.ourValuesWrapper {
+			flex-direction: column;
+			margin: 25px 0 10px 0;
+			padding: 15px 15px;
+			.imagesContainer {
+				display: none;
+			}
+
+			.ourValuesContent {
+				width: 100%;
+			}
+
+			.valuesList,
+			.valuesDesc {
+				width: 90%;
+			}
 		}
 	}
 }

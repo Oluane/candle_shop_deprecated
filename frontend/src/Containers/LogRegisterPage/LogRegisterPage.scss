@@ -16,3 +16,13 @@
 		display: flex;
 	}
 }
+
+@media screen and (max-width: 688px) {
+	.logRegisterContainer {
+		background: none;
+
+		.overlay {
+			background: none;
+		}
+	}
+}

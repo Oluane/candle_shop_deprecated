@@ -39,3 +39,39 @@
 		padding: 0 20px;
 	}
 }
+
+@media screen and (max-width: 688px) {
+	.engagementSection {
+		flex-direction: column;
+		padding: 10px 15px;
+
+		.engagementSectionItem {
+			width: 100%;
+			padding: 15px 10px;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			p:first-child {
+				width: 100%;
+				margin-bottom: 16px;
+			}
+
+			&:not(:last-child) {
+				&:after {
+					display: none;
+				}
+			}
+
+			p:last-child {
+				width: 85%;
+				padding: 0 12px;
+			}
+		}
+
+		.engagementIcon {
+			width: 30px;
+			height: 30px;
+			margin: 10px auto;
+		}
+	}
+}

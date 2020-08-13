@@ -61,3 +61,27 @@ footer {
 		}
 	}
 }
+
+@media screen and (max-width: 688px) {
+	footer {
+		flex-direction: column;
+		padding: 25px;
+
+		.socialContainer {
+			width: 100%;
+			margin-bottom: 20px;
+		}
+
+		.socialLinksContainer {
+			justify-content: center;
+		}
+
+		.menusContainer {
+			width: 100%;
+			flex-direction: column;
+			.menu {
+				margin: 20px 0;
+			}
+		}
+	}
+}

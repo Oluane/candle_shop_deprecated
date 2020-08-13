@@ -9,6 +9,7 @@
 	background-repeat: no-repeat;
 	background-image: url("../../style/img/candle_leaves.jpg");
 	z-index: 0;
+	position: relative;
 
 	.bannerText {
 		position: absolute;
@@ -29,5 +30,29 @@
 	.descText {
 		width: 80%;
 		text-align: justify;
+	}
+}
+
+@media screen and (max-width: 688px) {
+	.bannerHeader {
+		height: 65vh;
+		background-position: 50% 75%;
+
+		.bannerText {
+			left: 3%;
+			top: unset;
+			bottom: 3%;
+		}
+
+		.bannerTitle {
+			top: 8%;
+			left: 10%;
+			width: 60%;
+		}
+
+		.descText {
+			width: 95%;
+			text-align: left;
+		}
 	}
 }
