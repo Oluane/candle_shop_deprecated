@@ -18,11 +18,11 @@ const ScentsFamilies = () => {
 	return (
 		<section className="scentsSection">
 			<h3 className="sectionTitle">
-				<span className="titleSpan">Discover </span>
+				<span className="titleSpan">Explore </span>
 				OUR SCENTS UNIVERSES
 			</h3>
 			<p className="usualText alignCenter">
-				Discover our differents scents universes and find the one that fits you best{" "}
+				Check our differents scents universes and find the one that fits you best{" "}
 			</p>
 			<div className="categoriesItemsWrapper">
 				{scentsFamilies.length > 0 &&

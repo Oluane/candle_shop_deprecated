@@ -23,10 +23,8 @@ const LogRegisterPage = (props) => {
 
 	return (
 		<div className="logRegisterContainer">
-			<div className="overlay">
-				{isLogIn && <LoginForm />}
-				{isRegister && <RegisterForm />}
-			</div>
+			{isLogIn && <LoginForm />}
+			{isRegister && <RegisterForm />}
 		</div>
 	);
 };

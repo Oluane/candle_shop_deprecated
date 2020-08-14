@@ -6,31 +6,30 @@ import EngagementSection from "../EngagementSection/EngagementSection";
 
 const Footer = () => {
 	const [isHomepage, setIsHomepage] = useState(false);
-
 	const location = useLocation();
 
 	useEffect(() => {
-		console.log("toto");
 		setIsHomepage(location.pathname === "/" ? true : false);
 	}, [location]);
+
 	return (
 		<>
 			{!isHomepage && <EngagementSection />}
 			<footer>
 				<div className="socialContainer">
-					<div footerLogo></div>
+					<div className="footerLogo"></div>
 					<div className="socialLinksContainer">
-						<a href="" className="socialLinks">
+						<a href="*" className="socialLinks">
 							<div>
 								<IconSvg iconName="facebook" />
 							</div>
 						</a>
-						<a href="" className="socialLinks">
+						<a href="*" className="socialLinks">
 							<div>
 								<IconSvg iconName="instagram" />
 							</div>
 						</a>
-						<a href="" className="socialLinks">
+						<a href="*" className="socialLinks">
 							<div>
 								<IconSvg iconName="twitter" />
 							</div>
@@ -45,13 +44,13 @@ const Footer = () => {
 								<a href="/about_us">Who are we ?</a>
 							</li>
 							<li>
-								<a href="">Our products</a>
+								<a href="*">Our products</a>
 							</li>
 							<li>
-								<a href="">Contact us</a>
+								<a href="*">Contact us</a>
 							</li>
 							<li>
-								<a href="">Shipping and returning</a>
+								<a href="*">Shipping and returning</a>
 							</li>
 						</ul>
 					</div>
@@ -59,16 +58,16 @@ const Footer = () => {
 						<h6 className="menuTitle smallText">Informations</h6>
 						<ul className="menuItems">
 							<li>
-								<a href="">Who are we ?</a>
+								<a href="*">Who are we ?</a>
 							</li>
 							<li>
-								<a href="">Our products</a>
+								<a href="*">Our products</a>
 							</li>
 							<li>
-								<a href="">Contact us</a>
+								<a href="*">Contact us</a>
 							</li>
 							<li>
-								<a href=""></a>
+								<a href="*"></a>
 							</li>
 						</ul>
 					</div>
