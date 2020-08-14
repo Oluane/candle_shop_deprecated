@@ -1,43 +1,53 @@
 @import "../../style/generalVariables.scss";
 
-.scentCategoryContainer {
-	width: 75%;
+.scentFamilyContainer {
 	margin: auto;
 	position: relative;
 
-	.categoryHeader {
-		width: 100%;
-		height: 350px;
-		background: url("/images/scents_categories/banner_sweet_1_lr.jpg");
+	.familyHeader {
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;
-		filter: saturate(40%);
-		display: flex;
-		margin: auto;
+		filter: saturate(60%);
+		margin-bottom: 50px;
 
-		.categoryTitle {
-			width: 90%;
-			border: 4px solid $tertiary;
-			margin: auto;
-			padding: 40px 55px;
-			background-color: $secondaryTrans;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-evenly;
+		.imageWrapper {
+			width: 100%;
+			height: 330px;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: 50% 70%;
+			}
+		}
+
+		.familyTitle {
+			margin-top: 30px;
+			padding: 45px 0 25px 0;
 			position: relative;
-		}
-		h1 {
-			color: $lightDark;
-			text-align: center;
-			font-weight: 600;
-			text-transform: uppercase;
-			word-spacing: 0.2em;
-			margin-bottom: 45px;
+
+			.titleSpan {
+				font-family: "Homemade Apple", cursive;
+				letter-spacing: initial;
+				color: $roseGoldTrans;
+				font-size: 38px;
+				position: absolute;
+				top: 18%;
+				left: 50%;
+				transform: translateX(-50%);
+				z-index: -1;
+				text-transform: capitalize;
+				width: 100%;
+			}
 		}
 
-		.titleDesc {
-			text-align: justify;
+		.familyDesc {
+			width: 85%;
+			margin: auto;
+			line-height: 26px;
+			letter-spacing: 0.1em;
 		}
 	}
 
@@ -46,6 +56,15 @@
 	}
 
 	.scentWrapper {
+		margin: auto;
+		padding: 20px;
+		h4 {
+			margin-bottom: 20px;
+			line-height: 24px;
+		}
+	}
+
+	.scrollWrapper {
 		position: relative;
 	}
 
@@ -56,9 +75,8 @@
 		overflow-x: scroll;
 		overflow-y: hidden;
 		position: relative;
-		margin-top: 50px;
+		//margin-top: 50px;
 		max-height: 120px;
-
 		scrollbar-width: none;
 
 		.scentItem {
@@ -80,6 +98,9 @@
 			}
 			.scentThumbnail {
 				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: 50% 45%;
 				mask-image: linear-gradient($lightGrey, 0%, $lightGrey 100%);
 				vertical-align: middle;
 				filter: blur(0.5px);
@@ -88,14 +109,10 @@
 			}
 
 			&.active {
-				//box-shadow: 0px 0px 5px 1px $lightGrey;
 				h4 {
-					//border: solid 3px $tertiary;
-					// line-height: 93px;
 					font-weight: 600;
 					text-shadow: 1px 1px 2px $lightGrey;
 				}
-
 				.scentThumbnail {
 					mask-image: none;
 					filter: none;
@@ -146,22 +163,123 @@
 	}
 
 	.scentInfoWrapper {
-		margin-top: 50px;
-		background-color: $secondary;
-		border-radius: 2px;
-		padding: 50px;
-		position: relative;
+		display: flex;
+		margin: 35px 0;
+		align-items: center;
 
-		p:after {
-			content: "";
-			display: inline-block;
-			width: 450px;
-			height: 1px;
-			background-color: $lightGrey;
-			position: absolute;
-			bottom: 0;
-			right: 50%;
-			margin-right: -230px;
+		// border: solid 1px $tertiary;
+		// border-radius: 5px;
+		// padding: 25px;
+
+		.scentDesc,
+		.scentComplementary {
+			width: 50%;
+			p {
+				line-height: 24px;
+				letter-spacing: 0.1em;
+			}
+		}
+
+		.scentComplementary {
+			padding: 0px 10px 0 55px;
+
+			.complementaryList {
+				display: flex;
+				justify-content: flex-start;
+				padding: 5px 5px 5px 0;
+				margin-top: 15px;
+				li {
+					//margin-bottom: 15px;
+					margin-left: 21px;
+					&:not(:first-child) {
+						margin-left: 46px;
+					}
+
+					position: relative;
+					letter-spacing: 0.1em;
+
+					&:before {
+						content: "• ";
+						color: $tertiary;
+						display: inline-block;
+						width: 20px;
+						height: 20px;
+						font-size: 20px;
+						font-family: "Times New Roman", Times, serif;
+						text-align: center;
+						padding-top: 2px;
+						position: absolute;
+						left: -26px;
+						bottom: -2px;
+					}
+				}
+			}
+
+			h4 {
+				letter-spacing: 0.1em;
+				font-size: 16px;
+			}
+
+			.candleTypesWrapper {
+				margin-top: 15px;
+			}
+
+			.candleTypesContainer {
+				display: flex;
+				justify-content: space-evenly;
+
+				.typeCard {
+					display: flex;
+					width: 28%;
+					align-items: center;
+					padding: 10px;
+					background-color: $primary;
+					border-radius: 3px;
+				}
+
+				.typeIcon {
+					width: 40px;
+					height: 40px;
+					color: $tertiary;
+				}
+
+				p {
+					font-family: "Homemade Apple", cursive;
+					color: $roseGold;
+					line-height: 20px;
+					letter-spacing: unset;
+					width: 70%;
+					margin-top: 10px;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 688px) {
+	.scentFamilyContainer {
+		.scentInfoWrapper {
+			flex-direction: column;
+
+			.scentDesc,
+			.scentComplementary {
+				width: 100%;
+			}
+
+			.scentComplementary {
+				padding: 0 10px;
+
+				.complementaryList {
+					justify-content: space-around;
+					padding: 5px;
+
+					li {
+						&:before {
+							bottom: unset;
+						}
+					}
+				}
+			}
 		}
 	}
 }

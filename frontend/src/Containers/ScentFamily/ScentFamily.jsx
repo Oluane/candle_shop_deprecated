@@ -34,7 +34,7 @@ const ScentFamily = (props) => {
 
 	const getRatio = () => {
 		const elementW = 300 + 41;
-		const ratio = (window.innerWidth * 75) / 100 / elementW;
+		const ratio = (window.innerWidth - 40) / elementW;
 		return ratio;
 	};
 
@@ -54,7 +54,10 @@ const ScentFamily = (props) => {
 			behavior: "smooth",
 		});
 
-		if (index * ratio + ratio >= scents.length + 1) {
+		console.log(Math.floor(index * ratio + ratio));
+		console.log(scents.length);
+
+		if (Math.floor(index * ratio + ratio) >= scents.length) {
 			setIsScrollMax(true);
 		} else {
 			setIsScrollMax(false);
@@ -63,77 +66,132 @@ const ScentFamily = (props) => {
 
 	const [selectedScent, setSelectedScent] = useState(null);
 
+	const [candleTypes, setCandleTypes] = useState(null);
+
+	useEffect(() => {
+		apiInstance
+			.get("/candles/types")
+			.then(({ data }) => {
+				setCandleTypes(data);
+			})
+			.catch((err) => console.log(err));
+	}, []);
+
 	return (
-		<div className="scentCategoryContainer">
+		<div className="scentFamilyContainer">
 			{currentFamily !== null && scents !== null && selectedScent !== null && (
 				<>
-					<header
-						className="categoryHeader"
-						style={{
-							backgroundImage: `url("/images/scents_categories/banner_${currentFamily[0].id}.jpg")`,
-						}}
-					>
-						<div className="categoryTitle">
-							<h1>{currentFamily[0].enName} scents</h1>
-							<p className="titleDesc usualText">{currentFamily[0].enDesc}</p>
+					<header className="familyHeader">
+						<div className="imageWrapper">
+							<img
+								src={`/images/scents_categories/banner_${currentFamily[0].id}.jpg`}
+								alt={`${currentFamily[0].enName} family`}
+							/>
+						</div>
+
+						<h1 className="sectionTitle familyTitle ">
+							<span className="titleSpan">{currentFamily[0].enName}</span> SCENTS
+						</h1>
+
+						<div className="familyDesc usualText alignJustify">
+							{currentFamily[0].enDesc}
 						</div>
 					</header>
 
-					<section className="scentWrapper">
-						<div id="scrollContainer">
-							{scents !== null &&
-								scents.map((scent, i) => {
-									return (
-										<React.Fragment key={i}>
-											<div
-												className={
-													"scentItem " +
-													(selectedScent.id === scent.id ? "active" : "")
-												}
-												onClick={() => setSelectedScent(scent)}
-											>
-												<img
-													src={`/images/scents/thumbnail_${scent.id}.jpg`}
-													alt={`${scent.enName} perfume`}
-													className="scentThumbnail"
-												/>
-												<h4>{scent.enName}</h4>
-											</div>
-											{i < scents.length - 1 && (
-												<div className="separation"></div>
-											)}
-										</React.Fragment>
-									);
-								})}
+					<section className="scentWrapper bgSecondary">
+						<h4>Choose a fragrance :</h4>
+						<div className="scrollWrapper">
+							<div id="scrollContainer">
+								{scents !== null &&
+									scents.map((scent, i) => {
+										return (
+											<React.Fragment key={i}>
+												<div
+													className={
+														"scentItem " +
+														(selectedScent.id === scent.id
+															? "active"
+															: "")
+													}
+													onClick={() => setSelectedScent(scent)}
+												>
+													<img
+														src={`/images/scents/thumbnail_${scent.id}.jpg`}
+														alt={`${scent.enName} perfume`}
+														className="scentThumbnail"
+													/>
+													<h4>{scent.enName}</h4>
+												</div>
+												{i < scents.length - 1 && (
+													<div className="separation"></div>
+												)}
+											</React.Fragment>
+										);
+									})}
+							</div>
+							{scrollIndex > 0 && (
+								<div
+									className="leftArrowContainer"
+									onClick={() => scrollToNextElements("left")}
+								>
+									<div className="directionArrow">
+										<IconSvg iconName="leftArrow" />
+									</div>
+								</div>
+							)}
+							{!isScrollMax && (
+								<div
+									className="rightArrowContainer"
+									onClick={() => scrollToNextElements("right")}
+								>
+									<div className="directionArrow">
+										<IconSvg iconName="rightArrow" />
+									</div>
+								</div>
+							)}
 						</div>
-						{scrollIndex > 0 && (
-							<div
-								className="leftArrowContainer"
-								onClick={() => scrollToNextElements("left")}
-							>
-								<div className="directionArrow">
-									<IconSvg iconName="leftArrow" />
+
+						<div className="scentInfoWrapper">
+							<div className="scentDesc">
+								<h3 className="sectionTitle">{selectedScent.enName}</h3>
+								<p className="usualText alignJustify">{selectedScent.enDesc}</p>
+							</div>
+							<div className="scentComplementary">
+								<ul className="mediumText complementaryList">
+									<li>
+										{selectedScent.isEssentialOil === 1
+											? "With essential oils"
+											: "No essential oils"}
+									</li>
+									<li>Natural origins</li>
+									<li>Artisan expertise</li>
+								</ul>
+								<div className="candleTypesWrapper">
+									<h4>Choose a candle type & start shopping :</h4>
+									<div className="candleTypesContainer">
+										{candleTypes.map((type, i) => {
+											return (
+												<a href="*" className="typeCard" key={i}>
+													<div className="typeIcon">
+														<IconSvg
+															iconName={"candleType" + type.id}
+														/>
+													</div>
+													<p className="usualText alignCenter">
+														{type.enName}
+													</p>
+												</a>
+											);
+										})}
+									</div>
 								</div>
 							</div>
-						)}
-						{!isScrollMax && (
-							<div
-								className="rightArrowContainer"
-								onClick={() => scrollToNextElements("right")}
-							>
-								<div className="directionArrow">
-									<IconSvg iconName="rightArrow" />
-								</div>
-							</div>
-						)}
+						</div>
 					</section>
-					<section className="scentInfoWrapper bgSecondary">
-						<h3 className="sectionTitle">{selectedScent.enName}</h3>
-						<p className="usualText">{selectedScent.enDesc}</p>
-					</section>
-					<section className="bgSecondary">
+					{/* <section className="scentInfoWrapper bgSecondary"></section> */}
+					{/* <section className="bgSecondary">
 						<CandleTypes scent={selectedScent} />
-					</section>
+					</section> */}
 				</>
 			)}
 		</div>
