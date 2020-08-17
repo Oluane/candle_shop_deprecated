@@ -29,17 +29,9 @@
 			position: relative;
 
 			.titleSpan {
-				font-family: "Homemade Apple", cursive;
-				letter-spacing: initial;
-				color: $roseGoldTrans;
-				font-size: 38px;
-				position: absolute;
-				top: 18%;
+				top: 22%;
 				left: 50%;
-				transform: translateX(-50%);
-				z-index: -1;
 				text-transform: capitalize;
-				width: 100%;
 			}
 		}
 
@@ -167,10 +159,6 @@
 		margin: 35px 0;
 		align-items: center;
 
-		// border: solid 1px $tertiary;
-		// border-radius: 5px;
-		// padding: 25px;
-
 		.scentDesc,
 		.scentComplementary {
 			width: 50%;
@@ -235,6 +223,18 @@
 					padding: 10px;
 					background-color: $primary;
 					border-radius: 3px;
+
+					&:hover {
+						background-color: $roseGold;
+
+						.typeIcon {
+							color: $secondary;
+						}
+
+						p {
+							color: $primary;
+						}
+					}
 				}
 
 				.typeIcon {

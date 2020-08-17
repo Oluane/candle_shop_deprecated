@@ -8,15 +8,8 @@
 		position: relative;
 		z-index: 1;
 		.titleSpan {
-			font-family: "Homemade Apple", cursive;
-			letter-spacing: initial;
-			color: $roseGoldTrans;
-			font-size: 38px;
-			position: absolute;
 			top: -22px;
 			left: 50%;
-			transform: translateX(-50%);
-			z-index: -1;
 		}
 	}
 
