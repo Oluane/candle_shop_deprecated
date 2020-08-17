@@ -17,7 +17,9 @@ const Footer = () => {
 			{!isHomepage && <EngagementSection />}
 			<footer>
 				<div className="socialContainer">
-					<div className="footerLogo"></div>
+					<div className="footerLogo">
+						<img src="/images/content/logo.png" alt="" />
+					</div>
 					<div className="socialLinksContainer">
 						<a href="*" className="socialLinks">
 							<div>

@@ -7,11 +7,22 @@ footer {
 	justify-content: space-around;
 
 	.socialContainer {
-		width: 15%;
+		width: 25%;
+	}
+
+	.footerLogo {
+		width: 68%;
+		margin: auto;
+		margin-bottom: 20px;
+		img {
+			width: 100%;
+			height: 100%;
+		}
 	}
 
 	.socialLinksContainer {
 		display: flex;
+		justify-content: center;
 
 		.socialLinks {
 			display: block;
@@ -29,7 +40,6 @@ footer {
 
 			&:hover {
 				background-color: $roseGold;
-
 				div {
 					color: $secondary;
 				}
@@ -70,10 +80,6 @@ footer {
 		.socialContainer {
 			width: 100%;
 			margin-bottom: 20px;
-		}
-
-		.socialLinksContainer {
-			justify-content: center;
 		}
 
 		.menusContainer {

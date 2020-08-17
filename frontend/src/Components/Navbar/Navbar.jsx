@@ -17,13 +17,15 @@ const Navbar = () => {
 					</li>
 					<li>
 						<Link to="/" className="navLinks">
-							PRODUCTS
+							CANDLES
 						</Link>
 					</li>
 				</ul>
 			</div>
 			<div className="brandLogo">
-				<span>Candle Shop</span>
+				<Link to="/">
+					<img src="/images/content/logo.png" alt="Candle Shop" />
+				</Link>
 			</div>
 			<div className="navRight smallText">
 				<ul>

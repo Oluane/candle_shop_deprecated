@@ -29,11 +29,14 @@
 
 	.brandLogo {
 		position: absolute;
-		left: 40%;
-		span {
-			font-family: "Homemade Apple", cursive;
-			font-size: 38px;
-			color: $lightDark;
+		left: 50%;
+		top: 5px;
+		height: 55px;
+		transform: translateX(-50%);
+
+		img {
+			width: 100%;
+			height: 100%;
 		}
 	}
 
