@@ -2,20 +2,20 @@
 @import "./fonts.scss";
 
 //scrollbar styling for firefox 66 or higher
-html {
+* {
 	scrollbar-color: $roseGoldTrans $primary;
 }
 
 //scrollbar styling for chrome, edge, safari
-html::-webkit-scrollbar {
+*::-webkit-scrollbar {
 	width: 12px;
 }
 
-html::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
 	background: $primary;
 }
 
-html::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
 	background: $roseGoldTrans;
 }
 
