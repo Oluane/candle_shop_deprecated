@@ -168,32 +168,35 @@ const ScentFamily = (props) => {
 								</ul>
 								<div className="candleTypesWrapper">
 									<h4>Choose a candle type & start shopping :</h4>
-									<div className="candleTypesContainer">
-										{candleTypes.map((type, i) => {
-											return (
-												<Link
-													to={{
-														pathname: `/candles`,
-														state: {
-															preSelectedTypeId: type.id,
-															preSelectedScentId: selectedScent.id,
-														},
-													}}
-													className="typeCard"
-													key={i}
-												>
-													<div className="typeIcon">
-														<IconSvg
-															iconName={"candleType" + type.id}
-														/>
-													</div>
-													<p className="usualText alignCenter">
-														{type.enName}
-													</p>
-												</Link>
-											);
-										})}
-									</div>
+									{candleTypes !== null && (
+										<div className="candleTypesContainer">
+											{candleTypes.map((type, i) => {
+												return (
+													<Link
+														to={{
+															pathname: `/candles`,
+															state: {
+																preSelectedTypeId: type.id,
+																preSelectedScentId:
+																	selectedScent.id,
+															},
+														}}
+														className="typeCard"
+														key={i}
+													>
+														<div className="typeIcon">
+															<IconSvg
+																iconName={"candleType" + type.id}
+															/>
+														</div>
+														<p className="usualText alignCenter">
+															{type.enName}
+														</p>
+													</Link>
+												);
+											})}
+										</div>
+									)}
 								</div>
 							</div>
 						</div>
