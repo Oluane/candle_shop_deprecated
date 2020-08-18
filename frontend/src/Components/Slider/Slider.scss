@@ -3,9 +3,8 @@
 .slider {
 	display: flex;
 	flex-direction: column;
-
 	position: relative;
-	width: 400px;
+	width: 100%;
 
 	.sliderIndicators {
 		display: flex;
@@ -41,7 +40,6 @@
 			top: -4px;
 			left: -4px;
 			visibility: hidden;
-			//transition: visibility 0.05s ease 0s;
 		}
 
 		.active {
@@ -51,12 +49,11 @@
 
 	.sliderItems {
 		width: 100%;
-		//height: 90%;
 		img {
 			object-fit: cover;
-			height: 250px;
+			height: 100%;
 			width: 100%;
-			object-position: bottom;
+			object-position: center;
 		}
 	}
 }
