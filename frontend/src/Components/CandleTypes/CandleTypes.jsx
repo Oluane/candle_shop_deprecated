@@ -1,71 +1,34 @@
 import React, { useEffect, useState } from "react";
 import IconSvg from "../IconSvg/IconSvg";
 import "./CandleTypes.scss";
-import apiInstance from "../../services/api";
 
 import Slider from "../Slider/Slider";
 
-const CandleTypes = ({ scent }) => {
-	const [types, setTypes] = useState([]);
-	const [selectedType, setSelectedType] = useState(0);
+const CandleTypes = ({ types, setSelectedType }) => {
+	// useEffect(() => {
+	// 	if (selectedType !== 0) {
+	// 		apiInstance
+	// 			.get(`/candles/types/${selectedType}/details`)
+	// 			.then(({ data }) => {
+	// 				setSelectedTypeSize(data);
+	// 				document.querySelector(".typeDisplay").scrollIntoView();
+	// 			})
+	// 			.catch((err) => console.log(err));
+	// 	}
+	// }, [selectedType]);
 
-	useEffect(() => {
-		apiInstance
-			.get("/candles/types")
-			.then(({ data }) => {
-				setTypes(data);
-			})
-			.catch((err) => console.log(err));
-	}, []);
-
-	const [selectedTypeSize, setSelectedTypeSize] = useState(null);
-
-	const constructSliderImgPathArray = (typeId) => {
-		const reg = new RegExp(`_${typeId}_`, "");
-		const importAll = (require) =>
-			require
-				.keys()
-				.filter((key) => {
-					return reg.test(key);
-				})
-				.reduce((acc, next) => {
-					acc.push(require(next));
-					return acc;
-				}, []);
-
-		const images = importAll(
-			require.context("../../../public/images/candle_types", false, /\.(png|jpe?g|svg)$/)
-		);
-
-		return images;
-	};
-
-	useEffect(() => {
-		if (selectedType !== 0) {
-			apiInstance
-				.get(`/candles/types/${selectedType}/details`)
-				.then(({ data }) => {
-					setSelectedTypeSize(data);
-					document.querySelector(".typeDisplay").scrollIntoView();
-				})
-				.catch((err) => console.log(err));
-		}
-	}, [selectedType]);
-
-	const [selectedSize, setSelectedSize] = useState(null);
-
-	useEffect(() => {
-		setSelectedSize(1);
-	}, [selectedTypeSize]);
+	// const [selectedSize, setSelectedSize] = useState(null);
 
 	return (
 		<div className="typesWrapper">
-			<h4 className="alignCenter title">Choose your candle type</h4>
+			<h4 className="alignCenter title">Choose a candle type</h4>
 			<div className="typesContainer">
 				{types.map((type, i) => {
 					return (
 						<div
-							className={"typeCard" + (selectedType === type.id ? " selected" : "")}
+							className={
+								"typeCard" /*+ (selectedType === type.id ? " selected" : "")*/
+							}
 							key={i}
 							onClick={() => {
 								setSelectedType(type.id);
@@ -81,7 +44,7 @@ const CandleTypes = ({ scent }) => {
 					);
 				})}
 			</div>
-			{selectedType !== 0 && selectedTypeSize !== null && (
+			{/* {selectedType !== 0 && selectedTypeSize !== null && (
 				<div className="typeDisplay">
 					<div className="borderContainer">
 						<div className="typePresentation">
@@ -152,7 +115,7 @@ const CandleTypes = ({ scent }) => {
 						</div>
 					</div>
 				</div>
-			)}
+			)} */}
 		</div>
 	);
 };

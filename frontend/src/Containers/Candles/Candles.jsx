@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import "./Candles.scss";
 import CandleTypes from "../../Components/CandleTypes/CandleTypes";
-import CandleSheet from "../../Components/CandleSheet/CandletSheet";
+import CandleSheet from "../../Components/CandleSheet/CandleSheet";
 import apiInstance from "../../services/api";
 
 const Candles = () => {
@@ -58,7 +58,6 @@ const Candles = () => {
 					setSelectedScentId={setSelectedScentId}
 				/>
 			)}
-			<section></section>
 		</>
 	);
 };

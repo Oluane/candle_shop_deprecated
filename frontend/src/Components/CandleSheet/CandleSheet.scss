@@ -3,7 +3,6 @@
 .candleSheetWrapper {
 	background-color: $secondary;
 	padding: 40px;
-
 	display: flex;
 	justify-content: center;
 
@@ -19,9 +18,29 @@
 		}
 	}
 
+	.separatorBefore {
+		margin-left: 30px;
+		position: relative;
+
+		&:before {
+			content: "";
+			width: 1px;
+			height: 60%;
+			background-color: $lightGreyTrans;
+			position: absolute;
+			left: -15px;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+	}
+
+	.sliderWrapper {
+		max-width: 350px;
+	}
+
 	.candleSheetInfoWrapper {
-		width: 50%;
-		margin-left: 50px;
+		width: 42%;
+		margin-left: 90px;
 		.candleTitle {
 			text-transform: uppercase;
 			letter-spacing: 0.1em;
@@ -31,20 +50,44 @@
 			display: flex;
 			color: $lightGrey;
 			margin-bottom: 25px;
+		}
 
-			.separatorBefore {
-				margin-left: 30px;
-				position: relative;
+		.actionsBtnWrapper {
+			padding: 10px 0;
+			margin-top: 15px;
+			display: flex;
+			justify-content: flex-start;
+			.addToCart {
+				width: 78%;
+				padding: 15px;
+				background-color: $lightDark;
+				border: solid 1px $lightDark;
+				color: $primary;
+				transition: all 0.3s ease;
+				cursor: pointer;
 
-				&:before {
-					content: "";
-					width: 1px;
-					height: 60%;
-					background-color: $lightGreyTrans;
-					position: absolute;
-					left: -15px;
-					top: 50%;
-					transform: translateY(-50%);
+				&:hover {
+					background-color: $roseGold;
+					border-color: $roseGold;
+				}
+			}
+			.addToWishlist {
+				padding: 10px;
+				background-color: $secondary;
+				border: solid 1px $lightGreyTrans;
+				margin: auto;
+				transition: all 0.3s ease;
+				cursor: pointer;
+
+				&:hover {
+					.addToWishlistIcon {
+						color: $roseGold;
+					}
+				}
+				.addToWishlistIcon {
+					width: 25px;
+					height: 25px;
+					color: $lightDark;
 				}
 			}
 		}
@@ -80,29 +123,33 @@
 			align-items: center;
 			height: 100%;
 			.typeIcon {
-				color: $tertiary;
+				color: $tertiaryTrans;
 				width: 32px;
 				height: 32px;
 				margin-right: 18px;
 				position: relative;
 				cursor: pointer;
+
+				&.active {
+					color: $roseGold;
+				}
 			}
 
-			.activeBorder {
-				display: block;
-				border: 2px solid $roseGold;
-				width: 40px;
-				height: 40px;
-				border-radius: 3px;
-				position: absolute;
-				top: -4px;
-				left: -4px;
-				visibility: hidden;
-			}
+			// .activeBorder {
+			// 	display: block;
+			// 	border: 2px solid $roseGold;
+			// 	width: 40px;
+			// 	height: 40px;
+			// 	border-radius: 3px;
+			// 	position: absolute;
+			// 	top: -4px;
+			// 	left: -4px;
+			// 	visibility: hidden;
+			// }
 
-			.active {
-				visibility: visible;
-			}
+			// .active {
+			// 	visibility: visible;
+			// }
 
 			.sizeValue {
 				margin-right: 18px;
@@ -111,6 +158,10 @@
 				height: 32px;
 				position: relative;
 				cursor: pointer;
+
+				&.active {
+					color: $roseGold;
+				}
 			}
 		}
 
@@ -184,6 +235,21 @@
 					background-color: $roseGoldTrans;
 				}
 			}
+		}
+	}
+}
+
+@media screen and (max-width: 688px) {
+	.candleSheetWrapper {
+		flex-direction: column;
+		.sliderWrapper {
+			width: 100%;
+			margin: auto;
+		}
+		.candleSheetInfoWrapper {
+			width: 100%;
+			margin-left: 0;
+			margin-top: 50px;
 		}
 	}
 }
