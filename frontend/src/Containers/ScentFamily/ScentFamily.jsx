@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import IconSvg from "../../Components/IconSvg/IconSvg";
 import "./ScentFamily.scss";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import CandleTypes from "../../Components/CandleTypes/CandleTypes";
 import apiInstance from "../../services/api";
 
@@ -171,7 +171,17 @@ const ScentFamily = (props) => {
 									<div className="candleTypesContainer">
 										{candleTypes.map((type, i) => {
 											return (
-												<a href="*" className="typeCard" key={i}>
+												<Link
+													to={{
+														pathname: `/candles`,
+														state: {
+															preSelectedTypeId: type.id,
+															preSelectedScentId: selectedScent.id,
+														},
+													}}
+													className="typeCard"
+													key={i}
+												>
 													<div className="typeIcon">
 														<IconSvg
 															iconName={"candleType" + type.id}
@@ -180,7 +190,7 @@ const ScentFamily = (props) => {
 													<p className="usualText alignCenter">
 														{type.enName}
 													</p>
-												</a>
+												</Link>
 											);
 										})}
 									</div>
@@ -190,7 +200,7 @@ const ScentFamily = (props) => {
 					</section>
 					{/* <section className="scentInfoWrapper bgSecondary"></section> */}
 					{/* <section className="bgSecondary">
-						<CandleTypes scent={selectedScent} />
+						<CandleTypes />
 					</section> */}
 				</>
 			)}

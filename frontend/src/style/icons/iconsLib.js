@@ -113,7 +113,7 @@ export default {
 				fillColor: "currentColor",
 			},
 		],
-		viewBox: "0 0 497 497",
+		viewBox: "0 0 497 417",
 	},
 	candleType3: {
 		path: [
@@ -133,7 +133,7 @@ export default {
 				fillColor: "currentColor",
 			},
 		],
-		viewBox: "0 0 500 380",
+		viewBox: "0 0 500 170",
 	},
 	facebook: {
 		path: [

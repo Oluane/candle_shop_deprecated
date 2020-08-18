@@ -22,7 +22,7 @@ router.get("/types/:typeId/details", (req, res) => {
 	const { typeId } = req.params;
 
 	db.query(
-		`SELECT ts.id, ts.height_in_cm, ts.width_in_cm, ts.weight_in_gr, ts.duration_in_hours, 
+		`SELECT ts.id, ts.height_in_cm, ts.width_in_cm, ts.weight_in_gr, ts.duration_in_hours, ts.price,
         t.id type_id, t.en_name type_en_name, t.en_desc type_en_desc, s.id size_id, s.short_name, s.en_name size_en_name FROM type_size ts
         JOIN type t ON ts.type_id = t.id 
         JOIN size s ON ts.size_id = s.id
