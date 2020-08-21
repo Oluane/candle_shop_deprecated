@@ -192,7 +192,7 @@ const CandleSheet = ({
 							<span>ADD TO CART</span>{" "}
 							<span className="separatorBefore">{selectedSize.price}€</span>
 						</button>
-						<button className="addToWishlist">
+						<button className="addToWishlist" onClick={() => console.log("toto")}>
 							<div className="addToWishlistIcon">
 								<IconSvg iconName="heart" />
 							</div>

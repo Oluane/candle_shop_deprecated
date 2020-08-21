@@ -47,4 +47,6 @@ router.put("/", isAuthenticated, (req, res) => {
 	});
 });
 
+router.use("/:userId/wishlist", require("./wishlist"));
+
 module.exports = router;

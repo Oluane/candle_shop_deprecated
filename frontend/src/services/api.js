@@ -1,5 +1,6 @@
-import axios from "axios";
 import { convertCamelToSnake, convertSnakeToCamel } from "../services/utils/stringUtils";
+
+import axios from "axios";
 
 const apiInstance = axios.create({
 	baseURL: "/api",
@@ -33,7 +34,7 @@ apiInstance.interceptors.request.use((req) => {
 apiInstance.interceptors.response.use((res) => {
 	//intercepting response data to convert its keys to camel case to fits with JS front naming convention
 
-	if (res.data.length !== undefined) {
+	if (res.data.length !== undefined && res.data.length > 0) {
 		const resData = res.data;
 
 		resData.map((item, i) => {
