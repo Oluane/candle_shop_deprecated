@@ -48,7 +48,7 @@ router.get("/:wishlistId", isAuthenticated, (req, res) => {
 				console.log(err);
 				return res.status(500).json({ message: "Internal Error" });
 			}
-			if (results.length) {
+			if (results) {
 				return res.status(200).json(results);
 			}
 		}

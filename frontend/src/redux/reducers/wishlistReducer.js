@@ -26,7 +26,10 @@ export default (state = initial, action) => {
 				...state,
 				id: action.payload.id,
 				creationDatetime: action.payload.creationDatetime,
-				products: [...action.payload.products],
+				products:
+					action.payload.products.length > 0
+						? [...action.payload.products]
+						: [...state.products],
 			};
 		case wishlistActions.WISHLIST_ADD_PRODUCT.type:
 			return {

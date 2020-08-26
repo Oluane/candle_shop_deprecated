@@ -1,11 +1,12 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import "./MyWishlist.scss";
-import apiInstance from "../../services/api";
-import { useEffect } from "react";
-import NoContent from "../NoContent/NoContent";
-import wishlistActions from "../../redux/actions/wishlistActions";
+
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import IconSvg from "../IconSvg/IconSvg";
+import NoContent from "../NoContent/NoContent";
+import apiInstance from "../../services/api";
+import wishlistActions from "../../redux/actions/wishlistActions";
 
 const MyWishlist = () => {
 	const currentUser = useSelector((state) => state.user.data);
@@ -35,7 +36,6 @@ const MyWishlist = () => {
 		apiInstance
 			.delete(`/user/${currentUser.id}/wishlist/${wishlist.id}/candle/${candleId}`)
 			.then(() => {
-				console.log("something");
 				dispatch({
 					...wishlistActions.WISHLIST_DELETE_PRODUCT,
 					payload: { candleId: candleId },
@@ -47,7 +47,7 @@ const MyWishlist = () => {
 	return (
 		<div className="myWishlist alignCenter">
 			<h2 className="sectionTitle">MY WISHLIST</h2>
-			{wishlist.id !== -1 ? (
+			{wishlist.products[0].candleId !== -1 ? (
 				<div className="wishlistWrapper">
 					{wishlistProducts.map((product, i) => {
 						return (
