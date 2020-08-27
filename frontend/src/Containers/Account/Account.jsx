@@ -8,6 +8,7 @@ import MyProfile from "../../Components/MyProfile/MyProfile";
 import MyWishlist from "../../Components/MyWishlist/MyWishlist";
 import { useHistory } from "react-router-dom";
 import userActions from "../../redux/actions/userActions";
+import wishlistActions from "../../redux/actions/wishlistActions";
 
 const navSections = [
 	{ id: "profile", name: "MY PROFILE", component: <MyProfile /> },
@@ -24,6 +25,7 @@ const Account = () => {
 
 	const logOut = () => {
 		dispatch(userActions.USER_LOGOUT);
+		dispatch(wishlistActions.WISHLIST_LOGOUT_INITIAL);
 		localStorage.removeItem("xsrfToken");
 		history.push("/");
 	};

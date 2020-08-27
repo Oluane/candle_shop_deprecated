@@ -47,6 +47,8 @@ export default (state = initial, action) => {
 				...state,
 				products: newProducts.length === 0 ? initial.products : newProducts,
 			};
+		case wishlistActions.WISHLIST_LOGOUT_INITIAL.type:
+			return initial;
 		default:
 			return state;
 	}
