@@ -14,24 +14,6 @@ const MyWishlist = () => {
 	const wishlistProducts = useSelector((state) => state.wishlist.products);
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		apiInstance
-			.get(`/user/${currentUser.id}/wishlist`)
-			.then(({ data }) => {
-				const { wishlistId, creationDatetime } = data[0];
-				apiInstance
-					.get(`/user/${currentUser.id}/wishlist/${wishlistId}`)
-					.then(({ data }) => {
-						dispatch({
-							...wishlistActions.WISHLIST_SET,
-							payload: { id: wishlistId, creationDatetime, products: data },
-						});
-					})
-					.catch((err) => console.log(err));
-			})
-			.catch((err) => console.log(err));
-	}, [currentUser]);
-
 	const deleteCandleFromWishlist = (candleId) => {
 		apiInstance
 			.delete(`/user/${currentUser.id}/wishlist/${wishlist.id}/candle/${candleId}`)
@@ -51,7 +33,7 @@ const MyWishlist = () => {
 				<div className="wishlistWrapper">
 					{wishlistProducts.map((product, i) => {
 						return (
-							<div className="wishlistRow">
+							<div className="wishlistRow" key={i}>
 								<div
 									className="trashCan svgIcon"
 									onClick={() => deleteCandleFromWishlist(product.candleId)}
