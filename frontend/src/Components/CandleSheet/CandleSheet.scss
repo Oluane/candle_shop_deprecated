@@ -5,6 +5,7 @@
 	padding: 40px;
 	display: flex;
 	justify-content: center;
+	align-items: center;
 
 	.dropdownOverlay {
 		position: absolute;
@@ -35,12 +36,12 @@
 	}
 
 	.sliderWrapper {
-		max-width: 350px;
+		max-width: 425px;
 	}
 
 	.candleSheetInfoWrapper {
 		width: 42%;
-		margin-left: 90px;
+		margin-left: 150px;
 		.candleTitle {
 			text-transform: uppercase;
 			letter-spacing: 0.1em;
@@ -54,7 +55,7 @@
 
 		.actionsBtnWrapper {
 			padding: 10px 0;
-			margin-top: 15px;
+			margin-top: 30px;
 			display: flex;
 			justify-content: flex-start;
 			.addToCart {

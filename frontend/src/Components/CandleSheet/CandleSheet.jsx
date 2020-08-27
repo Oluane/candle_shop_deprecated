@@ -3,6 +3,7 @@ import "./CandleSheet.scss";
 import React, { useEffect, useState } from "react";
 
 import AddToWishlistBtn from "../AddToWishlistBtn/AddToWishlistBtn";
+import CandleInfoDisplayer from "../CandleInfoDisplayer/CandleInfoDisplayer";
 import IconSvg from "../IconSvg/IconSvg";
 import Slider from "../Slider/Slider";
 import apiInstance from "../../services/api";
@@ -186,6 +187,7 @@ const CandleSheet = ({
 						</button>
 						<AddToWishlistBtn typeSize={selectedTypeSize} scent={selectedScent} />
 					</div>
+					<CandleInfoDisplayer typeSize={selectedTypeSize} scent={selectedScent} />
 				</div>
 			)}
 			<div
