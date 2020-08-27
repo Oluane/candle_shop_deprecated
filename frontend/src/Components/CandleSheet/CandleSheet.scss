@@ -71,25 +71,6 @@
 					border-color: $roseGold;
 				}
 			}
-			.addToWishlist {
-				padding: 10px;
-				background-color: $secondary;
-				border: solid 1px $lightGreyTrans;
-				margin: auto;
-				transition: all 0.3s ease;
-				cursor: pointer;
-
-				&:hover {
-					.addToWishlistIcon {
-						color: $roseGold;
-					}
-				}
-				.addToWishlistIcon {
-					width: 25px;
-					height: 25px;
-					color: $lightDark;
-				}
-			}
 		}
 	}
 
@@ -134,22 +115,6 @@
 					color: $roseGold;
 				}
 			}
-
-			// .activeBorder {
-			// 	display: block;
-			// 	border: 2px solid $roseGold;
-			// 	width: 40px;
-			// 	height: 40px;
-			// 	border-radius: 3px;
-			// 	position: absolute;
-			// 	top: -4px;
-			// 	left: -4px;
-			// 	visibility: hidden;
-			// }
-
-			// .active {
-			// 	visibility: visible;
-			// }
 
 			.sizeValue {
 				margin-right: 18px;

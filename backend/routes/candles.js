@@ -3,6 +3,27 @@ const router = express.Router();
 
 const { db } = require("../conf");
 
+// returns a candle id from a type_size id and a scent id
+
+router.get("/type_size/:typeSizeId/scent/:scentId", (req, res) => {
+	const { typeSizeId, scentId } = req.params;
+
+	db.query(
+		`SELECT c.id FROM candle c WHERE c.type_size_id = ? AND c.scents_id = ?`,
+		[typeSizeId, scentId],
+		(err, results) => {
+			if (err) {
+				console.log(err);
+				return res.status(500).json({ message: "Internal Error" });
+			}
+
+			if (results.length) {
+				res.status(200).json(results);
+			}
+		}
+	);
+});
+
 //subroutes
 
 router.get("/types", (req, res) => {

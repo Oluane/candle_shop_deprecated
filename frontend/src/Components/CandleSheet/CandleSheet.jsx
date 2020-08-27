@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-
 import "./CandleSheet.scss";
-import apiInstance from "../../services/api";
-import Slider from "../Slider/Slider";
+
+import React, { useEffect, useState } from "react";
+
+import AddToWishlistBtn from "../AddToWishlistBtn/AddToWishlistBtn";
 import IconSvg from "../IconSvg/IconSvg";
+import Slider from "../Slider/Slider";
+import apiInstance from "../../services/api";
+import { useSelector } from "react-redux";
 
 const CandleSheet = ({
 	types,
@@ -13,27 +15,29 @@ const CandleSheet = ({
 	selectedScentId,
 	setSelectedScentId,
 }) => {
+	const currentUser = useSelector((state) => state.user.data);
+
 	/* fetch type & size relative to the type id props */
-	const [selectedTypeSize, setSelectedTypeSize] = useState(null);
+	const [typeSizes, setTypeSizes] = useState(null);
 
 	useEffect(() => {
 		apiInstance
 			.get(`/candles/types/${selectedType}/details`)
 			.then(({ data }) => {
-				setSelectedTypeSize(data);
+				setTypeSizes(data);
 			})
 			.catch((err) => console.log(err));
 	}, [selectedType]);
 
 	/* Setting the size to display to the first item when type&size changes */
 
-	const [selectedSize, setSelectedSize] = useState(null);
+	const [selectedTypeSize, setSelectedTypeSize] = useState(null);
 
 	useEffect(() => {
-		if (selectedTypeSize !== null) {
-			setSelectedSize(selectedTypeSize[0]);
+		if (typeSizes !== null) {
+			setSelectedTypeSize(typeSizes[0]);
 		}
-	}, [selectedTypeSize]);
+	}, [typeSizes]);
 
 	/* fetching all available scents from db */
 
@@ -69,21 +73,21 @@ const CandleSheet = ({
 
 	const [showDropdown, setShowDropdown] = useState(false);
 
+	const addingCandleToWishlist = () => {};
+
 	return (
 		<section className="candleSheetWrapper">
 			<div className="sliderWrapper">
 				<Slider typeId={selectedType} requiredImg={requiredSlideImg} />
 			</div>
 
-			{selectedTypeSize && selectedSize && (
+			{typeSizes && selectedTypeSize && (
 				<div className="candleSheetInfoWrapper">
-					<h4 className="candleTitle mediumBold">
-						{selectedTypeSize[0].typeEnName} Candle
-					</h4>
+					<h4 className="candleTitle mediumBold">{typeSizes[0].typeEnName} Candle</h4>
 					<div className="candleInfoContainer mediumText">
-						<p className="mediumBold">{selectedSize.price}€</p>
-						<p className="separatorBefore">{selectedSize.weightInGr}gr</p>
-						<p className="separatorBefore">{selectedSize.durationInHours}h</p>
+						<p className="mediumBold">{selectedTypeSize.price}€</p>
+						<p className="separatorBefore">{selectedTypeSize.weightInGr}gr</p>
+						<p className="separatorBefore">{selectedTypeSize.durationInHours}h</p>
 						{selectedScentId && selectedScent && (
 							<p className="separatorBefore">{selectedScent.enName}</p>
 						)}
@@ -104,12 +108,6 @@ const CandleSheet = ({
 												key={i}
 											>
 												<IconSvg iconName={"candleType" + type.id} />
-												{/* <span
-													className={
-														"activeBorder " +
-														(type.id === selectedType ? "active" : null)
-													}
-												></span> */}
 											</div>
 										);
 									})}
@@ -119,25 +117,19 @@ const CandleSheet = ({
 							<div className="variantsOptions">
 								<p className="optionTitle">Size : </p>
 								<div className="variantsValues">
-									{selectedTypeSize.map((size, i) => {
+									{typeSizes.map((size, i) => {
 										return (
 											<div
 												className={
 													"sizeValue mediumBold alignCenter largeText " +
-													(size.id === selectedSize.id ? "active" : null)
+													(size.id === selectedTypeSize.id
+														? "active"
+														: null)
 												}
-												onClick={() => setSelectedSize(size)}
+												onClick={() => setSelectedTypeSize(size)}
 												key={i}
 											>
 												{size.shortName}
-												{/* <span
-													className={
-														"activeBorder " +
-														(size.id === selectedSize.id
-															? "active"
-															: null)
-													}
-												></span> */}
 											</div>
 										);
 									})}
@@ -190,13 +182,9 @@ const CandleSheet = ({
 						<button className="addToCart smallText mediumBold">
 							{" "}
 							<span>ADD TO CART</span>{" "}
-							<span className="separatorBefore">{selectedSize.price}€</span>
+							<span className="separatorBefore">{selectedTypeSize.price}€</span>
 						</button>
-						<button className="addToWishlist" onClick={() => console.log("toto")}>
-							<div className="addToWishlistIcon">
-								<IconSvg iconName="heart" />
-							</div>
-						</button>
+						<AddToWishlistBtn typeSize={selectedTypeSize} scent={selectedScent} />
 					</div>
 				</div>
 			)}
