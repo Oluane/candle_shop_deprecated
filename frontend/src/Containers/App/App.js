@@ -1,9 +1,11 @@
-import React from "react";
 import "./App.scss";
 import "../../style/primary.scss";
+
 import { BrowserRouter } from "react-router-dom";
-import Router from "../../Components/Router/Router";
 import { Provider } from "react-redux";
+import React from "react";
+import Router from "../../Components/Router/Router";
+import ScrollToTop from "../../services/ScrollToTop";
 import store from "../../redux/store";
 
 function App() {
@@ -11,6 +13,7 @@ function App() {
 		<div className="App">
 			<Provider store={store}>
 				<BrowserRouter>
+					<ScrollToTop />
 					<Router></Router>
 				</BrowserRouter>
 			</Provider>
