@@ -1,0 +1,54 @@
+@import "../../style/generalVariables.scss";
+.mainNavbar {
+	background-color: $primary;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	padding: 10px;
+	box-shadow: 0px 0px 10px 0px $tertiaryTrans;
+	z-index: 2;
+	min-height: 65px;
+
+	.brandLogo {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		img {
+			height: 100%;
+		}
+	}
+
+	.userCart {
+		display: flex;
+		cursor: pointer;
+
+		&:hover,
+		&:focus {
+			.cartIcon {
+				color: $roseGold;
+			}
+
+			.itemsCountContainer {
+				background-color: $roseGold;
+			}
+		}
+
+		.itemsCountContainer {
+			align-self: center;
+			background-color: $lightDark;
+			width: 23px;
+			height: 23px;
+			border-radius: 50%;
+			position: relative;
+
+			.itemsCount {
+				font-weight: 600;
+				color: $primary;
+				position: absolute;
+			}
+		}
+	}
+}

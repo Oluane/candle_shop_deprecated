@@ -4,8 +4,6 @@ import { withRouter } from "react-router-dom";
 
 const ScrollToTop = (props) => {
 	useEffect(() => {
-		console.log(props);
-
 		if (props.history.action === "POP") {
 			return;
 		}

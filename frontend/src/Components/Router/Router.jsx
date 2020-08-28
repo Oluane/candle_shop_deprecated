@@ -3,7 +3,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import Footer from "../Footer/Footer";
-import Navbar from "../Navbar/Navbar";
+import NavbarDisplayer from "../Navbar/NavbarDisplayer";
 import apiInstance from "../../services/api";
 import { routes } from "../../services/routes";
 import userActions from "../../redux/actions/userActions";
@@ -98,7 +98,7 @@ const Router = () => {
 
 	return (
 		<>
-			<Navbar />
+			<NavbarDisplayer />
 			<main style={{ marginTop: "65px" }}>
 				<Switch>
 					{Object.keys(routes).map((route, key) => {
