@@ -74,10 +74,8 @@ const CandleSheet = ({
 
 	const [showDropdown, setShowDropdown] = useState(false);
 
-	const addingCandleToWishlist = () => {};
-
 	return (
-		<section className="candleSheetWrapper">
+		<section className="candleSheetWrapper fadeIn">
 			<div className="sliderWrapper">
 				<Slider typeId={selectedType} requiredImg={requiredSlideImg} />
 			</div>

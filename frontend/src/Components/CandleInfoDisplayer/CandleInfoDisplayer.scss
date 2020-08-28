@@ -44,7 +44,9 @@
 			.rows {
 				display: flex;
 				background-color: $tertiaryTrans;
-				margin-bottom: 1px;
+				&:not(:last-child) {
+					margin-bottom: 1px;
+				}
 			}
 
 			.columns {

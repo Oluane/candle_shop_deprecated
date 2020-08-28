@@ -1,23 +1,28 @@
-import React, { useEffect, useState } from "react";
-import IconSvg from "../../Components/IconSvg/IconSvg";
 import "./ScentFamily.scss";
-import { useParams, Link } from "react-router-dom";
+
+import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
 import CandleTypes from "../../Components/CandleTypes/CandleTypes";
+import IconSvg from "../../Components/IconSvg/IconSvg";
+import SkeletonItem from "../../Components/SkeletonItem/SkeletonItem";
 import apiInstance from "../../services/api";
 
 const ScentFamily = (props) => {
 	const [currentFamily, setCurrentFamily] = useState(null);
 	const [scents, setScents] = useState(null);
+	const [isLoading, setIsLoading] = useState(true);
 	const { catId } = useParams();
 
 	useEffect(() => {
 		apiInstance
 			.get("/scents_families/" + catId)
 			.then(({ data }) => {
-				setCurrentFamily(data);
+				setCurrentFamily(data[0]);
 				return apiInstance.get("/scents_families/" + catId + "/scents").then(({ data }) => {
 					setScents(data);
 					setSelectedScent(data[0]);
+					setIsLoading(false);
 				});
 			})
 			.catch((err) => console.log(err));
@@ -78,23 +83,23 @@ const ScentFamily = (props) => {
 	}, []);
 
 	return (
-		<div className="scentFamilyContainer">
-			{currentFamily !== null && scents !== null && selectedScent !== null && (
+		<div className="scentFamilyContainer fadeIn">
+			{!isLoading ? (
 				<>
 					<header className="familyHeader">
 						<div className="imageWrapper">
 							<img
-								src={`/images/scents_categories/banner_${currentFamily[0].id}.jpg`}
-								alt={`${currentFamily[0].enName} family`}
+								src={`/images/scents_categories/banner_${currentFamily.id}.jpg`}
+								alt={`${currentFamily.enName} family`}
 							/>
 						</div>
 
 						<h1 className="sectionTitle familyTitle ">
-							<span className="titleSpan">{currentFamily[0].enName}</span> SCENTS
+							<span className="titleSpan">{currentFamily.enName}</span> SCENTS
 						</h1>
 
 						<div className="familyDesc usualText alignJustify">
-							{currentFamily[0].enDesc}
+							{currentFamily.enDesc}
 						</div>
 					</header>
 
@@ -201,10 +206,34 @@ const ScentFamily = (props) => {
 							</div>
 						</div>
 					</section>
-					{/* <section className="scentInfoWrapper bgSecondary"></section> */}
-					{/* <section className="bgSecondary">
-						<CandleTypes />
-					</section> */}
+				</>
+			) : (
+				<>
+					<header className="familyHeader">
+						<SkeletonItem
+							style={{ width: "100%", height: "330px", backgroundColor: "#cecece" }}
+						/>
+						<SkeletonItem
+							style={{
+								width: "200px",
+								height: "38px",
+								margin: "75px auto 50px auto",
+								display: "block",
+							}}
+						/>
+						<SkeletonItem
+							style={{
+								width: "82%",
+								height: "70px",
+								display: "block",
+								margin: "auto",
+								marginBottom: "25px",
+							}}
+						/>
+						<SkeletonItem
+							style={{ width: "100%", height: "415px", backgroundColor: "#cecece" }}
+						/>
+					</header>
 				</>
 			)}
 		</div>

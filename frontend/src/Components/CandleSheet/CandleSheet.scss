@@ -6,6 +6,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	min-height: 680px;
 
 	.dropdownOverlay {
 		position: absolute;
@@ -37,6 +38,10 @@
 
 	.sliderWrapper {
 		max-width: 425px;
+	}
+
+	.placeholder {
+		width: 42%;
 	}
 
 	.candleSheetInfoWrapper {
