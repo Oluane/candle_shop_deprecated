@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import IconSvg from "../../IconSvg/IconSvg";
 import { Link } from "react-router-dom";
 
-const NavbarMobile = ({ isLoggedUser, height }) => {
+const NavbarMobile = ({ isLoggedUser, deviceHeight }) => {
 	const [toggleSideMenuDisplay, setToggleSideMenuDisplay] = useState(false);
 
 	return (
@@ -27,7 +27,7 @@ const NavbarMobile = ({ isLoggedUser, height }) => {
 			</div>
 			<div
 				className={"sideMenu" + (toggleSideMenuDisplay ? " active" : "")}
-				style={{ height: height }}
+				style={{ height: deviceHeight }}
 			>
 				<ul className="listMenu largeText">
 					<li>
@@ -75,10 +75,7 @@ const NavbarMobile = ({ isLoggedUser, height }) => {
 					</li>
 				</ul>
 			</div>
-			<div
-				className="brandLogo mobile"
-				onClick={() => setToggleSideMenuDisplay(!toggleSideMenuDisplay)}
-			>
+			<div className="brandLogo mobile" onClick={() => setToggleSideMenuDisplay(false)}>
 				<Link to="/">
 					<img src="/images/content/logo.png" alt="Candle Shop" />
 				</Link>

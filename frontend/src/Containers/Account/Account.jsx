@@ -25,7 +25,7 @@ const Account = () => {
 
 	const history = useHistory();
 
-	const { width, height } = useContext(viewportContext);
+	const { deviceWidth } = useContext(viewportContext);
 
 	const logOut = () => {
 		dispatch(userActions.USER_LOGOUT);
@@ -41,7 +41,7 @@ const Account = () => {
 	return (
 		<div className="account">
 			<nav className="accountNav">
-				{width > 688 ? (
+				{deviceWidth > 688 ? (
 					<ul className="accountNavList mediumText">
 						{navSections.map((section, i) => {
 							return (

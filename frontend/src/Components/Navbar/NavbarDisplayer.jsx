@@ -3,21 +3,21 @@ import "./NavbarDisplayer.scss";
 import NavbarDesktop from "./NavbarDesktop/NavbarDesktop";
 import NavbarMobile from "./NavbarMobile/NavbarMobile";
 import React from "react";
+import { useContext } from "react";
 import { useSelector } from "react-redux";
-import { useViewport } from "../../services/useViewport";
+import { viewportContext } from "../ViewportProvider/ViewportProvider";
 
 const NavbarDisplayer = () => {
-	const { width, height } = useViewport();
-	console.log(width, height);
+	const { deviceWidth, deviceHeight } = useContext(viewportContext);
 
 	const isLoggedUser = useSelector((state) => state.user.isLoggedIn);
 
 	return (
 		<nav className="mainNavbar">
-			{width > 688 ? (
+			{deviceWidth > 688 ? (
 				<NavbarDesktop isLoggedUser={isLoggedUser} />
 			) : (
-				<NavbarMobile isLoggedUser={isLoggedUser} height={height} />
+				<NavbarMobile isLoggedUser={isLoggedUser} deviceHeight={deviceHeight} />
 			)}
 		</nav>
 	);
