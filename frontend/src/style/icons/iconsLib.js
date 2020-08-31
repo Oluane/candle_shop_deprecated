@@ -555,6 +555,10 @@ export default {
 		],
 		viewBox: "0 0 512 512",
 	},
+	threeDots: {
+		path: [{ d: "M10 10H14V14H10zM10 4H14V8H10zM10 16H14V20H10z", fillColor: "currentColor" }],
+		viewBox: "0 0 24 24",
+	},
 	// any : {
 	//     path: [
 	// 		{ d: "", fillColor: "" },
