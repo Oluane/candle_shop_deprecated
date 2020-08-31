@@ -32,6 +32,25 @@ const NavbarMobile = ({ isLoggedUser, height }) => {
 				<ul className="listMenu largeText">
 					<li>
 						<Link
+							to={
+								isLoggedUser
+									? "/account/user"
+									: {
+											pathname: "/account/login",
+											state: { from: "/account/user" },
+									  }
+							}
+							className="listRow"
+							onClick={() => setToggleSideMenuDisplay(!toggleSideMenuDisplay)}
+						>
+							<h4>MY ACCOUNT</h4>
+							<div className="navArrow">
+								<IconSvg iconName="rightArrow" />
+							</div>
+						</Link>
+					</li>
+					<li>
+						<Link
 							to="/candles"
 							className="listRow"
 							onClick={() => setToggleSideMenuDisplay(!toggleSideMenuDisplay)}
