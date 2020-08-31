@@ -96,6 +96,7 @@
 				.candleTitle {
 					font-size: 14px;
 					text-align: left;
+					max-width: 90%;
 				}
 
 				.separatorBefore {
@@ -112,9 +113,9 @@
 				margin-right: 5px;
 			}
 
-			.trashCan,
-			.addToCart {
-				display: none;
+			.dropdownWrapper {
+				position: absolute;
+				right: 10px;
 			}
 		}
 	}
