@@ -14,6 +14,7 @@
 			height: 85px;
 			padding: 10px;
 			position: relative;
+			margin-bottom: 2px;
 		}
 
 		.wishlistProductInfos {
@@ -76,6 +77,46 @@
 			color: $tertiary;
 			position: absolute;
 			right: 25px;
+		}
+	}
+}
+
+@media screen and (max-width: 688px) {
+	.myWishlist {
+		padding: 5px;
+		margin: 20px 0;
+		.wishlistWrapper {
+			width: 95%;
+
+			.wishlistRow {
+				height: 75px;
+			}
+			.wishlistProductInfos {
+				margin-left: 5px;
+				.candleTitle {
+					font-size: 14px;
+					text-align: left;
+					max-width: 90%;
+				}
+
+				.separatorBefore {
+					margin-left: 20px;
+
+					&:before {
+						left: -10px;
+					}
+				}
+			}
+			.wishlistProductImg {
+				height: 45px;
+				width: 45px;
+				margin-right: 5px;
+			}
+
+			.dropdownWrapper {
+				position: absolute;
+				right: 10px;
+			}
 		}
 	}
 }

@@ -1,108 +1,82 @@
 @import "../../style/generalVariables.scss";
 
 .typesWrapper {
-	padding: 30px 50px;
+	padding: 30px 15px;
 	.title {
-		margin-bottom: 25px;
-	}
-
-	.borderContainer {
-		border: solid 1px $tertiary;
-		border-radius: inherit;
-		padding: 20px;
+		margin-bottom: 45px;
 	}
 }
 .typesContainer {
 	width: 100%;
 	display: flex;
 	justify-content: space-evenly;
+	align-items: center;
+	margin-bottom: 25px;
 
 	.typeCard {
-		background-color: $primary;
+		display: flex;
+		position: relative;
+		width: 33%;
+		height: 170px;
+		// background-color: crimson;
 		padding: 10px;
 		border-radius: 3px;
 		cursor: pointer;
-		transition: box-shadow 0.5s ease;
-	}
+		align-items: center;
 
-	.selected {
-		box-shadow: 0px 0px 5px 1px $tertiary;
-	}
-
-	.typeSvg {
-		width: 150px;
-		height: 150px;
-		margin-bottom: 15px;
-		color: $tertiary;
-	}
-}
-
-.typeDisplay {
-	width: 100%;
-	margin: 50px auto 0 auto;
-	padding: 10px;
-	background-color: $primary;
-	border-radius: 3px;
-	transition: all 0.2s ease;
-}
-
-.typePresentation {
-	margin-bottom: 45px;
-	h4 {
-		margin: 15px 0;
-	}
-
-	p {
-		padding: 15px;
-	}
-}
-
-.quickShop {
-	display: flex;
-	flex-wrap: no-wrap;
-	align-items: center;
-
-	.productSpecs {
-		padding: 0 10px;
-		flex-basis: 100%;
-
-		h6 {
-			line-height: 25px;
-			margin-bottom: 15px;
-		}
-	}
-
-	.sizeDisplay {
-		display: flex;
-		p {
-			padding: 20px;
-			width: 33.3%;
-			border-top-left-radius: 3px;
-			border-top-right-radius: 3px;
-			transition: background-color 0.3s ease 0s;
-		}
-
-		.active {
-			background-color: $tertiary;
-			font-weight: 600;
-		}
-	}
-
-	.specDetailsArr {
-		.specDetailsArrRows {
-			display: flex;
-			margin-bottom: 1px;
-			background-color: $tertiary;
-
-			&:last-child {
-				border-bottom-right-radius: 3px;
-				border-bottom-left-radius: 3px;
+		&:hover {
+			// border: solid 1px $tertiary;
+			background-color: $secondary;
+			.typeDesc {
+				//position: relative;
+				right: 30px;
+				visibility: visible;
+				opacity: 1;
+			}
+			.iconWrapper {
+				transform: translateX(0%);
+				left: 10px;
+				.typeSvg {
+					color: $roseGold;
+				}
 			}
 		}
+	}
 
-		.columns {
-			width: 50%;
-			padding: 20px;
+	.iconWrapper {
+		transform: translateX(-50%);
+		position: absolute;
+		left: 50%;
+		transition: all ease-out 0.6s;
+		.typeSvg {
+			width: 150px;
+			height: 150px;
+			margin: auto;
+			color: $secondary;
+			transition: all ease-out 0.8s;
+		}
+	}
+
+	.typeDesc {
+		width: 60%;
+		padding: 13px 0;
+		line-height: 20px;
+		letter-spacing: 0.05em;
+		visibility: hidden;
+		position: absolute;
+		opacity: 0;
+		transition: visibility ease 0s, opacity ease-out 1.2s 0.2s, position ease 0.1s;
+
+		p:first-child {
+			margin-bottom: 8px;
+		}
+
+		p:last-child {
+			max-height: 100px;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 4;
+			overflow: hidden;
 		}
 	}
 }

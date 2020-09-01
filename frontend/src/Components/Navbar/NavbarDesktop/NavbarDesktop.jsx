@@ -1,13 +1,12 @@
-import React from "react";
-import "./Navbar.scss";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import IconSvg from "../IconSvg/IconSvg";
+import "./NavbarDesktop.scss";
 
-const Navbar = () => {
-	const isLoggedUser = useSelector((state) => state.user.isLoggedIn);
+import IconSvg from "../../IconSvg/IconSvg";
+import { Link } from "react-router-dom";
+import React from "react";
+
+const NavbarDesktop = ({ isLoggedUser }) => {
 	return (
-		<nav className="mainNavbar">
+		<>
 			<div className="navLeft smallText">
 				<ul>
 					<li>
@@ -22,7 +21,7 @@ const Navbar = () => {
 					</li>
 				</ul>
 			</div>
-			<div className="brandLogo">
+			<div className="brandLogo desktop">
 				<Link to="/">
 					<img src="/images/content/logo.png" alt="Candle Shop" />
 				</Link>
@@ -53,7 +52,7 @@ const Navbar = () => {
 						</span>
 					</Link>
 
-					<div className="userCart">
+					<div className="userCart desktop">
 						<span className="navIcon cartIcon">
 							<IconSvg iconName="shoppingCart" />
 						</span>
@@ -63,8 +62,8 @@ const Navbar = () => {
 					</div>
 				</div>
 			</div>
-		</nav>
+		</>
 	);
 };
 
-export default Navbar;
+export default NavbarDesktop;

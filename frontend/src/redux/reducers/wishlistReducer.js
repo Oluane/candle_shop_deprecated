@@ -2,7 +2,6 @@ import wishlistActions from "../actions/wishlistActions";
 
 const initial = {
 	id: -1,
-	//userId: -1,
 	creationDatetime: "",
 	products: [
 		{
@@ -26,22 +25,30 @@ export default (state = initial, action) => {
 				...state,
 				id: action.payload.id,
 				creationDatetime: action.payload.creationDatetime,
-				products: [...action.payload.products],
+				products:
+					action.payload.products.length > 0
+						? [...action.payload.products]
+						: [...state.products],
 			};
 		case wishlistActions.WISHLIST_ADD_PRODUCT.type:
 			return {
 				...state,
-				products: [...state.products, action.payload.product],
+				products:
+					state.products[0].candleId === -1
+						? [action.payload]
+						: [...state.products, action.payload],
 			};
 
 		case wishlistActions.WISHLIST_DELETE_PRODUCT.type:
-			console.log(action.payload);
+			const newProducts = state.products.filter(
+				(product) => product.candleId !== action.payload.candleId
+			);
 			return {
 				...state,
-				products: state.products.filter(
-					(product) => product.candleId !== action.payload.candleId
-				),
+				products: newProducts.length === 0 ? initial.products : newProducts,
 			};
+		case wishlistActions.WISHLIST_LOGOUT_INITIAL.type:
+			return initial;
 		default:
 			return state;
 	}

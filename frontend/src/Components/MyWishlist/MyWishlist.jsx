@@ -1,11 +1,15 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import "./MyWishlist.scss";
-import apiInstance from "../../services/api";
-import { useEffect } from "react";
-import NoContent from "../NoContent/NoContent";
-import wishlistActions from "../../redux/actions/wishlistActions";
+
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import IconSvg from "../IconSvg/IconSvg";
+import NoContent from "../NoContent/NoContent";
+import apiInstance from "../../services/api";
+import { useContext } from "react";
+import { viewportContext } from "../../Components/ViewportProvider/ViewportProvider";
+import wishlistActions from "../../redux/actions/wishlistActions";
 
 const MyWishlist = () => {
 	const currentUser = useSelector((state) => state.user.data);
@@ -13,29 +17,12 @@ const MyWishlist = () => {
 	const wishlistProducts = useSelector((state) => state.wishlist.products);
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		apiInstance
-			.get(`/user/${currentUser.id}/wishlist`)
-			.then(({ data }) => {
-				const { wishlistId, creationDatetime } = data[0];
-				apiInstance
-					.get(`/user/${currentUser.id}/wishlist/${wishlistId}`)
-					.then(({ data }) => {
-						dispatch({
-							...wishlistActions.WISHLIST_SET,
-							payload: { id: wishlistId, creationDatetime, products: data },
-						});
-					})
-					.catch((err) => console.log(err));
-			})
-			.catch((err) => console.log(err));
-	}, [currentUser]);
+	const { deviceWidth } = useContext(viewportContext);
 
 	const deleteCandleFromWishlist = (candleId) => {
 		apiInstance
 			.delete(`/user/${currentUser.id}/wishlist/${wishlist.id}/candle/${candleId}`)
 			.then(() => {
-				console.log("something");
 				dispatch({
 					...wishlistActions.WISHLIST_DELETE_PRODUCT,
 					payload: { candleId: candleId },
@@ -47,17 +34,19 @@ const MyWishlist = () => {
 	return (
 		<div className="myWishlist alignCenter">
 			<h2 className="sectionTitle">MY WISHLIST</h2>
-			{wishlist.id !== -1 ? (
+			{wishlist.products[0].candleId !== -1 ? (
 				<div className="wishlistWrapper">
 					{wishlistProducts.map((product, i) => {
 						return (
-							<div className="wishlistRow">
-								<div
-									className="trashCan svgIcon"
-									onClick={() => deleteCandleFromWishlist(product.candleId)}
-								>
-									<IconSvg iconName="trashCan" />
-								</div>
+							<div className="wishlistRow" key={i}>
+								{deviceWidth > 688 && (
+									<div
+										className="trashCan svgIcon"
+										onClick={() => deleteCandleFromWishlist(product.candleId)}
+									>
+										<IconSvg iconName="trashCan" />
+									</div>
+								)}
 								<div className="wishlistProductImg">
 									<img
 										src={`/images/candle_types/candle_type_${product.typeId}_1.jpg`}
@@ -77,9 +66,24 @@ const MyWishlist = () => {
 										</p>
 									</div>
 								</div>
-								<div className="addToCart svgIcon">
-									<IconSvg iconName="addToCart" />
-								</div>
+								{deviceWidth > 688 ? (
+									<div className="addToCart svgIcon">
+										<IconSvg iconName="addToCart" />
+									</div>
+								) : (
+									<div className="dropdownWrapper">
+										<DropdownMobile
+											candleId={product.candleId}
+											content={[
+												{ title: "Add to cart", func: null },
+												{
+													title: "Delete from wishlist",
+													func: deleteCandleFromWishlist,
+												},
+											]}
+										/>{" "}
+									</div>
+								)}
 							</div>
 						);
 					})}

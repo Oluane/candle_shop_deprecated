@@ -5,6 +5,8 @@
 	padding: 40px;
 	display: flex;
 	justify-content: center;
+	align-items: center;
+	min-height: 680px;
 
 	.dropdownOverlay {
 		position: absolute;
@@ -35,12 +37,16 @@
 	}
 
 	.sliderWrapper {
-		max-width: 350px;
+		max-width: 425px;
+	}
+
+	.placeholder {
+		width: 42%;
 	}
 
 	.candleSheetInfoWrapper {
 		width: 42%;
-		margin-left: 90px;
+		margin-left: 150px;
 		.candleTitle {
 			text-transform: uppercase;
 			letter-spacing: 0.1em;
@@ -54,7 +60,7 @@
 
 		.actionsBtnWrapper {
 			padding: 10px 0;
-			margin-top: 15px;
+			margin-top: 30px;
 			display: flex;
 			justify-content: flex-start;
 			.addToCart {
@@ -69,25 +75,6 @@
 				&:hover {
 					background-color: $roseGold;
 					border-color: $roseGold;
-				}
-			}
-			.addToWishlist {
-				padding: 10px;
-				background-color: $secondary;
-				border: solid 1px $lightGreyTrans;
-				margin: auto;
-				transition: all 0.3s ease;
-				cursor: pointer;
-
-				&:hover {
-					.addToWishlistIcon {
-						color: $roseGold;
-					}
-				}
-				.addToWishlistIcon {
-					width: 25px;
-					height: 25px;
-					color: $lightDark;
 				}
 			}
 		}
@@ -134,22 +121,6 @@
 					color: $roseGold;
 				}
 			}
-
-			// .activeBorder {
-			// 	display: block;
-			// 	border: 2px solid $roseGold;
-			// 	width: 40px;
-			// 	height: 40px;
-			// 	border-radius: 3px;
-			// 	position: absolute;
-			// 	top: -4px;
-			// 	left: -4px;
-			// 	visibility: hidden;
-			// }
-
-			// .active {
-			// 	visibility: visible;
-			// }
 
 			.sizeValue {
 				margin-right: 18px;

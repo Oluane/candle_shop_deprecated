@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Switch, Route, Redirect } from "react-router-dom";
-import { routes } from "../../services/routes";
-import Navbar from "../Navbar/Navbar";
-import apiInstance from "../../services/api";
-import userActions from "../../redux/actions/userActions";
+
 import Footer from "../Footer/Footer";
+import NavbarDisplayer from "../Navbar/NavbarDisplayer";
+import apiInstance from "../../services/api";
+import { routes } from "../../services/routes";
+import userActions from "../../redux/actions/userActions";
+import wishlistActions from "../../redux/actions/wishlistActions";
 
 const PrivateRoute = ({ component: Component, auth, authenticationRequestState, ...rest }) => (
 	<Route
@@ -58,6 +60,27 @@ const Router = () => {
 					.get("/user")
 					.then(({ data }) => {
 						dispatch({ ...userActions.USER_LOGIN, payload: data[0] });
+						apiInstance
+							.get(`/user/${data[0].id}/wishlist`)
+							.then(({ data }) => {
+								const { wishlistId, creationDatetime } = data[0];
+								const wishlistProducts = data.map(
+									({ wishlistId, creationDatetime, ...keepProperties }) =>
+										keepProperties
+								);
+								dispatch({
+									...wishlistActions.WISHLIST_SET,
+									payload: {
+										id: wishlistId,
+										creationDatetime,
+										products:
+											wishlistProducts[0].candleId !== null
+												? wishlistProducts
+												: [],
+									},
+								});
+							})
+							.catch((err) => console.log(err));
 						setAuthenticationRequestState("ok");
 					})
 					.catch((err) => {
@@ -75,7 +98,7 @@ const Router = () => {
 
 	return (
 		<>
-			<Navbar />
+			<NavbarDisplayer />
 			<main style={{ marginTop: "65px" }}>
 				<Switch>
 					{Object.keys(routes).map((route, key) => {

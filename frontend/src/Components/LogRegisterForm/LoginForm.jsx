@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-
 import "./LogRegisterForm.scss";
+
 import { Link, useHistory } from "react-router-dom";
-import { isInputFilled } from "../../services/utils/inputsUtils";
+import React, { useState } from "react";
+
 import apiInstance from "../../services/api";
+import { isInputFilled } from "../../services/utils/inputsUtils";
+import { useDispatch } from "react-redux";
 import userActions from "../../redux/actions/userActions";
+import wishlistActions from "../../redux/actions/wishlistActions";
 
 const LoginForm = () => {
 	const [mailAddress, setMailAddress] = useState("");
@@ -27,6 +29,27 @@ const LoginForm = () => {
 					.get(`/user`)
 					.then(({ data }) => {
 						dispatch({ ...userActions.USER_LOGIN, payload: data[0] });
+						apiInstance
+							.get(`/user/${data[0].id}/wishlist`)
+							.then(({ data }) => {
+								const { wishlistId, creationDatetime } = data[0];
+								const wishlistProducts = data.map(
+									({ wishlistId, creationDatetime, ...keepProperties }) =>
+										keepProperties
+								);
+								dispatch({
+									...wishlistActions.WISHLIST_SET,
+									payload: {
+										id: wishlistId,
+										creationDatetime,
+										products:
+											wishlistProducts[0].candleId !== null
+												? wishlistProducts
+												: [],
+									},
+								});
+							})
+							.catch((err) => console.log(err));
 						const redirectUrl =
 							history.location.state !== undefined
 								? history.location.state.from

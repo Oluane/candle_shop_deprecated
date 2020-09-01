@@ -12,47 +12,45 @@ router.get("/", isAuthenticated, (req, res) => {
 	}
 
 	db.query(
-		`SELECT w.id wishlist_id, w.customer_id, w.creation_datetime  FROM wishlist w 
-    WHERE w.customer_id = ?`,
+		`SELECT w.id wishlist_id, w.creation_datetime, c.id candle_id, ts.type_id, ts.weight_in_gr, ts.duration_in_hours, ts.price, 
+		sc.en_name scents_en_name, sc.is_essential_oil, t.en_name type_en_name, s.en_name size_en_name FROM wishlist w 
+        LEFT JOIN candle c ON c.id IN (SELECT wi.candle_id FROM wishlist_items wi WHERE wi.wishlist_id = w.id)
+        LEFT JOIN type_size ts ON c.type_size_id = ts.id
+	    LEFT JOIN scents sc ON c.scents_id = sc.id
+	    LEFT JOIN type t on t.id = ts.type_id
+	    LEFT JOIN size s ON s.id = ts.size_id
+        WHERE w.customer_id = ?;`,
 		[userId],
 		(err, results) => {
 			if (err) {
 				console.log(err);
 				return res.status(500).json({ message: "Internal Error" });
 			}
-			if (results.length) {
+			if (results) {
 				return res.status(200).json(results);
 			}
 		}
 	);
 });
 
-router.get("/:wishlistId", isAuthenticated, (req, res) => {
-	const wishlistId = req.params.wishlistId;
-
-	if (!wishlistId) {
+router.post("/:wishlistId/candle", isAuthenticated, (req, res) => {
+	if (!req.params.wishlistId) {
 		return res.status(401).json({ message: "OOPS! Missing wishlistId" });
 	}
+	if (!req.body.candle_id) {
+		return res.status(401).json({ message: "OOPS! Missing candleId" });
+	}
 
-	db.query(
-		`SELECT c.id candle_id, ts.type_id, ts.weight_in_gr, ts.duration_in_hours, ts.price, sc.en_name scents_en_name,
-	     sc.is_essential_oil, t.en_name type_en_name, s.en_name size_en_name FROM candle c
-	    JOIN type_size ts ON c.type_size_id = ts.id
-	    JOIN scents sc ON c.scents_id = sc.id
-	    JOIN type t on t.id = ts.type_id
-	    JOIN size s ON s.id = ts.size_id
-	    WHERE c.id IN (SELECT wi.candle_id FROM wishlist_items wi WHERE wi.wishlist_id = ?)`,
-		[wishlistId],
-		(err, results) => {
-			if (err) {
-				console.log(err);
-				return res.status(500).json({ message: "Internal Error" });
-			}
-			if (results.length) {
-				return res.status(200).json(results);
-			}
+	const newCandle = { wishlist_id: Number(req.params.wishlistId), candle_id: req.body.candle_id };
+
+	db.query(`INSERT INTO wishlist_items SET ?`, [newCandle], (err, results) => {
+		if (err) {
+			console.log(err);
+			return res.status(500).json({ message: "Internal Error" });
 		}
-	);
+		console.log(results);
+		res.status(201).send(results);
+	});
 });
 
 router.delete("/:wishlistId/candle/:candleId", isAuthenticated, (req, res) => {

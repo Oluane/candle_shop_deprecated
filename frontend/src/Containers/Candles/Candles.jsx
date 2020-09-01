@@ -1,14 +1,17 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
 import "./Candles.scss";
-import CandleTypes from "../../Components/CandleTypes/CandleTypes";
+
+import React, { useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
+
 import CandleSheet from "../../Components/CandleSheet/CandleSheet";
+import CandleTypes from "../../Components/CandleTypes/CandleTypes";
+import SkeletonItem from "../../Components/SkeletonItem/SkeletonItem";
 import apiInstance from "../../services/api";
+import { useEffect } from "react";
 
 const Candles = () => {
 	const location = useLocation();
-
+	const [isLoading, setIsLoading] = useState(true);
 	const [types, setTypes] = useState([]);
 
 	useEffect(() => {
@@ -16,6 +19,7 @@ const Candles = () => {
 			.get("/candles/types")
 			.then(({ data }) => {
 				setTypes(data);
+				setIsLoading(false);
 			})
 			.catch((err) => console.log(err));
 	}, []);
@@ -48,7 +52,29 @@ const Candles = () => {
 				</div>
 			</header>
 			{!isPreSelected && !selectedType ? (
-				<CandleTypes types={types} setSelectedType={setSelectedType} />
+				!isLoading ? (
+					<CandleTypes types={types} setSelectedType={setSelectedType} />
+				) : (
+					<div>
+						<SkeletonItem
+							style={{
+								width: "350px",
+								height: "18px",
+								display: "block",
+								margin: "30px auto 75px auto ",
+							}}
+						/>
+						<div style={{ marginBottom: "25px" }}>
+							<SkeletonItem
+								style={{ width: "33%", height: "170px", marginRight: "1px" }}
+							/>
+							<SkeletonItem
+								style={{ width: "33%", height: "170px", marginRight: "1px" }}
+							/>
+							<SkeletonItem style={{ width: "33%", height: "170px" }} />
+						</div>
+					</div>
+				)
 			) : (
 				<CandleSheet
 					types={types}
