@@ -1,18 +1,21 @@
-import React from "react";
 import "./BannerHeader.scss";
+
+import { FormattedMessage } from "react-intl";
+import React from "react";
 
 const BannerHeader = () => {
 	return (
 		<header className="bannerHeader">
 			<div className="bannerTitle">
 				<h1>
-					Welcome to <br />
+					<FormattedMessage id="bannerHeader.title" />
+					<br />
 					<span className="textHighlight">Candle Shop</span>.
 				</h1>
 			</div>
 			<div className="bannerText">
 				<p className="descText largeText">
-					Lorem Ipsum sic dolor net consectigur. Ameno tantum rosae victus amunam.
+					<FormattedMessage id="bannerHeader.text" />
 				</p>
 			</div>
 		</header>
