@@ -1,5 +1,6 @@
 import "./NavbarDesktop.scss";
 
+import { FormattedMessage } from "react-intl";
 import IconSvg from "../../IconSvg/IconSvg";
 import { Link } from "react-router-dom";
 import React from "react";
@@ -11,12 +12,12 @@ const NavbarDesktop = ({ isLoggedUser }) => {
 				<ul>
 					<li>
 						<Link to="/" className="navLinks">
-							HOME
+							<FormattedMessage id="navbar.links.1" />
 						</Link>
 					</li>
 					<li>
 						<Link to="/candles" className="navLinks">
-							CANDLES
+							<FormattedMessage id="navbar.links.2" />
 						</Link>
 					</li>
 				</ul>
@@ -30,12 +31,12 @@ const NavbarDesktop = ({ isLoggedUser }) => {
 				<ul>
 					<li>
 						<Link to="/" className="navLinks ">
-							ABOUT US
+							<FormattedMessage id="navbar.links.3" />
 						</Link>
 					</li>
 					<li>
 						<Link to="/" className="navLinks ">
-							MORE INFOS
+							<FormattedMessage id="navbar.links.4" />
 						</Link>
 					</li>
 				</ul>

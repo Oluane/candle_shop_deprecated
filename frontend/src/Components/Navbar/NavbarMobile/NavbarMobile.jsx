@@ -2,6 +2,7 @@ import "./NavbarMobile.scss";
 
 import React, { useState } from "react";
 
+import { FormattedMessage } from "react-intl";
 import IconSvg from "../../IconSvg/IconSvg";
 import { Link } from "react-router-dom";
 
@@ -55,7 +56,9 @@ const NavbarMobile = ({ isLoggedUser, deviceHeight }) => {
 							className="listRow"
 							onClick={() => setToggleSideMenuDisplay(!toggleSideMenuDisplay)}
 						>
-							<h4>CANDLES</h4>
+							<h4>
+								<FormattedMessage id="navbar.links.2" />
+							</h4>
 							<div className="navArrow">
 								<IconSvg iconName="rightArrow" />
 							</div>
@@ -67,7 +70,9 @@ const NavbarMobile = ({ isLoggedUser, deviceHeight }) => {
 							className="listRow"
 							onClick={() => setToggleSideMenuDisplay(!toggleSideMenuDisplay)}
 						>
-							<h4>ABOUT US</h4>
+							<h4>
+								<FormattedMessage id="navbar.links.3" />
+							</h4>
 							<div className="navArrow">
 								<IconSvg iconName="rightArrow" />
 							</div>

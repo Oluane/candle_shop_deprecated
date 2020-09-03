@@ -1,47 +1,54 @@
-import React from "react";
 import "./EngagementSection.scss";
+
+import { FormattedMessage } from "react-intl";
 import IconSvg from "../IconSvg/IconSvg";
+import React from "react";
 
 const EngagementSection = () => {
 	return (
 		<section className="engagementSection alignCenter">
 			<div className="engagementSectionItem">
-				<p className="largeText">Secured payment</p>
+				<p className="largeText">
+					<FormattedMessage id="engagementSection.item.title.1" />
+				</p>
 				<div className="engagementIcon">
 					<IconSvg iconName="creditCard" />
 				</div>
 				<p className="mediumText alignJustify engagementText">
-					Jelly topping marshmallow gummi bears topping cake wafer. Dough coffee sugar
-					plum bagel.
+					<FormattedMessage id="engagementSection.item.text.1" />
 				</p>
 			</div>
 			<div className="engagementSectionItem">
-				<p className="largeText">Quick delivery</p>
+				<p className="largeText">
+					<FormattedMessage id="engagementSection.item.title.2" />
+				</p>
 				<div className="engagementIcon">
 					<IconSvg iconName="deliveryMap" />
 				</div>
 				<p className="mediumText alignJustify engagementText">
-					Jelly cupcake I love tart lollipop tootsie roll. Sweet roll lollipop croissant
-					biscuit ice cream.
+					<FormattedMessage id="engagementSection.item.text.2" />
 				</p>
 			</div>
 			<div className="engagementSectionItem">
-				<p className="largeText">Any problem with delivery ?</p>
+				<p className="largeText">
+					<FormattedMessage id="engagementSection.item.title.3" />
+				</p>
 				<div className="engagementIcon">
 					<IconSvg iconName="parcelIssue" />
 				</div>
 				<p className="mediumText alignJustify engagementText">
-					Danish dessert halvah caramels chupa chups jelly candy. Pudding biscuit gummi.
+					<FormattedMessage id="engagementSection.item.text.3" />
 				</p>
 			</div>
 			<div className="engagementSectionItem">
-				<p className="largeText">Loyalty</p>
+				<p className="largeText">
+					<FormattedMessage id="engagementSection.item.title.4" />
+				</p>
 				<div className="engagementIcon">
 					<IconSvg iconName="loyaltyGift" />
 				</div>
 				<p className="mediumText alignJustify engagementText">
-					Cake tiramisu sesame snaps dragée pie sugar plum. Pastry candy canes dessert
-					cheesecake.
+					<FormattedMessage id="engagementSection.item.text.4" />
 				</p>
 			</div>
 		</section>

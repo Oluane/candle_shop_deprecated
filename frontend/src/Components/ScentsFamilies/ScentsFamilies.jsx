@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from "react";
 import "./ScentsFamilies.scss";
+
+import React, { useEffect, useState } from "react";
+
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 import apiInstance from "../../services/api";
 
@@ -18,11 +21,13 @@ const ScentsFamilies = () => {
 	return (
 		<section className="scentsSection">
 			<h3 className="sectionTitle">
-				<span className="titleSpan">Explore </span>
-				OUR SCENTS UNIVERSES
+				<span className="titleSpan">
+					<FormattedMessage id="scentsFamilies.section.title.span" />{" "}
+				</span>
+				<FormattedMessage id="scentsFamilies.section.title" />
 			</h3>
 			<p className="usualText alignCenter">
-				Check our differents scents universes and find the one that fits you best{" "}
+				<FormattedMessage id="scentsFamilies.section.description" />
 			</p>
 			<div className="categoriesItemsWrapper">
 				{scentsFamilies.length > 0 &&
