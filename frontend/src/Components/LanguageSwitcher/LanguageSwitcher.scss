@@ -1,0 +1,59 @@
+@import "../../style/generalVariables.scss";
+
+.languageSwitcher {
+	width: 12%;
+	position: relative;
+
+	.selectorLabel {
+		margin-bottom: 10px;
+	}
+
+	.selectorCustom {
+		display: flex;
+		background-color: $lightGreyTrans;
+		justify-content: space-between;
+		padding: 10px;
+		border-radius: 10px;
+		width: 90%;
+		max-width: 150px;
+		cursor: pointer;
+
+		&.visible {
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+			border-bottom: solid 1px $tertiaryTrans;
+		}
+	}
+
+	.selectorArrow {
+		width: 15px;
+		height: 15px;
+		color: $lightGrey;
+
+		&.flip {
+			transform: rotate(90deg);
+		}
+	}
+
+	.selectorDropdown {
+		background-color: $lightGreyTrans;
+		width: 90%;
+		position: absolute;
+		border-radius: 10px;
+		cursor: pointer;
+		visibility: hidden;
+		opacity: 0;
+
+		p {
+			padding: 10px;
+			border-radius: inherit;
+		}
+
+		&.visible {
+			visibility: visible;
+			opacity: 1;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
+	}
+}

@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import "./Footer.scss";
-import IconSvg from "../IconSvg/IconSvg";
+
+import React, { useEffect, useState } from "react";
+
 import EngagementSection from "../EngagementSection/EngagementSection";
+import IconSvg from "../IconSvg/IconSvg";
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
 	const [isHomepage, setIsHomepage] = useState(false);
@@ -74,6 +77,7 @@ const Footer = () => {
 						</ul>
 					</div>
 				</div>
+				<LanguageSwitcher />
 			</footer>
 		</>
 	);

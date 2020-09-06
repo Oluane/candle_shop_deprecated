@@ -3,19 +3,14 @@ import "./reset.scss";
 
 import * as serviceWorker from "./serviceWorker";
 
-import { language, message } from "./services/locale";
-
 import App from "./Containers/App/App";
-import { IntlProvider } from "react-intl";
 import React from "react";
 import ReactDOM from "react-dom";
 
 ReactDOM.render(
-	<IntlProvider locale={language} defaultLocale="en" messages={message}>
-		<React.StrictMode>
-			<App />
-		</React.StrictMode>
-	</IntlProvider>,
+	<React.StrictMode>
+		<App />
+	</React.StrictMode>,
 	document.getElementById("root")
 );
 
