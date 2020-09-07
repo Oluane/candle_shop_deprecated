@@ -7,7 +7,6 @@ import IconSvg from "../IconSvg/IconSvg";
 import Input from "../Input/Input";
 import apiInstance from "../../services/api";
 import axios from "axios";
-import { isInputFilled } from "../../services/utils/inputsUtils";
 import { useDispatch } from "react-redux";
 import userActions from "../../redux/actions/userActions";
 
@@ -15,7 +14,7 @@ const RegisterForm = () => {
 	const [mailAddress, setMailAddress] = useState("");
 	const [password, setPassword] = useState("");
 	const [passwordConfirm, setPasswordConfirm] = useState("");
-	const [arePasswordSame, setArePasswordSame] = useState(false);
+	//const [arePasswordSame, setArePasswordSame] = useState(false);
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [birthdate, setBirthdate] = useState("");
@@ -57,21 +56,21 @@ const RegisterForm = () => {
 	};
 
 	//TODO -> implement password checking
-	const isPasswordsIso = (e) => {
-		if (e.target.name === "password" && passwordConfirm !== "") {
-			if (e.target.value === passwordConfirm) {
-				setArePasswordSame(true);
-			} else {
-				setArePasswordSame(false);
-			}
-		} else if (e.target.name === "passwordConfirm" && password !== "") {
-			if (e.target.value === password) {
-				setArePasswordSame(true);
-			} else {
-				setArePasswordSame(false);
-			}
-		}
-	};
+	// const isPasswordsIso = (e) => {
+	// 	if (e.target.name === "password" && passwordConfirm !== "") {
+	// 		if (e.target.value === passwordConfirm) {
+	// 			setArePasswordSame(true);
+	// 		} else {
+	// 			setArePasswordSame(false);
+	// 		}
+	// 	} else if (e.target.name === "passwordConfirm" && password !== "") {
+	// 		if (e.target.value === password) {
+	// 			setArePasswordSame(true);
+	// 		} else {
+	// 			setArePasswordSame(false);
+	// 		}
+	// 	}
+	// };
 
 	return (
 		<div className="formWrapper">

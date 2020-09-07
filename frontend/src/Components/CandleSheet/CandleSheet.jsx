@@ -7,7 +7,6 @@ import CandleInfoDisplayer from "../CandleInfoDisplayer/CandleInfoDisplayer";
 import IconSvg from "../IconSvg/IconSvg";
 import Slider from "../Slider/Slider";
 import apiInstance from "../../services/api";
-import { useSelector } from "react-redux";
 
 //webpack dynamic require to retrieve specific img files
 
@@ -24,8 +23,6 @@ const CandleSheet = ({
 	selectedScentId,
 	setSelectedScentId,
 }) => {
-	const currentUser = useSelector((state) => state.user.data);
-
 	/* fetch type & size relative to the type id props */
 	const [typeSizes, setTypeSizes] = useState(null);
 

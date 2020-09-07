@@ -5,7 +5,6 @@ import React, { useState } from "react";
 
 import Input from "../Input/Input";
 import apiInstance from "../../services/api";
-import { isInputFilled } from "../../services/utils/inputsUtils";
 import { useDispatch } from "react-redux";
 import userActions from "../../redux/actions/userActions";
 import wishlistActions from "../../redux/actions/wishlistActions";

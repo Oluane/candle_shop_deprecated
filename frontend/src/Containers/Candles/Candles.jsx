@@ -1,13 +1,12 @@
 import "./Candles.scss";
 
-import React, { useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 import CandleSheet from "../../Components/CandleSheet/CandleSheet";
 import CandleTypes from "../../Components/CandleTypes/CandleTypes";
 import SkeletonItem from "../../Components/SkeletonItem/SkeletonItem";
 import apiInstance from "../../services/api";
-import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const Candles = () => {
 	const location = useLocation();

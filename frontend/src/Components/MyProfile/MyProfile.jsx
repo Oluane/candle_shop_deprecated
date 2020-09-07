@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import "./MyProfile.scss";
-import userActions from "../../redux/actions/userActions";
+
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import Input from "../Input/Input";
 import apiInstance from "../../services/api";
-import { format } from "date-fns";
+import userActions from "../../redux/actions/userActions";
+//import { format } from "date-fns";
 
 const MyProfile = () => {
 	const currentUser = useSelector((state) => state.user.data);

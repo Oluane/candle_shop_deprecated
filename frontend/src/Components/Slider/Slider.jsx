@@ -35,7 +35,7 @@ const Slider = ({ typeId, requiredImg }) => {
 		<div className="slider">
 			<div className="sliderContent">
 				<div className="sliderItems">
-					<img src={sliderItems[active]} alt="slider candles image" />
+					<img src={sliderItems[active]} alt="slider candles" />
 				</div>
 			</div>
 			<div className="sliderIndicators">
@@ -46,7 +46,7 @@ const Slider = ({ typeId, requiredImg }) => {
 							className="imgThumbnails"
 							onClick={() => setActive(i)}
 						>
-							<img src={item} />
+							<img src={item} alt="candles preview" />
 							<span className={"imgBorder" + (active === i ? " active" : "")}></span>
 						</div>
 					);

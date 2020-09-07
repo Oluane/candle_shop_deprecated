@@ -1,11 +1,11 @@
 import "./MyWishlist.scss";
 
-import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import IconSvg from "../IconSvg/IconSvg";
 import NoContent from "../NoContent/NoContent";
+import React from "react";
 import apiInstance from "../../services/api";
 import { useContext } from "react";
 import { viewportContext } from "../../Components/ViewportProvider/ViewportProvider";

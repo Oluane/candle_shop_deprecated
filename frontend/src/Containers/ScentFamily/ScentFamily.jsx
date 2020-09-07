@@ -3,7 +3,6 @@ import "./ScentFamily.scss";
 import { Link, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
-import CandleTypes from "../../Components/CandleTypes/CandleTypes";
 import IconSvg from "../../Components/IconSvg/IconSvg";
 import SkeletonItem from "../../Components/SkeletonItem/SkeletonItem";
 import apiInstance from "../../services/api";

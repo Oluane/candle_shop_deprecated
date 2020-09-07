@@ -1,8 +1,7 @@
 import "./CandleTypes.scss";
 
-import React, { useEffect, useState } from "react";
-
 import IconSvg from "../IconSvg/IconSvg";
+import React from "react";
 
 const CandleTypes = ({ types, setSelectedType }) => {
 	return (
