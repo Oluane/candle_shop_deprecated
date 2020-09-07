@@ -45,10 +45,10 @@ const PrivateRoute = ({ component: Component, auth, authenticationRequestState, 
 
 const Router = () => {
 	const dispatch = useDispatch();
-
 	const isLoggedUser = useSelector((state) => state.user.isLoggedIn);
 	const [authenticationRequestState, setAuthenticationRequestState] = useState("notYetAsked");
 
+	//checking if current user has already been logged recently (with presence of a valid xrsf token) & trying to retrieve his infos
 	useEffect(() => {
 		if (!isLoggedUser) {
 			let xsrfToken = localStorage.getItem("xsrfToken");

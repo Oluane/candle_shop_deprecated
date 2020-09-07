@@ -12,43 +12,43 @@ const apiInstance = axios.create({
 });
 
 apiInstance.interceptors.request.use((req) => {
+	let newReq = { ...req };
 	const token = localStorage.getItem("xsrfToken");
 	if (token) {
-		req.headers["x-xsrf-token"] = token;
+		newReq.headers["x-xsrf-token"] = token;
 	}
 
 	//intercepting request data to convert its keys to snake case to fits with DB naming convention
 
-	const reqData = req.data;
-
-	if (typeof reqData === "object") {
+	if (typeof newReq.data === "object") {
 		let data = {};
-		Object.keys(reqData).map((e) => {
-			return (data[convertCamelToSnake(e)] = reqData[e]);
+		Object.keys(newReq.data).map((e) => {
+			return (data[convertCamelToSnake(e)] = newReq.data[e]);
 		});
-		req.data = data;
+		newReq.data = data;
 	}
-	return req;
+	return newReq;
 });
 
 apiInstance.interceptors.response.use((res) => {
 	//intercepting response data to convert its keys to camel case to fits with JS front naming convention
 
-	if (res.data.length !== undefined && res.data.length > 0) {
-		const resData = res.data;
+	let newRes = { ...res };
 
-		resData.map((item, i) => {
+	if (newRes.data.length !== undefined && newRes.data.length > 0) {
+		newRes.data = newRes.data.map((item, i) => {
 			if (typeof item === "object") {
 				let data = {};
 				Object.keys(item).map((e) => {
 					return (data[convertSnakeToCamel(e)] = item[e]);
 				});
-				res.data[i] = data;
+				return data;
 			}
+			return item;
 		});
 	}
 
-	return res;
+	return newRes;
 });
 
 export default apiInstance;
