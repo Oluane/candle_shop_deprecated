@@ -1,0 +1,38 @@
+@import "../../style/generalVariables.scss";
+.toastsContainer {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+
+	.toastBody {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 20px 15px;
+		border-radius: 5px;
+		max-width: 300px;
+
+		p {
+			max-width: 85%;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 2;
+			overflow: hidden;
+		}
+
+		&.success {
+			background-color: green;
+		}
+
+		&.danger {
+			background-color: crimson;
+		}
+
+		.closeIcon {
+			width: 15px;
+			height: 15px;
+			margin-left: 15px;
+			cursor: pointer;
+		}
+	}
+}

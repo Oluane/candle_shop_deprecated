@@ -1,9 +1,10 @@
 import "./LogRegisterForm.scss";
 
 import { Link, useHistory } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import Input from "../Input/Input";
+import { ToastContext } from "../Toasts/ToastProvider";
 import apiInstance from "../../services/api";
 import { useDispatch } from "react-redux";
 import userActions from "../../redux/actions/userActions";
@@ -12,6 +13,8 @@ import wishlistActions from "../../redux/actions/wishlistActions";
 const LoginForm = () => {
 	const [mailAddress, setMailAddress] = useState("");
 	const [password, setPassword] = useState("");
+
+	const [, dispatchToast] = useContext(ToastContext);
 
 	const dispatch = useDispatch();
 
@@ -59,7 +62,14 @@ const LoginForm = () => {
 					.catch((err) => console.log(err));
 			})
 			.catch((err) => {
-				console.log(err);
+				dispatchToast({
+					type: "ADD_TOAST",
+					payload: {
+						id: Math.random(),
+						content: "Failed auth! Retry please :)",
+						classes: " danger",
+					},
+				});
 			});
 	};
 
