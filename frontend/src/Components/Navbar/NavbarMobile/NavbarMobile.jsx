@@ -1,12 +1,14 @@
 import "./NavbarMobile.scss";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import IconSvg from "../../IconSvg/IconSvg";
 import { Link } from "react-router-dom";
+import { viewportContext } from "../../ViewportProvider/ViewportProvider";
 
-const NavbarMobile = ({ isLoggedUser, deviceHeight }) => {
+const NavbarMobile = ({ isLoggedUser }) => {
 	const [toggleSideMenuDisplay, setToggleSideMenuDisplay] = useState(false);
+	const { deviceHeight } = useContext(viewportContext);
 
 	return (
 		<>

@@ -3,6 +3,7 @@ import "./LogRegisterForm.scss";
 import { Link, useHistory } from "react-router-dom";
 import React, { useState } from "react";
 
+import Input from "../Input/Input";
 import apiInstance from "../../services/api";
 import { isInputFilled } from "../../services/utils/inputsUtils";
 import { useDispatch } from "react-redux";
@@ -68,27 +69,22 @@ const LoginForm = () => {
 			<div className="formContent lightDarkColor">
 				<h2 className="formHeader alignCenter">LOGIN</h2>
 				<form className="formContainer" onSubmit={(e) => login(e)} autoComplete="on">
-					<div className={"inputLabel" + (isInputFilled(mailAddress) ? " filled" : "")}>
-						<input
-							type="email"
-							name="email"
-							value={mailAddress}
-							onChange={(e) => setMailAddress(e.target.value)}
-							className="formInput usualText"
-						/>
-						<span className="smallText inputPlaceholder">E-mail</span>
-					</div>
-					<div className={"inputLabel" + (isInputFilled(password) ? " filled" : "")}>
-						<input
-							type="password"
-							name="password"
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-							className="formInput usualText"
-						/>
-						<span className="smallText inputPlaceholder">Password</span>
-					</div>
-
+					<Input
+						type="email"
+						name="email"
+						value={mailAddress}
+						onChange={setMailAddress}
+						isMidWidth={false}
+						placeHolder="Email"
+					/>
+					<Input
+						type="password"
+						name="password"
+						value={password}
+						onChange={setPassword}
+						isMidWidth={false}
+						placeHolder="Password"
+					/>
 					<button type="submit" value="Login" className="submitButton">
 						<span className="mediumText bold">Login</span>
 					</button>

@@ -7,11 +7,7 @@ import IconSvg from "../IconSvg/IconSvg";
 const DropdownMobile = ({ candleId, content }) => {
 	const [showDropdown, setShowDropdown] = useState(false);
 	return (
-		<div
-			className="dropdownMobile"
-			onClick={() => setShowDropdown(!showDropdown)}
-			onFocus={() => console.log("toto")}
-		>
+		<div className="dropdownMobile" onClick={() => setShowDropdown(!showDropdown)}>
 			<div className="dropdownIcon">
 				<IconSvg iconName="threeDots" />
 			</div>

@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
 import "./LogRegisterForm.scss";
+
+import { Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+
 import IconSvg from "../IconSvg/IconSvg";
-import { isInputFilled } from "../../services/utils/inputsUtils";
+import Input from "../Input/Input";
 import apiInstance from "../../services/api";
+import axios from "axios";
+import { isInputFilled } from "../../services/utils/inputsUtils";
+import { useDispatch } from "react-redux";
 import userActions from "../../redux/actions/userActions";
 
 const RegisterForm = () => {
@@ -53,6 +56,7 @@ const RegisterForm = () => {
 			.catch((err) => console.log(err));
 	};
 
+	//TODO -> implement password checking
 	const isPasswordsIso = (e) => {
 		if (e.target.name === "password" && passwordConfirm !== "") {
 			if (e.target.value === passwordConfirm) {
@@ -78,60 +82,44 @@ const RegisterForm = () => {
 					onSubmit={(e) => createNewCustomer(e)}
 					autoComplete="on"
 				>
-					<div className={"inputLabel" + (isInputFilled(mailAddress) ? " filled" : "")}>
-						<input
-							type="email"
-							name="email"
-							value={mailAddress}
-							onChange={(e) => setMailAddress(e.target.value)}
-							className="formInput usualText"
-						/>
-						<span className="smallText inputPlaceholder">E-mail</span>
-					</div>
+					<Input
+						type="email"
+						name="email"
+						value={mailAddress}
+						onChange={setMailAddress}
+						isMidWidth={false}
+						placeHolder="Email"
+					/>
 					<div className="midWidthInputWrapper">
-						<div
-							className={
-								"inputLabel midWidthInput" +
-								(isInputFilled(firstName) ? " filled" : "")
-							}
-						>
-							<input
-								type="text"
-								name="firstname"
-								value={firstName}
-								onChange={(e) => setFirstName(e.target.value)}
-								className="formInput usualText"
-							/>
-							<span className="smallText inputPlaceholder">First name</span>
-						</div>
-						<div
-							className={
-								"inputLabel midWidthInput" +
-								(isInputFilled(lastName) ? " filled" : "")
-							}
-						>
-							<input
-								type="text"
-								name="lastname"
-								value={lastName}
-								onChange={(e) => setLastName(e.target.value)}
-								className="formInput usualText"
-							/>
-							<span className="smallText inputPlaceholder">Last name</span>
-						</div>
+						<Input
+							type="text"
+							name="firstname"
+							value={firstName}
+							onChange={setFirstName}
+							isMidWidth={true}
+							placeHolder="First name"
+						/>
+						<Input
+							type="text"
+							name="lastname"
+							value={lastName}
+							onChange={setLastName}
+							isMidWidth={true}
+							placeHolder="Last name"
+						/>
 					</div>
 
-					<div className="inputLabel specialDisplay">
-						<input
-							type="date"
-							name="birthdate"
-							value={birthdate}
-							onChange={(e) => setBirthdate(e.target.value)}
-							className="formInput usualText"
-						/>
-						<span className="smallText inputPlaceholder">Birthdate</span>
-					</div>
-					<div className={"inputLabel" + (isInputFilled(password) ? " filled" : "")}>
+					<Input
+						type="date"
+						name="birthdate"
+						value={birthdate}
+						onChange={setBirthdate}
+						isMidWidth={false}
+						placeHolder="Birthdate"
+						specialClasses={true}
+					/>
+
+					{/* <div className={"inputLabel" + (isInputFilled(password) ? " filled" : "")}>
 						<input
 							type="password"
 							name="password"
@@ -158,7 +146,24 @@ const RegisterForm = () => {
 							className="formInput usualText"
 						/>
 						<span className="smallText inputPlaceholder">Confirm your password</span>
-					</div>
+					</div> */}
+
+					<Input
+						type="password"
+						name="password"
+						value={password}
+						onChange={setPassword}
+						isMidWidth={false}
+						placeHolder="Password"
+					/>
+					<Input
+						type="password"
+						name="passwordConfirm"
+						value={passwordConfirm}
+						onChange={setPasswordConfirm}
+						isMidWidth={false}
+						placeHolder="Confirm your password"
+					/>
 
 					<div className="inputLabel checkboxInput">
 						<input

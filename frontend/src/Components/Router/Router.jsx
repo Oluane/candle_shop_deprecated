@@ -51,8 +51,7 @@ const Router = () => {
 
 	useEffect(() => {
 		if (!isLoggedUser) {
-			let xsrfToken = null;
-			xsrfToken = localStorage.getItem("xsrfToken");
+			let xsrfToken = localStorage.getItem("xsrfToken");
 
 			if (xsrfToken !== null) {
 				setAuthenticationRequestState("loading");

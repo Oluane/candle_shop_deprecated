@@ -11,6 +11,7 @@
 	.dropdownContent {
 		width: 200px;
 		background-color: $secondaryTrans;
+		border-radius: 5px;
 		padding: 5px 0;
 		position: absolute;
 		right: 10px;
@@ -19,6 +20,7 @@
 		text-align: left;
 		opacity: 0;
 		visibility: hidden;
+		box-shadow: 0px 0px 4px $tertiary;
 
 		&.visible {
 			opacity: 1;

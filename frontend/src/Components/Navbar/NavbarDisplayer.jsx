@@ -8,8 +8,7 @@ import { useSelector } from "react-redux";
 import { viewportContext } from "../ViewportProvider/ViewportProvider";
 
 const NavbarDisplayer = () => {
-	const { deviceWidth, deviceHeight } = useContext(viewportContext);
-
+	const { deviceWidth } = useContext(viewportContext);
 	const isLoggedUser = useSelector((state) => state.user.isLoggedIn);
 
 	return (
@@ -17,7 +16,7 @@ const NavbarDisplayer = () => {
 			{deviceWidth > 688 ? (
 				<NavbarDesktop isLoggedUser={isLoggedUser} />
 			) : (
-				<NavbarMobile isLoggedUser={isLoggedUser} deviceHeight={deviceHeight} />
+				<NavbarMobile isLoggedUser={isLoggedUser} />
 			)}
 		</nav>
 	);
