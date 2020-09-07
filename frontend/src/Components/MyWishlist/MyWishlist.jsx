@@ -38,7 +38,7 @@ const MyWishlist = () => {
 				<div className="wishlistWrapper">
 					{wishlistProducts.map((product, i) => {
 						return (
-							<div className="wishlistRow" key={i}>
+							<div className="wishlistRow" key={"wishlistRow" + i}>
 								{deviceWidth > 688 && (
 									<div
 										className="trashCan svgIcon"

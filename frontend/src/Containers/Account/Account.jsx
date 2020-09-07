@@ -34,7 +34,7 @@ const Account = () => {
 		history.push("/");
 	};
 
-	const [displayedSection, setDisplayedSection] = useState(navSections[0]);
+	const [displayedSectionIndex, setDisplayedSectionIndex] = useState(0);
 
 	const [showDropdown, setShowDropdown] = useState(false);
 
@@ -46,13 +46,13 @@ const Account = () => {
 						{navSections.map((section, i) => {
 							return (
 								<li
-									key={i}
+									key={"accountNavListItems" + i}
 									id={section.id}
 									className={
 										"accountNavListItems lightDarkColor" +
-										(displayedSection.id === section.id ? " active" : "")
+										(displayedSectionIndex === i ? " active" : "")
 									}
-									onClick={(e) => setDisplayedSection(section)}
+									onClick={(e) => setDisplayedSectionIndex(i)}
 								>
 									{section.name}
 								</li>
@@ -66,7 +66,7 @@ const Account = () => {
 							onClick={() => setShowDropdown(!showDropdown)}
 						>
 							<span className="selectorCustomValue usualText">
-								{displayedSection.name}
+								{navSections[displayedSectionIndex].name}
 							</span>
 							<div className="selectorArrow">
 								<IconSvg iconName="rightArrow" />
@@ -74,13 +74,13 @@ const Account = () => {
 						</div>
 						<div className={"selectorDropdown" + (showDropdown ? " visible" : "")}>
 							{navSections.map((section, i) => {
-								if (section !== displayedSection) {
+								if (i !== displayedSectionIndex) {
 									return (
 										<p
-											key={i}
+											key={"selectorValues" + i}
 											className="selectorValues usualText"
 											onClick={() => {
-												setDisplayedSection(section);
+												setDisplayedSectionIndex(i);
 												setShowDropdown(false);
 											}}
 										>
@@ -102,14 +102,7 @@ const Account = () => {
 					Welcome, {currentUser.firstName} !
 				</p> */}
 
-				{/* {navSections.map((section, i) => {
-					if (section.id === displayedSection.id) {
-						return <React.Fragment key={i}>{section.component}</React.Fragment>;
-					}
-					return null;
-				})} */}
-
-				{displayedSection.component}
+				{navSections[displayedSectionIndex].component}
 			</div>
 			<div
 				className={"dropdownOverlay" + (showDropdown ? " visible" : "")}

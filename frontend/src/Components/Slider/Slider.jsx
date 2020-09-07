@@ -1,5 +1,7 @@
-import React, { useState } from "react";
 import "./Slider.scss";
+
+import React, { useState } from "react";
+
 import { useEffect } from "react";
 
 const Slider = ({ typeId, requiredImg }) => {
@@ -11,10 +13,7 @@ const Slider = ({ typeId, requiredImg }) => {
 				.filter((key) => {
 					return reg.test(key);
 				})
-				.reduce((acc, next) => {
-					acc.push(require(next));
-					return acc;
-				}, []);
+				.map(require);
 
 		const images = importAll(requiredImg);
 
@@ -35,20 +34,18 @@ const Slider = ({ typeId, requiredImg }) => {
 	return (
 		<div className="slider">
 			<div className="sliderContent">
-				{sliderItems.map((item, i) => {
-					return (
-						active === i && (
-							<div className="sliderItems">
-								<img src={item} alt="" key={i} />
-							</div>
-						)
-					);
-				})}
+				<div className="sliderItems">
+					<img src={sliderItems[active]} alt="slider candles image" />
+				</div>
 			</div>
 			<div className="sliderIndicators">
 				{sliderItems.map((item, i) => {
 					return (
-						<div key={i} className="imgThumbnails" onClick={() => setActive(i)}>
+						<div
+							key={"sliderIndic" + i}
+							className="imgThumbnails"
+							onClick={() => setActive(i)}
+						>
 							<img src={item} />
 							<span className={"imgBorder" + (active === i ? " active" : "")}></span>
 						</div>

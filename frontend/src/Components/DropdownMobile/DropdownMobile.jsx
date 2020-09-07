@@ -21,6 +21,7 @@ const DropdownMobile = ({ candleId, content }) => {
 						<p
 							className="dropdownOption usualText"
 							onClick={() => option.func(candleId)}
+							key={"dropdownOption" + i}
 						>
 							{option.title}
 						</p>

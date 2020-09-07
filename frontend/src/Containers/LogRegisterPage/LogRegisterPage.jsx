@@ -1,11 +1,13 @@
-import React, { useState } from "react";
 import "./LogRegisterPage.scss";
+
+import React, { useState } from "react";
+
 import LoginForm from "../../Components/LogRegisterForm/LoginForm";
-import { useEffect } from "react";
 import RegisterForm from "../../Components/LogRegisterForm/RegisterForm";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-const LogRegisterPage = (props) => {
+const LogRegisterPage = () => {
 	const [isLogIn, setIsLogIn] = useState(false);
 	const [isRegister, setIsRegister] = useState(false);
 	const { type } = useParams();

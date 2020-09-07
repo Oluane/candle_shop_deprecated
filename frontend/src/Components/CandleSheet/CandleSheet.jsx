@@ -9,6 +9,14 @@ import Slider from "../Slider/Slider";
 import apiInstance from "../../services/api";
 import { useSelector } from "react-redux";
 
+//webpack dynamic require to retrieve specific img files
+
+const requiredSlideImg = require.context(
+	"../../../public/images/candle_types",
+	false,
+	/\.(png|jpe?g|svg)$/
+);
+
 const CandleSheet = ({
 	types,
 	selectedType,
@@ -64,14 +72,6 @@ const CandleSheet = ({
 		}
 	}, [selectedScentId, scents]);
 
-	//webpack dynamic require to retrieve specific img files
-
-	const requiredSlideImg = require.context(
-		"../../../public/images/candle_types",
-		false,
-		/\.(png|jpe?g|svg)$/
-	);
-
 	const [showDropdown, setShowDropdown] = useState(false);
 
 	return (
@@ -100,8 +100,8 @@ const CandleSheet = ({
 										return (
 											<div
 												className={
-													"typeIcon " +
-													(type.id === selectedType ? "active" : null)
+													"typeIcon" +
+													(type.id === selectedType ? " active" : "")
 												}
 												onClick={() => setSelectedType(type.id)}
 												key={i}
@@ -120,13 +120,13 @@ const CandleSheet = ({
 										return (
 											<div
 												className={
-													"sizeValue mediumBold alignCenter largeText " +
+													"sizeValue mediumBold alignCenter largeText" +
 													(size.id === selectedTypeSize.id
-														? "active"
-														: null)
+														? " active"
+														: "")
 												}
 												onClick={() => setSelectedTypeSize(size)}
-												key={i}
+												key={"typeSize" + i}
 											>
 												{size.shortName}
 											</div>
@@ -165,6 +165,7 @@ const CandleSheet = ({
 															setSelectedScentId(scent.id);
 															setShowDropdown(false);
 														}}
+														key={"scents" + i}
 													>
 														{scent.enName}
 													</p>
@@ -179,7 +180,6 @@ const CandleSheet = ({
 					</div>
 					<div className="actionsBtnWrapper">
 						<button className="addToCart smallText mediumBold">
-							{" "}
 							<span>ADD TO CART</span>{" "}
 							<span className="separatorBefore">{selectedTypeSize.price}€</span>
 						</button>
@@ -189,7 +189,7 @@ const CandleSheet = ({
 				</div>
 			)}
 			<div
-				className={"dropdownOverlay " + (showDropdown ? "visible" : "")}
+				className={"dropdownOverlay" + (showDropdown ? " visible" : "")}
 				onClick={() => setShowDropdown(false)}
 			></div>
 		</section>

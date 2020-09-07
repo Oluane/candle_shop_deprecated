@@ -2,7 +2,7 @@ import "./CandleInfoDisplayer.scss";
 
 import React, { useState } from "react";
 
-const sectionToDisplay = [
+const sectionsToDisplay = [
 	{ id: "candle", title: "The candle" },
 	{ id: "scent", title: "The scent" },
 	{ id: "technical", title: "Technical Infos" },
@@ -13,8 +13,8 @@ const CandleInfoDisplayer = ({ typeSize, scent }) => {
 
 	return (
 		<div className="candleInfoDisplayerWrapper">
-			<header className="candleInfoNav">
-				{sectionToDisplay.map((section, i) => {
+			<nav className="candleInfoNav">
+				{sectionsToDisplay.map((section, i) => {
 					return (
 						<h4
 							className={
@@ -28,7 +28,7 @@ const CandleInfoDisplayer = ({ typeSize, scent }) => {
 						</h4>
 					);
 				})}
-			</header>
+			</nav>
 			<div className="candleInfoContent">
 				{displayedSection === "candle" && (
 					<div className="textDesc mediumText">{typeSize.typeEnDesc}</div>

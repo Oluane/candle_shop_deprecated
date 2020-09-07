@@ -164,7 +164,7 @@ const ScentFamily = (props) => {
 							<div className="scentComplementary">
 								<ul className="mediumText complementaryList">
 									<li>
-										{selectedScent.isEssentialOil === 1
+										{selectedScent.isEssentialOil
 											? "With essential oils"
 											: "No essential oils"}
 									</li>
