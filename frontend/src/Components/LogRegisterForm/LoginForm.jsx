@@ -62,14 +62,16 @@ const LoginForm = () => {
 					.catch((err) => console.log(err));
 			})
 			.catch((err) => {
-				dispatchToast({
-					type: "ADD_TOAST",
-					payload: {
-						id: Math.random(),
-						content: "Failed auth! Retry please :)",
-						classes: " danger",
-					},
-				});
+				if (err.response.status === 401) {
+					dispatchToast({
+						type: "ADD_TOAST",
+						payload: {
+							id: "toast " + Date.now(),
+							content: "Failed auth! Retry please :)",
+							classes: " danger",
+						},
+					});
+				}
 			});
 	};
 
