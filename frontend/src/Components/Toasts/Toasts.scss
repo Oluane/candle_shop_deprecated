@@ -20,11 +20,11 @@
 			margin-right: 8px;
 
 			.success {
-				color: greenyellow;
+				color: #bbe8c4;
 			}
 
 			.error {
-				color: crimson;
+				color: #ff6961;
 			}
 		}
 
@@ -42,6 +42,23 @@
 			height: 20px;
 			margin-left: 10px;
 			cursor: pointer;
+		}
+	}
+}
+
+@media screen and (max-width: 688px) {
+	.toastsContainer {
+		.toastBody {
+			padding: 10px;
+			width: 300px;
+			.statusIcon {
+				width: 30px;
+				height: 30px;
+			}
+
+			p {
+				line-height: 16px;
+			}
 		}
 	}
 }

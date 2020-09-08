@@ -1,13 +1,13 @@
 import "./MyWishlist.scss";
 
+import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import IconSvg from "../IconSvg/IconSvg";
 import NoContent from "../NoContent/NoContent";
-import React from "react";
+import { ToastContext } from "../Toasts/ToastProvider";
 import apiInstance from "../../services/api";
-import { useContext } from "react";
 import { viewportContext } from "../../Components/ViewportProvider/ViewportProvider";
 import wishlistActions from "../../redux/actions/wishlistActions";
 
@@ -17,6 +17,7 @@ const MyWishlist = () => {
 	const wishlistProducts = useSelector((state) => state.wishlist.products);
 	const dispatch = useDispatch();
 
+	const [, dispatchToast] = useContext(ToastContext);
 	const { deviceWidth } = useContext(viewportContext);
 
 	const deleteCandleFromWishlist = (candleId) => {
@@ -27,8 +28,27 @@ const MyWishlist = () => {
 					...wishlistActions.WISHLIST_DELETE_PRODUCT,
 					payload: { candleId: candleId },
 				});
+				dispatchToast({
+					type: "ADD_TOAST",
+					payload: {
+						id: "toast " + Date.now(),
+						status: "success",
+						text: "Product deleted from your wishlist",
+						classes: "success",
+					},
+				});
 			})
-			.catch((err) => console.log(err));
+			.catch((err) =>
+				dispatchToast({
+					type: "ADD_TOAST",
+					payload: {
+						id: "toast " + Date.now(),
+						status: "failed",
+						text: "Error while deleting product from wishlist, try again",
+						classes: "error",
+					},
+				})
+			);
 	};
 
 	return (

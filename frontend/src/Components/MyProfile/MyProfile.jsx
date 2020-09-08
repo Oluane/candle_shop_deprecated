@@ -1,16 +1,19 @@
 import "./MyProfile.scss";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Input from "../Input/Input";
+import { ToastContext } from "../Toasts/ToastProvider";
 import apiInstance from "../../services/api";
 import userActions from "../../redux/actions/userActions";
+
 //import { format } from "date-fns";
 
 const MyProfile = () => {
 	const currentUser = useSelector((state) => state.user.data);
 	const dispatch = useDispatch();
+	const [, dispatchToast] = useContext(ToastContext);
 
 	const [mailAddress, setMailAddress] = useState(currentUser.mailAddress);
 	const [firstName, setFirstName] = useState(currentUser.firstName);
@@ -41,8 +44,27 @@ const MyProfile = () => {
 			.put("/user", customerData)
 			.then(() => {
 				dispatch({ ...userActions.USER_EDIT, payload: customerData });
+				dispatchToast({
+					type: "ADD_TOAST",
+					payload: {
+						id: "toast " + Date.now(),
+						status: "success",
+						text: "Your infos have been edited",
+						classes: "success",
+					},
+				});
 			})
-			.catch((err) => console.log(err));
+			.catch((err) =>
+				dispatchToast({
+					type: "ADD_TOAST",
+					payload: {
+						id: "toast " + Date.now(),
+						status: "failed",
+						text: "Profile infos editing failed, try again later",
+						classes: "error",
+					},
+				})
+			);
 	};
 
 	// const dateFormat = (str) => {
