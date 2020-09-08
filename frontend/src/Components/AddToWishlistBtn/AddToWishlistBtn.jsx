@@ -17,10 +17,18 @@ const AddToWishlistBtn = ({ typeSize, scent }) => {
 
 	const addCandleToWishlist = () => {
 		if (scent !== undefined) {
-			const { durationInHours, price, sizeEnName, typeEnName, typeId, weightInGr } = typeSize;
+			const {
+				typeSizeId,
+				durationInHours,
+				price,
+				sizeEnName,
+				typeEnName,
+				typeId,
+				weightInGr,
+			} = typeSize;
 			const { enName, isEssentialOil } = scent;
 			apiInstance
-				.get(`/candles/type_size/${typeSize.id}/scent/${scent.id}`)
+				.get(`/candles/type_size/${typeSize.typeSizeId}/scent/${scent.id}`)
 				.then(({ data }) => {
 					apiInstance
 						.post(`/user/${currentUser.id}/wishlist/${wishlist.id}/candle`, {
@@ -30,6 +38,8 @@ const AddToWishlistBtn = ({ typeSize, scent }) => {
 							const product = {
 								candleId: data[0].id,
 								typeId,
+								typeSizeId,
+								scentId: scent.id,
 								weightInGr,
 								durationInHours,
 								price,
@@ -50,15 +60,71 @@ const AddToWishlistBtn = ({ typeSize, scent }) => {
 								},
 							});
 						})
-						.catch((err) => console.log(err));
+						.catch((err) => {
+							if (err.response.status === 401) {
+								dispatchToast({
+									type: "ADD_TOAST",
+									payload: {
+										id: "toast " + Date.now(),
+										status: "failed",
+										text: "You must be logged to add products in your wishlist",
+										classes: "error",
+									},
+								});
+							}
+						});
 				})
 				.catch((err) => console.log(err));
+		} else {
+			dispatchToast({
+				type: "ADD_TOAST",
+				payload: {
+					id: "toast " + Date.now(),
+					status: "failed",
+					text: "You must choose a scent before adding products to your wishlist",
+					classes: "error",
+				},
+			});
+		}
+	};
+
+	const isCandlePresentInWishlist = () => {
+		const scentId = scent.id;
+		const { typeSizeId } = typeSize;
+		if (
+			wishlistProducts.findIndex(
+				(candle) => candle.typeSizeId === typeSizeId && candle.scentId === scentId
+			) === -1
+		) {
+			return false;
+		} else {
+			return true;
 		}
 	};
 
 	return (
-		<button className="addToWishlist" onClick={() => addCandleToWishlist()}>
-			<div className="addToWishlistIcon">
+		<button
+			className="addToWishlist"
+			onClick={() => {
+				!isCandlePresentInWishlist()
+					? addCandleToWishlist()
+					: dispatchToast({
+							type: "ADD_TOAST",
+							payload: {
+								id: "toast " + Date.now(),
+								status: "failed",
+								text: "This product is already in your wishlist !",
+								classes: "error",
+							},
+					  });
+			}}
+		>
+			<div
+				className={
+					"addToWishlistIcon" +
+					(scent !== undefined ? (isCandlePresentInWishlist() ? " disabled" : "") : "")
+				}
+			>
 				<IconSvg iconName="heart" />
 			</div>
 		</button>
