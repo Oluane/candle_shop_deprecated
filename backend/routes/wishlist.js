@@ -12,8 +12,8 @@ router.get("/", isAuthenticated, (req, res) => {
 	}
 
 	db.query(
-		`SELECT w.id wishlist_id, w.creation_datetime, c.id candle_id, ts.type_id, ts.weight_in_gr, ts.duration_in_hours, ts.price, 
-		sc.en_name scents_en_name, sc.is_essential_oil, t.en_name type_en_name, s.en_name size_en_name FROM wishlist w 
+		`SELECT w.id wishlist_id, w.creation_datetime, c.id candle_id, ts.type_id, ts.id type_size_id, ts.weight_in_gr, ts.duration_in_hours, ts.price, 
+		sc.id scent_id, sc.en_name scents_en_name, sc.is_essential_oil, t.en_name type_en_name, s.en_name size_en_name FROM wishlist w 
         LEFT JOIN candle c ON c.id IN (SELECT wi.candle_id FROM wishlist_items wi WHERE wi.wishlist_id = w.id)
         LEFT JOIN type_size ts ON c.type_size_id = ts.id
 	    LEFT JOIN scents sc ON c.scents_id = sc.id

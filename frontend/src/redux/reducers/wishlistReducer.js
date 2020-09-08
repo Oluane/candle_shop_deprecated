@@ -7,6 +7,8 @@ const initial = {
 		{
 			candleId: -1,
 			typeId: -1,
+			typeSizeId: -1,
+			scentId: -1,
 			weightInGr: 0,
 			durationInHours: 0,
 			price: 0,

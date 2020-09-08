@@ -118,7 +118,7 @@ const CandleSheet = ({
 											<div
 												className={
 													"sizeValue mediumBold alignCenter largeText" +
-													(size.id === selectedTypeSize.id
+													(size.typeSizeId === selectedTypeSize.typeSizeId
 														? " active"
 														: "")
 												}
