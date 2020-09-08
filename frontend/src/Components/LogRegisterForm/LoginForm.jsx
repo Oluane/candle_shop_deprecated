@@ -67,8 +67,9 @@ const LoginForm = () => {
 						type: "ADD_TOAST",
 						payload: {
 							id: "toast " + Date.now(),
-							content: "Failed auth! Retry please :)",
-							classes: " danger",
+							status: "failed",
+							text: "Failed auth! Retry please :)",
+							classes: " error",
 						},
 					});
 				}

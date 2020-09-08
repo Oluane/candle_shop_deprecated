@@ -16,7 +16,15 @@ const ToastBody = ({ toast, dispatch }) => {
 	}, []);
 	return (
 		<div id={toast.id} className={"toastBody mediumText fadeIn" + toast.classes}>
-			<p>{toast.content}</p>
+			<div className="statusIcon">
+				{toast.status === "failed" && (
+					<IconSvg iconName="error" className={toast.classes} />
+				)}
+				{toast.status === "success" && (
+					<IconSvg iconName="checkArrow" className={toast.classes} />
+				)}
+			</div>
+			<p>{toast.text}</p>
 
 			<div
 				className="closeIcon"
@@ -33,7 +41,7 @@ const Toasts = () => {
 
 	return (
 		<div className="toastsContainer">
-			{toasts.map((toast, i) => (
+			{toasts.map((toast) => (
 				<ToastBody toast={toast} key={"toast" + toast.id} dispatch={dispatch} />
 			))}
 		</div>

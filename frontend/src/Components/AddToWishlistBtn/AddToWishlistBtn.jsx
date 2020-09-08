@@ -44,8 +44,9 @@ const AddToWishlistBtn = ({ typeSize, scent }) => {
 								type: "ADD_TOAST",
 								payload: {
 									id: "toast " + Date.now(),
-									content: "Your product have been added to your wishlist",
-									classes: " success",
+									status: "success",
+									text: "Product added to your wishlist",
+									classes: "success",
 								},
 							});
 						})

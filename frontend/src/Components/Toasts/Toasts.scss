@@ -8,30 +8,39 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 20px 15px;
+		padding: 15px;
 		border-radius: 5px;
-		max-width: 300px;
+		width: 350px;
+		background-color: $primary;
+		box-shadow: 0px 0px 5px $tertiary;
+
+		.statusIcon {
+			width: 35px;
+			height: 35px;
+			margin-right: 8px;
+
+			.success {
+				color: greenyellow;
+			}
+
+			.error {
+				color: crimson;
+			}
+		}
 
 		p {
-			max-width: 85%;
+			max-width: 75%;
 			display: -webkit-box;
 			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 2;
 			overflow: hidden;
-		}
-
-		&.success {
-			background-color: green;
-		}
-
-		&.danger {
-			background-color: crimson;
+			line-height: 20px;
 		}
 
 		.closeIcon {
-			width: 15px;
-			height: 15px;
-			margin-left: 15px;
+			width: 20px;
+			height: 20px;
+			margin-left: 10px;
 			cursor: pointer;
 		}
 	}
