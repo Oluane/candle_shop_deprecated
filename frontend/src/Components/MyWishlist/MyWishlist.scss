@@ -2,6 +2,7 @@
 
 .myWishlist {
 	padding: 25px;
+	min-height: 450px;
 
 	.wishlistWrapper {
 		width: 90%;
@@ -22,6 +23,7 @@
 				text-transform: uppercase;
 				letter-spacing: 0.05em;
 				margin-bottom: 5px;
+				text-align: left;
 			}
 
 			.candleInfoContainer {
@@ -78,6 +80,25 @@
 			position: absolute;
 			right: 25px;
 		}
+
+		a.wishlistBtns {
+			display: inline-block;
+		}
+
+		.wishlistBtns {
+			width: 100%;
+			padding: 15px;
+			background-color: $lightDark;
+			border: solid 1px $lightDark;
+			color: $primary;
+			transition: all 0.3s ease;
+			cursor: pointer;
+
+			&:hover {
+				background-color: $roseGold;
+				border-color: $roseGold;
+			}
+		}
 	}
 }
 
@@ -85,6 +106,7 @@
 	.myWishlist {
 		padding: 5px;
 		margin: 20px 0;
+		min-height: 300px;
 		.wishlistWrapper {
 			width: 95%;
 

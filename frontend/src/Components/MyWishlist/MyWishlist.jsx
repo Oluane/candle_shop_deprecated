@@ -5,17 +5,23 @@ import { useDispatch, useSelector } from "react-redux";
 
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import IconSvg from "../IconSvg/IconSvg";
+import { Link } from "react-router-dom";
 import NoContent from "../NoContent/NoContent";
 import { ToastContext } from "../Toasts/ToastProvider";
 import apiInstance from "../../services/api";
+import { useState } from "react";
 import { viewportContext } from "../../Components/ViewportProvider/ViewportProvider";
 import wishlistActions from "../../redux/actions/wishlistActions";
+
+const itemsToDisplayOnInit = 6;
 
 const MyWishlist = () => {
 	const currentUser = useSelector((state) => state.user.data);
 	const wishlist = useSelector((state) => state.wishlist);
 	const wishlistProducts = useSelector((state) => state.wishlist.products);
 	const dispatch = useDispatch();
+
+	const [displayAllItems, setDisplayAllItems] = useState(false);
 
 	const [, dispatchToast] = useContext(ToastContext);
 	const { deviceWidth } = useContext(viewportContext);
@@ -58,55 +64,75 @@ const MyWishlist = () => {
 				<div className="wishlistWrapper">
 					{wishlistProducts.map((product, i) => {
 						return (
-							<div className="wishlistRow" key={"wishlistRow" + i}>
-								{deviceWidth > 688 && (
-									<div
-										className="trashCan svgIcon"
-										onClick={() => deleteCandleFromWishlist(product.candleId)}
-									>
-										<IconSvg iconName="trashCan" />
+							(i + 1 <= itemsToDisplayOnInit || displayAllItems) && (
+								<div className="wishlistRow" key={"wishlistRow" + i}>
+									{deviceWidth > 688 && (
+										<div
+											className="trashCan svgIcon"
+											onClick={() =>
+												deleteCandleFromWishlist(product.candleId)
+											}
+										>
+											<IconSvg iconName="trashCan" />
+										</div>
+									)}
+									<div className="wishlistProductImg">
+										<img
+											src={`/images/candle_types/candle_type_${product.typeId}_1.jpg`}
+											alt={`${product.typeEnName} candles`}
+										/>
 									</div>
-								)}
-								<div className="wishlistProductImg">
-									<img
-										src={`/images/candle_types/candle_type_${product.typeId}_1.jpg`}
-										alt={`${product.typeEnName} candles`}
-									/>
+									<div className="wishlistProductInfos">
+										<h4 className="candleTitle mediumBold">
+											{product.scentsEnName} {product.typeEnName} Candle
+										</h4>
+										<div className="candleInfoContainer mediumText">
+											<p className="mediumBold">{product.price}€</p>
+											<p className="separatorBefore">{product.sizeEnName}</p>
+											<p className="separatorBefore">
+												{product.weightInGr}gr
+											</p>
+											<p className="separatorBefore">
+												{product.durationInHours}h
+											</p>
+										</div>
+									</div>
+									{deviceWidth > 688 ? (
+										<div className="addToCart svgIcon">
+											<IconSvg iconName="addToCart" />
+										</div>
+									) : (
+										<div className="dropdownWrapper">
+											<DropdownMobile
+												candleId={product.candleId}
+												content={[
+													{ title: "Add to cart", func: null },
+													{
+														title: "Delete from wishlist",
+														func: deleteCandleFromWishlist,
+													},
+												]}
+											/>{" "}
+										</div>
+									)}
 								</div>
-								<div className="wishlistProductInfos">
-									<h4 className="candleTitle mediumBold">
-										{product.scentsEnName} {product.typeEnName} Candle
-									</h4>
-									<div className="candleInfoContainer mediumText">
-										<p className="mediumBold">{product.price}€</p>
-										<p className="separatorBefore">{product.sizeEnName}</p>
-										<p className="separatorBefore">{product.weightInGr}gr</p>
-										<p className="separatorBefore">
-											{product.durationInHours}h
-										</p>
-									</div>
-								</div>
-								{deviceWidth > 688 ? (
-									<div className="addToCart svgIcon">
-										<IconSvg iconName="addToCart" />
-									</div>
-								) : (
-									<div className="dropdownWrapper">
-										<DropdownMobile
-											candleId={product.candleId}
-											content={[
-												{ title: "Add to cart", func: null },
-												{
-													title: "Delete from wishlist",
-													func: deleteCandleFromWishlist,
-												},
-											]}
-										/>{" "}
-									</div>
-								)}
-							</div>
+							)
 						);
 					})}
+					{wishlistProducts.length < itemsToDisplayOnInit ? (
+						<Link to="/candles" className="wishlistBtns smallText mediumBold">
+							DISCOVER MORE CANDLES
+						</Link>
+					) : (
+						!displayAllItems && (
+							<button
+								className="wishlistBtns smallText mediumBold"
+								onClick={() => setDisplayAllItems(true)}
+							>
+								SHOW ALL CANDLES
+							</button>
+						)
+					)}
 				</div>
 			) : (
 				<NoContent
