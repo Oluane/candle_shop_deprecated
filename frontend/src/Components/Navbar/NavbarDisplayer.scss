@@ -20,35 +20,4 @@
 			height: 100%;
 		}
 	}
-
-	.userCart {
-		display: flex;
-		cursor: pointer;
-
-		&:hover,
-		&:focus {
-			.cartIcon {
-				color: $roseGold;
-			}
-
-			.itemsCountContainer {
-				background-color: $roseGold;
-			}
-		}
-
-		.itemsCountContainer {
-			align-self: center;
-			background-color: $lightDark;
-			width: 23px;
-			height: 23px;
-			border-radius: 50%;
-			position: relative;
-
-			.itemsCount {
-				font-weight: 600;
-				color: $primary;
-				position: absolute;
-			}
-		}
-	}
 }

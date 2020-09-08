@@ -56,22 +56,13 @@
 	}
 }
 
-.navIcon {
-	cursor: pointer;
-
+.userIcon {
+	width: 15px;
+	margin-right: 20px;
 	&:hover,
 	&:focus {
 		color: $roseGold;
 	}
-}
-
-.userIcon {
-	width: 15px;
-	margin-right: 20px;
-}
-
-.cartIcon {
-	width: 19px;
 }
 
 .userAccountIcons {
@@ -79,15 +70,5 @@
 	margin: 0 20px;
 	a {
 		display: flex;
-	}
-}
-
-.userCart.desktop {
-	.itemsCountContainer {
-		margin-left: 10px;
-		.itemsCount {
-			top: 5px;
-			left: 7px;
-		}
 	}
 }

@@ -4,6 +4,7 @@ import React, { useContext, useState } from "react";
 
 import IconSvg from "../../IconSvg/IconSvg";
 import { Link } from "react-router-dom";
+import ShoppingCart from "../../ShoppingCart/ShoppingCart";
 import { viewportContext } from "../../ViewportProvider/ViewportProvider";
 
 const NavbarMobile = ({ isLoggedUser }) => {
@@ -18,15 +19,7 @@ const NavbarMobile = ({ isLoggedUser }) => {
 			>
 				<IconSvg iconName={!toggleSideMenuDisplay ? "burgerMenu" : "closeCross"} />
 			</div>
-
-			<div className="userCart mobile">
-				<span className="cartIcon">
-					<IconSvg iconName="shoppingCart" />
-				</span>
-				<div className="itemsCountContainer">
-					<span className="smallText itemsCount">0</span>
-				</div>
-			</div>
+			<ShoppingCart />
 			<div
 				className={"sideMenu" + (toggleSideMenuDisplay ? " active" : "")}
 				style={{ height: deviceHeight }}

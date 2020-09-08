@@ -3,6 +3,7 @@ import "./NavbarDesktop.scss";
 import IconSvg from "../../IconSvg/IconSvg";
 import { Link } from "react-router-dom";
 import React from "react";
+import ShoppingCart from "../../ShoppingCart/ShoppingCart";
 
 const NavbarDesktop = ({ isLoggedUser }) => {
 	return (
@@ -47,19 +48,11 @@ const NavbarDesktop = ({ isLoggedUser }) => {
 								: { pathname: "/account/login", state: { from: "/account/user" } }
 						}
 					>
-						<span className="navIcon userIcon">
+						<span className="userIcon">
 							<IconSvg iconName="user" />
 						</span>
 					</Link>
-
-					<div className="userCart desktop">
-						<span className="navIcon cartIcon">
-							<IconSvg iconName="shoppingCart" />
-						</span>
-						<div className="itemsCountContainer">
-							<span className="smallText itemsCount">0</span>
-						</div>
-					</div>
+					<ShoppingCart />
 				</div>
 			</div>
 		</>
