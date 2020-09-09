@@ -59,26 +59,15 @@
 			}
 		}
 
-		.svgIcon {
-			cursor: pointer;
-			&:hover {
-				color: $roseGold;
-			}
-		}
-
 		.trashCan {
 			width: 18px;
 			height: 18px;
 			color: $lightGreyTrans;
 			margin-right: 15px;
-		}
-
-		.addToCart {
-			width: 26px;
-			height: 26px;
-			color: $tertiary;
-			position: absolute;
-			right: 25px;
+			cursor: pointer;
+			&:hover {
+				color: $roseGold;
+			}
 		}
 
 		a.wishlistBtns {

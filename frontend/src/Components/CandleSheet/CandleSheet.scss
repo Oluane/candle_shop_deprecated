@@ -63,20 +63,6 @@
 			margin-top: 30px;
 			display: flex;
 			justify-content: flex-start;
-			.addToCart {
-				width: 78%;
-				padding: 15px;
-				background-color: $lightDark;
-				border: solid 1px $lightDark;
-				color: $primary;
-				transition: all 0.3s ease;
-				cursor: pointer;
-
-				&:hover {
-					background-color: $roseGold;
-					border-color: $roseGold;
-				}
-			}
 		}
 	}
 

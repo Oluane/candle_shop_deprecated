@@ -2,6 +2,7 @@ import "./CandleSheet.scss";
 
 import React, { useEffect, useState } from "react";
 
+import AddToCartBtn from "../AddToCartBtn/AddToCartBtn";
 import AddToWishlistBtn from "../AddToWishlistBtn/AddToWishlistBtn";
 import CandleInfoDisplayer from "../CandleInfoDisplayer/CandleInfoDisplayer";
 import IconSvg from "../IconSvg/IconSvg";
@@ -176,10 +177,11 @@ const CandleSheet = ({
 						</div>
 					</div>
 					<div className="actionsBtnWrapper">
-						<button className="addToCart smallText mediumBold">
-							<span>ADD TO CART</span>{" "}
-							<span className="separatorBefore">{selectedTypeSize.price}€</span>
-						</button>
+						<AddToCartBtn
+							btnType="text"
+							typeSize={selectedTypeSize}
+							scent={selectedScent}
+						/>
 						<AddToWishlistBtn typeSize={selectedTypeSize} scent={selectedScent} />
 					</div>
 					<CandleInfoDisplayer typeSize={selectedTypeSize} scent={selectedScent} />

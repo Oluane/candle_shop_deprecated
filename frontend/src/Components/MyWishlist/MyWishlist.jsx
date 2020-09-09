@@ -3,6 +3,7 @@ import "./MyWishlist.scss";
 import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import AddToCartBtn from "../AddToCartBtn/AddToCartBtn";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import IconSvg from "../IconSvg/IconSvg";
 import { Link } from "react-router-dom";
@@ -68,7 +69,7 @@ const MyWishlist = () => {
 								<div className="wishlistRow" key={"wishlistRow" + i}>
 									{deviceWidth > 688 && (
 										<div
-											className="trashCan svgIcon"
+											className="trashCan"
 											onClick={() =>
 												deleteCandleFromWishlist(product.candleId)
 											}
@@ -98,9 +99,20 @@ const MyWishlist = () => {
 										</div>
 									</div>
 									{deviceWidth > 688 ? (
-										<div className="addToCart svgIcon">
-											<IconSvg iconName="addToCart" />
-										</div>
+										<AddToCartBtn
+											btnType="icon"
+											typeSize={{
+												typeSizeId: product.typeSizeId,
+												price: product.price,
+												sizeEnName: product.sizeEnName,
+												typeEnName: product.typeEnName,
+												typeId: product.typeId,
+											}}
+											scent={{
+												id: product.scentId,
+												enName: product.scentsEnName,
+											}}
+										/>
 									) : (
 										<div className="dropdownWrapper">
 											<DropdownMobile
