@@ -17,10 +17,6 @@
 	&.desktop {
 		.itemsCountContainer {
 			margin-left: 10px;
-			.itemsCount {
-				top: 5px;
-				left: 7px;
-			}
 		}
 	}
 
@@ -28,10 +24,6 @@
 		margin-right: 6px;
 		.itemsCountContainer {
 			margin-left: 6px;
-			.itemsCount {
-				top: 6.9px;
-				left: 8px;
-			}
 		}
 	}
 
@@ -42,6 +34,9 @@
 		height: 23px;
 		border-radius: 50%;
 		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
 		.itemsCount {
 			font-weight: 600;
@@ -74,12 +69,14 @@
 		padding: 30px;
 		position: relative;
 		background-color: $secondaryTrans;
+		box-shadow: 0px 0px 10px 0px $tertiaryTrans;
 
 		.closeIcon {
 			width: 25px;
 			height: 25px;
 			color: $lightDark;
 			position: absolute;
+			cursor: pointer;
 		}
 
 		h2 {
@@ -87,7 +84,23 @@
 			margin-bottom: 0;
 		}
 	}
+
+	.cartContent {
+		padding: 25px 0;
+	}
 }
+
+// .shoppingCartOverlay {
+// 	position: absolute;
+// 	width: 100%;
+// 	height: 100%;
+// 	top: 0;
+// 	visibility: hidden;
+
+// 	&.visible {
+// 		visibility: visible;
+// 	}
+// }
 
 @media screen and (max-width: 688px) {
 	.shoppingCartWrapper {

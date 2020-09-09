@@ -1,0 +1,88 @@
+@import "../../../style/generalVariables.scss";
+
+.productRow {
+	display: flex;
+	padding: 10px 25px;
+	position: relative;
+
+	&:not(:last-child) {
+		margin-bottom: 20px;
+		&:after {
+			content: "";
+			display: inline-block;
+			width: 600px;
+			height: 1px;
+			background-color: $lightGreyTrans;
+			position: absolute;
+			bottom: -10px;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+	}
+	.productImg {
+		width: 75px;
+		height: 75px;
+
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+	.productInfos {
+		width: 525px;
+		padding: 0 25px;
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		.productTitle {
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			margin-bottom: 5px;
+			text-align: left;
+		}
+
+		.productActions {
+			display: flex;
+			align-items: baseline;
+
+			.quantityInput {
+				width: 60px;
+				input {
+					width: 100%;
+					padding: 8px;
+					background-color: $secondary;
+					border: none;
+					border-radius: 3px;
+					text-align: center;
+
+					// /* Firefox */
+					// -moz-appearance: textfield;
+
+					// /* Chrome */
+					// &::-webkit-inner-spin-button {
+					// 	-webkit-appearance: none;
+					// 	margin: 0;
+					// }
+
+					// /* Opéra*/
+					// &::-o-inner-spin-button {
+					// 	-o-appearance: none;
+					// 	margin: 0;
+					// }
+				}
+			}
+
+			button {
+				background-color: none;
+				border: none;
+				cursor: pointer;
+				margin-left: 55px;
+
+				&:hover {
+					color: $roseGold;
+					font-weight: 600;
+				}
+			}
+		}
+	}
+}
