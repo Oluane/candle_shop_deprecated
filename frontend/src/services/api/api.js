@@ -1,4 +1,4 @@
-import { convertCamelToSnake, convertSnakeToCamel } from "../services/utils/stringUtils";
+import { convertCamelToSnake, convertSnakeToCamel } from "../utils/stringUtils";
 
 import axios from "axios";
 

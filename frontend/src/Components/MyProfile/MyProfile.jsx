@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Input from "../Input/Input";
 import { ToastContext } from "../Toasts/ToastProvider";
-import apiInstance from "../../services/api";
+import apiInstance from "../../services/api/api";
 import userActions from "../../redux/actions/userActions";
 
 //import { format } from "date-fns";

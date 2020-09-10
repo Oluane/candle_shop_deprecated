@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import IconSvg from "../IconSvg/IconSvg";
 import { ToastContext } from "../Toasts/ToastProvider";
-import apiInstance from "../../services/api";
+import apiInstance from "../../services/api/api";
 import cartActions from "../../redux/actions/cartActions";
 
 const AddToCartBtn = ({ btnType, typeSize, scent }) => {

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Footer from "../Footer/Footer";
 import NavbarDisplayer from "../Navbar/NavbarDisplayer";
-import apiInstance from "../../services/api";
+import apiInstance from "../../services/api/api";
 import { routes } from "../../services/routes";
 import userActions from "../../redux/actions/userActions";
 import wishlistActions from "../../redux/actions/wishlistActions";

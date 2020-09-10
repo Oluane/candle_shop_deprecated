@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import IconSvg from "../IconSvg/IconSvg";
 import NoContent from "../NoContent/NoContent";
 import ShoppingCartItem from "./ShoppingCartItem/ShoppingCartItem";
-import apiInstance from "../../services/api";
+import apiInstance from "../../services/api/api";
 import cartActions from "../../redux/actions/cartActions";
 import { viewportContext } from "../ViewportProvider/ViewportProvider";
 

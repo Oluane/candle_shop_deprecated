@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import IconSvg from "../IconSvg/IconSvg";
 import { ToastContext } from "../Toasts/ToastProvider";
-import apiInstance from "../../services/api";
+import apiInstance from "../../services/api/api";
 import wishlistActions from "../../redux/actions/wishlistActions";
 
 const AddToWishlistBtn = ({ typeSize, scent }) => {

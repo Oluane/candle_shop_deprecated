@@ -5,7 +5,7 @@ import React, { useContext, useState } from "react";
 
 import Input from "../Input/Input";
 import { ToastContext } from "../Toasts/ToastProvider";
-import apiInstance from "../../services/api";
+import apiInstance from "../../services/api/api";
 import { useDispatch } from "react-redux";
 import userActions from "../../redux/actions/userActions";
 import wishlistActions from "../../redux/actions/wishlistActions";

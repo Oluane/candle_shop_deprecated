@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
 import "./ScentsFamilies.scss";
+
+import React, { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
-import apiInstance from "../../services/api";
+import apiInstance from "../../services/api/api";
 
 const ScentsFamilies = () => {
 	const [scentsFamilies, setScentsFamilies] = useState([]);

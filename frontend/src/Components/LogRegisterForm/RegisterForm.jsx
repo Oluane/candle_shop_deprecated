@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 import IconSvg from "../IconSvg/IconSvg";
 import Input from "../Input/Input";
-import apiInstance from "../../services/api";
+import apiInstance from "../../services/api/api";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import userActions from "../../redux/actions/userActions";

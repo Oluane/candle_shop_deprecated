@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import CandleSheet from "../../Components/CandleSheet/CandleSheet";
 import CandleTypes from "../../Components/CandleTypes/CandleTypes";
 import SkeletonItem from "../../Components/SkeletonItem/SkeletonItem";
-import apiInstance from "../../services/api";
+import apiInstance from "../../services/api/api";
 import { useLocation } from "react-router-dom";
 
 const Candles = () => {

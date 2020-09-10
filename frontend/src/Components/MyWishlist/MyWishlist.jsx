@@ -9,7 +9,7 @@ import IconSvg from "../IconSvg/IconSvg";
 import { Link } from "react-router-dom";
 import NoContent from "../NoContent/NoContent";
 import { ToastContext } from "../Toasts/ToastProvider";
-import apiInstance from "../../services/api";
+import apiInstance from "../../services/api/api";
 import cartActions from "../../redux/actions/cartActions";
 import { useState } from "react";
 import { viewportContext } from "../../Components/ViewportProvider/ViewportProvider";

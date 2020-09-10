@@ -7,7 +7,7 @@ import AddToWishlistBtn from "../AddToWishlistBtn/AddToWishlistBtn";
 import CandleInfoDisplayer from "../CandleInfoDisplayer/CandleInfoDisplayer";
 import IconSvg from "../IconSvg/IconSvg";
 import Slider from "../Slider/Slider";
-import apiInstance from "../../services/api";
+import apiInstance from "../../services/api/api";
 
 //webpack dynamic require to retrieve specific img files
 
