@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import NoContent from "../NoContent/NoContent";
 import { ToastContext } from "../Toasts/ToastProvider";
 import apiInstance from "../../services/api";
+import cartActions from "../../redux/actions/cartActions";
 import { useState } from "react";
 import { viewportContext } from "../../Components/ViewportProvider/ViewportProvider";
 import wishlistActions from "../../redux/actions/wishlistActions";
@@ -56,6 +57,27 @@ const MyWishlist = () => {
 					},
 				})
 			);
+	};
+
+	const addCandleToCartMobile = (candleId) => {
+		apiInstance(`/candles/${candleId}`)
+			.then(({ data }) => {
+				const product = data[0];
+				product.quantity = 1;
+				product.isAvailable = null;
+
+				dispatch({ ...cartActions.CART_ADD_PRODUCT, payload: product });
+				dispatchToast({
+					type: "ADD_TOAST",
+					payload: {
+						id: "toast " + Date.now(),
+						status: "success",
+						text: "Product added to your cart",
+						classes: "success",
+					},
+				});
+			})
+			.catch((err) => console.log(err));
 	};
 
 	return (
@@ -118,7 +140,10 @@ const MyWishlist = () => {
 											<DropdownMobile
 												candleId={product.candleId}
 												content={[
-													{ title: "Add to cart", func: null },
+													{
+														title: "Add to cart",
+														func: addCandleToCartMobile,
+													},
 													{
 														title: "Delete from wishlist",
 														func: deleteCandleFromWishlist,

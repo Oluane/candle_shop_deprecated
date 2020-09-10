@@ -8,7 +8,16 @@ import { useDispatch } from "react-redux";
 
 const ShoppingCartItem = ({ product }) => {
 	const dispatch = useDispatch();
-	const { candleId, typeId, typeEnName, sizeEnName, scentsEnName, unitPrice, quantity } = product;
+	const {
+		candleId,
+		typeId,
+		typeEnName,
+		sizeEnName,
+		scentsEnName,
+		unitPrice,
+		quantity,
+		isAvailable,
+	} = product;
 
 	const [quantityValue, setQuantityValue] = useState(quantity);
 
@@ -58,6 +67,7 @@ const ShoppingCartItem = ({ product }) => {
 					</div>
 					<button onClick={() => deleteCandleFromCart()}>Delete</button>
 				</div>
+				<div className="availabilityIndic">{isAvailable ? "Available" : "No stock"}</div>
 			</div>
 		</div>
 	);

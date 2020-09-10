@@ -1,17 +1,45 @@
 import "./ShoppingCart.scss";
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import IconSvg from "../IconSvg/IconSvg";
 import NoContent from "../NoContent/NoContent";
 import ShoppingCartItem from "./ShoppingCartItem/ShoppingCartItem";
+import apiInstance from "../../services/api";
+import cartActions from "../../redux/actions/cartActions";
 import { viewportContext } from "../ViewportProvider/ViewportProvider";
 
+const fetchStockData = (productArr) => {
+	return Promise.all(
+		productArr.map((product) => {
+			return apiInstance
+				.get(`/candles/${product.candleId}/stock`)
+				.then(({ data }) => data[0])
+				.catch((err) => console.log(err));
+		})
+	);
+};
+
 const ShoppingCart = () => {
+	const dispatch = useDispatch();
 	const cartProducts = useSelector((state) => state.cart.products);
 	const { deviceWidth, deviceHeight } = useContext(viewportContext);
 	const [isShoppingCartDisplayed, setIsShoppingCartDisplayed] = useState(false);
+
+	const checkingProductsAvailability = (productArr) => {
+		fetchStockData(productArr)
+			.then((res) => {
+				dispatch({ ...cartActions.CART_EDIT_STOCK_PRODUCT, payload: res });
+			})
+			.catch((e) => console.log(e));
+	};
+
+	//checking candle stock availability on each time the cart is displayed
+
+	useEffect(() => {
+		checkingProductsAvailability(cartProducts);
+	}, [isShoppingCartDisplayed]);
 
 	return (
 		<>

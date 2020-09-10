@@ -45,6 +45,31 @@ export default (state = initial, action) => {
 			return {
 				products: editedProducts,
 			};
+
+		case cartActions.CART_EDIT_STOCK_PRODUCT.type:
+			// console.log(action.payload);
+			const fetchedStock = action.payload;
+
+			const productsWithAvailability = state.products.map((product, i) => {
+				if (fetchedStock[0] !== undefined) {
+					let idx = fetchedStock.findIndex((e) => e.candleId === product.candleId);
+
+					if (fetchedStock[idx].availableStock >= product.quantity) {
+						product.isAvailable = true;
+					} else {
+						product.isAvailable = false;
+					}
+					return product;
+				}
+				return product;
+			});
+
+			console.log(productsWithAvailability);
+
+			return {
+				products: productsWithAvailability,
+			};
+
 		default:
 			return state;
 	}
