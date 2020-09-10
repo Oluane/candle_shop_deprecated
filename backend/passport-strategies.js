@@ -47,7 +47,6 @@ opts.issuer = "candleshop.com";
 passport.use(
 	new JWTStrategy(opts, (jwtPayload, done) => {
 		if (!jwtPayload) {
-			console.log(jwtPayload);
 			return done(err, false);
 		}
 

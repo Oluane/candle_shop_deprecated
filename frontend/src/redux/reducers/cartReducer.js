@@ -47,7 +47,6 @@ export default (state = initial, action) => {
 			};
 
 		case cartActions.CART_EDIT_STOCK_PRODUCT.type:
-			// console.log(action.payload);
 			const fetchedStock = action.payload;
 
 			const productsWithAvailability = state.products.map((product, i) => {
@@ -63,8 +62,6 @@ export default (state = initial, action) => {
 				}
 				return product;
 			});
-
-			console.log(productsWithAvailability);
 
 			return {
 				products: productsWithAvailability,
