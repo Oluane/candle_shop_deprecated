@@ -87,6 +87,24 @@
 
 	.cartContent {
 		padding: 25px 0;
+		overflow-y: scroll;
+		height: 80%;
+	}
+
+	.btnContainer {
+		height: 12%;
+		width: 100%;
+		display: flex;
+		align-items: center;
+
+		button {
+			min-width: 94%;
+			background-color: $lightDark;
+			color: $primary;
+			padding: 10px;
+			border: solid 1px $lightDark;
+			margin: auto;
+		}
 	}
 }
 

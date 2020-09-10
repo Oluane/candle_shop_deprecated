@@ -23,6 +23,7 @@ const CandleInfoDisplayer = ({ typeSize, scent }) => {
 							}
 							id={section.id}
 							onClick={() => setDisplayedSection(section.id)}
+							key={"section " + section.id}
 						>
 							{section.title}
 						</h4>

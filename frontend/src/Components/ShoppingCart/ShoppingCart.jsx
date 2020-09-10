@@ -68,11 +68,21 @@ const ShoppingCart = () => {
 					<h2 className="sectionTitle">YOUR CART</h2>
 				</header>
 				{cartProducts[0].candleId !== -1 ? (
-					<div className="cartContent">
-						{cartProducts.map((product) => {
-							return <ShoppingCartItem product={product} />;
-						})}
-					</div>
+					<>
+						<div className="cartContent">
+							{cartProducts.map((product) => {
+								return (
+									<ShoppingCartItem
+										product={product}
+										key={"cartItem" + product.candleId}
+									/>
+								);
+							})}
+						</div>
+						<div className="btnContainer">
+							<button className="mediumText mediumBold">CHECKOUT | 150€</button>
+						</div>
+					</>
 				) : (
 					<NoContent
 						iconName="emptyBox"
