@@ -33,6 +33,18 @@ export default (state = initial, action) => {
 				...state,
 				products: newProducts.length === 0 ? initial.products : newProducts,
 			};
+
+		case cartActions.CART_EDIT_QUANTITY_PRODUCT.type:
+			let candleIdx = state.products.findIndex(
+				(product) => product.candleId === action.payload.candleId
+			);
+
+			const editedProducts = state.products;
+			editedProducts[candleIdx].quantity = Number(action.payload.newQuantity);
+
+			return {
+				products: editedProducts,
+			};
 		default:
 			return state;
 	}
