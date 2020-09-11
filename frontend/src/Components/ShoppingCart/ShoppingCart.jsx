@@ -1,6 +1,6 @@
 import "./ShoppingCart.scss";
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import IconSvg from "../IconSvg/IconSvg";
@@ -10,6 +10,7 @@ import apiInstance from "../../services/api/api";
 import cartActions from "../../redux/actions/cartActions";
 import { viewportContext } from "../ViewportProvider/ViewportProvider";
 
+//fetching func that can check stock for multiple candles
 const fetchStockData = (productArr) => {
 	return Promise.all(
 		productArr.map((product) => {
@@ -34,12 +35,6 @@ const ShoppingCart = () => {
 			})
 			.catch((e) => console.log(e));
 	};
-
-	//checking candle stock availability on each time the cart is displayed
-
-	useEffect(() => {
-		checkingProductsAvailability(cartProducts);
-	}, [isShoppingCartDisplayed]);
 
 	return (
 		<>
@@ -75,6 +70,7 @@ const ShoppingCart = () => {
 									<ShoppingCartItem
 										product={product}
 										key={"cartItem" + product.candleId}
+										checkingProductsAvailability={checkingProductsAvailability}
 									/>
 								);
 							})}

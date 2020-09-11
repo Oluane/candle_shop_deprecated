@@ -4,7 +4,7 @@ const initial = {
 	products: [
 		{
 			candleId: -1,
-			unitPrice: 0,
+			price: 0,
 			quantity: 0,
 			isAvailable: null,
 			scentsEnName: "",
@@ -53,12 +53,14 @@ export default (state = initial, action) => {
 				if (fetchedStock[0] !== undefined) {
 					let idx = fetchedStock.findIndex((e) => e.candleId === product.candleId);
 
-					if (fetchedStock[idx].availableStock >= product.quantity) {
-						product.isAvailable = true;
-					} else {
-						product.isAvailable = false;
+					if (idx !== -1) {
+						if (fetchedStock[idx].availableStock >= product.quantity) {
+							product.isAvailable = true;
+						} else {
+							product.isAvailable = false;
+						}
+						return product;
 					}
-					return product;
 				}
 				return product;
 			});

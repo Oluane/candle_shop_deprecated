@@ -6,7 +6,7 @@ import cartActions from "../../../redux/actions/cartActions";
 import { useDebouncedEffect } from "../../../services/useDebouncedEffect";
 import { useDispatch } from "react-redux";
 
-const ShoppingCartItem = ({ product }) => {
+const ShoppingCartItem = ({ product, checkingProductsAvailability }) => {
 	const dispatch = useDispatch();
 	const {
 		candleId,
@@ -14,7 +14,7 @@ const ShoppingCartItem = ({ product }) => {
 		typeEnName,
 		sizeEnName,
 		scentsEnName,
-		unitPrice,
+		price,
 		quantity,
 		isAvailable,
 	} = product;
@@ -23,12 +23,15 @@ const ShoppingCartItem = ({ product }) => {
 
 	//debouncing redux dispatch of quantity value update to prevent multiple calculation of new store content
 	useDebouncedEffect(
-		() =>
+		() => {
 			dispatch({
 				...cartActions.CART_EDIT_QUANTITY_PRODUCT,
 				payload: { candleId: product.candleId, newQuantity: quantityValue },
-			}),
-		400,
+			});
+			checkingProductsAvailability([product]);
+		},
+
+		550,
 		[quantityValue]
 	);
 
@@ -53,7 +56,7 @@ const ShoppingCartItem = ({ product }) => {
                 ${scentsEnName} 
                 ${typeEnName} candle`}
 				</p>
-				<p className="mediumText mediumBold">{unitPrice} €</p>
+				<p className="mediumText mediumBold">{price} €</p>
 				<div className="productActions">
 					<div className="quantityInput">
 						<input
