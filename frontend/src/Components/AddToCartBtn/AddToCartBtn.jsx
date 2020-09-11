@@ -1,48 +1,42 @@
 import "./AddToCartBtn.scss";
 
 import React, { useContext } from "react";
+import { fetchCandleIdFromTypeSizeScent, fetchCandleInfosFromId } from "../../services/api/candles";
 import { useDispatch, useSelector } from "react-redux";
 
 import IconSvg from "../IconSvg/IconSvg";
-import { ToastContext } from "../Toasts/ToastProvider";
-import apiInstance from "../../services/api/api";
+import { ToastContext } from "../../Components/Toasts/ToastProvider";
 import cartActions from "../../redux/actions/cartActions";
 
-const AddToCartBtn = ({ btnType, typeSize, scent }) => {
+const AddToCartBtn = ({ btnType, typeSize, scent, candleId }) => {
 	const [, dispatchToast] = useContext(ToastContext);
 	const dispatch = useDispatch();
-	// const cartProducts = useSelector((state) => state.cart.products);
+	const cartProducts = useSelector((state) => state.cart.products);
 
-	const addCandleToCart = () => {
+	const handleAddToCartWithoutId = (typeSize, scent) => {
 		if (scent !== undefined) {
-			const { price, sizeEnName, typeEnName, typeId } = typeSize;
-			const { enName } = scent;
-			apiInstance
-				.get(`/candles/type_size/${typeSize.typeSizeId}/scent/${scent.id}`)
-				.then(({ data }) => {
-					const product = {
-						candleId: data[0].id,
-						unitPrice: price,
-						quantity: 1,
-						isAvailable: null,
-						sizeEnName,
-						typeEnName,
-						scentsEnName: enName,
-						typeId,
-					};
-
-					dispatch({ ...cartActions.CART_ADD_PRODUCT, payload: product });
+			fetchCandleIdFromTypeSizeScent(typeSize, scent).then((response) => {
+				if (!isCandlePresentInCart(response.data.candleId)) {
+					dispatch({ ...cartActions.CART_ADD_PRODUCT, payload: response.data });
 					dispatchToast({
 						type: "ADD_TOAST",
 						payload: {
 							id: "toast " + Date.now(),
 							status: "success",
 							text: "Product added to your cart",
-							classes: "success",
 						},
 					});
-				})
-				.catch((err) => console.log(err));
+				} else {
+					dispatchToast({
+						type: "ADD_TOAST",
+						payload: {
+							id: "toast " + Date.now(),
+							status: "failed",
+							text: "This candle is already in your cart",
+						},
+					});
+				}
+			});
 		} else {
 			dispatchToast({
 				type: "ADD_TOAST",
@@ -50,26 +44,60 @@ const AddToCartBtn = ({ btnType, typeSize, scent }) => {
 					id: "toast " + Date.now(),
 					status: "failed",
 					text: "You must choose a scent before adding products to your cart",
-					classes: "error",
 				},
 			});
 		}
 	};
 
+	const handleAddToCartWithId = (candleId) => {
+		if (!isCandlePresentInCart(candleId)) {
+			fetchCandleInfosFromId(candleId).then((response) => {
+				response.data.quantity = 1;
+				response.data.isAvailable = null;
+				dispatch({ ...cartActions.CART_ADD_PRODUCT, payload: response.data });
+				dispatchToast({
+					type: "ADD_TOAST",
+					payload: {
+						id: "toast " + Date.now(),
+						status: "success",
+						text: "Product added to your cart",
+					},
+				});
+			});
+		} else {
+			dispatchToast({
+				type: "ADD_TOAST",
+				payload: {
+					id: "toast " + Date.now(),
+					status: "failed",
+					text: "This candle is already in your cart",
+				},
+			});
+		}
+	};
+
+	const isCandlePresentInCart = (candleId) => {
+		if (cartProducts.findIndex((item) => item.candleId === candleId) !== -1) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
 	return (
 		<>
-			{btnType === "text" && (
+			{btnType === "text" && candleId === undefined && (
 				<button
 					className="addToCartTextBtn smallText mediumBold"
-					onClick={() => addCandleToCart()}
+					onClick={() => handleAddToCartWithoutId(typeSize, scent)}
 				>
 					<span>ADD TO CART</span>{" "}
 					<span className="separatorBefore">{typeSize.price}€</span>
 				</button>
 			)}
 
-			{btnType === "icon" && (
-				<div className="addToCartIconBtn" onClick={() => addCandleToCart()}>
+			{btnType === "icon" && candleId !== undefined && (
+				<div className="addToCartIconBtn" onClick={() => handleAddToCartWithId(candleId)}>
 					<IconSvg iconName="addToCart" />
 				</div>
 			)}

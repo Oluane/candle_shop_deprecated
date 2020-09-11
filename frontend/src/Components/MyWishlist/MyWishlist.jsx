@@ -1,6 +1,6 @@
 import "./MyWishlist.scss";
 
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import AddToCartBtn from "../AddToCartBtn/AddToCartBtn";
@@ -11,7 +11,7 @@ import NoContent from "../NoContent/NoContent";
 import { ToastContext } from "../Toasts/ToastProvider";
 import apiInstance from "../../services/api/api";
 import cartActions from "../../redux/actions/cartActions";
-import { useState } from "react";
+import { fetchCandleInfosFromId } from "../../services/api/candles";
 import { viewportContext } from "../../Components/ViewportProvider/ViewportProvider";
 import wishlistActions from "../../redux/actions/wishlistActions";
 
@@ -21,6 +21,7 @@ const MyWishlist = () => {
 	const currentUser = useSelector((state) => state.user.data);
 	const wishlist = useSelector((state) => state.wishlist);
 	const wishlistProducts = useSelector((state) => state.wishlist.products);
+	const cartProducts = useSelector((state) => state.cart.products);
 	const dispatch = useDispatch();
 
 	const [displayAllItems, setDisplayAllItems] = useState(false);
@@ -57,14 +58,20 @@ const MyWishlist = () => {
 			);
 	};
 
-	const addCandleToCartMobile = (candleId) => {
-		apiInstance(`/candles/${candleId}`)
-			.then(({ data }) => {
-				const product = data[0];
-				product.quantity = 1;
-				product.isAvailable = null;
+	const isCandlePresentInCart = (candleId) => {
+		if (cartProducts.findIndex((item) => item.candleId === candleId) !== -1) {
+			return true;
+		} else {
+			return false;
+		}
+	};
 
-				dispatch({ ...cartActions.CART_ADD_PRODUCT, payload: product });
+	const handleAddToCartWithId = (candleId) => {
+		if (!isCandlePresentInCart(candleId)) {
+			fetchCandleInfosFromId(candleId).then((response) => {
+				response.data.quantity = 1;
+				response.data.isAvailable = null;
+				dispatch({ ...cartActions.CART_ADD_PRODUCT, payload: response.data });
 				dispatchToast({
 					type: "ADD_TOAST",
 					payload: {
@@ -73,8 +80,17 @@ const MyWishlist = () => {
 						text: "Product added to your cart",
 					},
 				});
-			})
-			.catch((err) => console.log(err));
+			});
+		} else {
+			dispatchToast({
+				type: "ADD_TOAST",
+				payload: {
+					id: "toast " + Date.now(),
+					status: "failed",
+					text: "This candle is already in your cart",
+				},
+			});
+		}
 	};
 
 	return (
@@ -131,6 +147,7 @@ const MyWishlist = () => {
 												id: product.scentId,
 												enName: product.scentsEnName,
 											}}
+											candleId={product.candleId}
 										/>
 									) : (
 										<div className="dropdownWrapper">
@@ -139,7 +156,7 @@ const MyWishlist = () => {
 												content={[
 													{
 														title: "Add to cart",
-														func: addCandleToCartMobile,
+														func: handleAddToCartWithId,
 													},
 													{
 														title: "Delete from wishlist",
