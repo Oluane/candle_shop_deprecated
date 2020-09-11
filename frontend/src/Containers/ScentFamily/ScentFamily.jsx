@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 import IconSvg from "../../Components/IconSvg/IconSvg";
 import SkeletonItem from "../../Components/SkeletonItem/SkeletonItem";
-import apiInstance from "../../services/api/api/api";
+import apiInstance from "../../services/api/api";
 
 const ScentFamily = (props) => {
 	const [currentFamily, setCurrentFamily] = useState(null);

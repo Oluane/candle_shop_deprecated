@@ -69,7 +69,6 @@ const LoginForm = () => {
 							id: "toast " + Date.now(),
 							status: "failed",
 							text: "Failed auth! Retry please :)",
-							classes: " error",
 						},
 					});
 				}

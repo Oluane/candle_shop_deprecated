@@ -15,13 +15,11 @@ const ToastBody = ({ toast, dispatch }) => {
 		};
 	}, []);
 	return (
-		<div id={toast.id} className={"toastBody mediumText fadeIn" + toast.classes}>
+		<div id={toast.id} className="toastBody mediumText fadeIn">
 			<div className="statusIcon">
-				{toast.status === "failed" && (
-					<IconSvg iconName="error" className={toast.classes} />
-				)}
+				{toast.status === "failed" && <IconSvg iconName="error" className={toast.status} />}
 				{toast.status === "success" && (
-					<IconSvg iconName="checkArrow" className={toast.classes} />
+					<IconSvg iconName="checkArrow" className={toast.status} />
 				)}
 			</div>
 			<p>{toast.text}</p>

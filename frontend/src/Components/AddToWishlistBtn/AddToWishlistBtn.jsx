@@ -56,7 +56,6 @@ const AddToWishlistBtn = ({ typeSize, scent }) => {
 									id: "toast " + Date.now(),
 									status: "success",
 									text: "Product added to your wishlist",
-									classes: "success",
 								},
 							});
 						})
@@ -68,7 +67,6 @@ const AddToWishlistBtn = ({ typeSize, scent }) => {
 										id: "toast " + Date.now(),
 										status: "failed",
 										text: "You must be logged to add products in your wishlist",
-										classes: "error",
 									},
 								});
 							}
@@ -114,7 +112,6 @@ const AddToWishlistBtn = ({ typeSize, scent }) => {
 								id: "toast " + Date.now(),
 								status: "failed",
 								text: "This product is already in your wishlist !",
-								classes: "error",
 							},
 					  });
 			}}

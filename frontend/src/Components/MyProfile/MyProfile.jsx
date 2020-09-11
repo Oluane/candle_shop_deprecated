@@ -50,7 +50,6 @@ const MyProfile = () => {
 						id: "toast " + Date.now(),
 						status: "success",
 						text: "Your infos have been edited",
-						classes: "success",
 					},
 				});
 			})
@@ -61,7 +60,6 @@ const MyProfile = () => {
 						id: "toast " + Date.now(),
 						status: "failed",
 						text: "Profile infos editing failed, try again later",
-						classes: "error",
 					},
 				})
 			);

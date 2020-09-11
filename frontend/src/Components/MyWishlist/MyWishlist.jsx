@@ -42,7 +42,6 @@ const MyWishlist = () => {
 						id: "toast " + Date.now(),
 						status: "success",
 						text: "Product deleted from your wishlist",
-						classes: "success",
 					},
 				});
 			})
@@ -53,7 +52,6 @@ const MyWishlist = () => {
 						id: "toast " + Date.now(),
 						status: "failed",
 						text: "Error while deleting product from wishlist, try again",
-						classes: "error",
 					},
 				})
 			);
@@ -73,7 +71,6 @@ const MyWishlist = () => {
 						id: "toast " + Date.now(),
 						status: "success",
 						text: "Product added to your cart",
-						classes: "success",
 					},
 				});
 			})
