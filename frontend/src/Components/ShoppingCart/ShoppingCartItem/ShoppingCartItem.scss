@@ -34,11 +34,22 @@
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
+
+		.titlePriceWrapper {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+		}
 		.productTitle {
 			text-transform: uppercase;
 			letter-spacing: 0.05em;
 			margin-bottom: 5px;
 			text-align: left;
+			max-width: 85%;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 2;
+			overflow: hidden;
 		}
 
 		.productActions {
@@ -54,21 +65,6 @@
 					border: none;
 					border-radius: 3px;
 					text-align: center;
-
-					// /* Firefox */
-					// -moz-appearance: textfield;
-
-					// /* Chrome */
-					// &::-webkit-inner-spin-button {
-					// 	-webkit-appearance: none;
-					// 	margin: 0;
-					// }
-
-					// /* Opéra*/
-					// &::-o-inner-spin-button {
-					// 	-o-appearance: none;
-					// 	margin: 0;
-					// }
 				}
 			}
 
@@ -81,6 +77,71 @@
 				&:hover {
 					color: $roseGold;
 					font-weight: 600;
+				}
+			}
+		}
+
+		.availabilityIndic {
+			background-color: $secondaryTrans;
+			padding: 4px;
+			border-radius: 10px;
+			align-self: center;
+			display: flex;
+			align-items: center;
+
+			.availabilityIcon {
+				width: 15px;
+				height: 15px;
+				margin-right: 3px;
+				&.success {
+					color: #bbe8c4;
+				}
+
+				&.failed {
+					color: #ff6961;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 688px) {
+	.productRow {
+		padding: 10px;
+		align-items: center;
+		&:not(:last-child) {
+			margin-bottom: 10px;
+			&:after {
+				bottom: -5px;
+			}
+		}
+
+		.productImg {
+			width: 45px;
+			height: 45px;
+			flex-shrink: 0;
+		}
+
+		.productInfos {
+			width: 85%;
+			padding: 5px 10px;
+
+			.productTitle {
+				width: 75%;
+			}
+
+			.productActions {
+				display: flex;
+				align-items: baseline;
+
+				.quantityInput {
+					input {
+						padding: 6px;
+					}
+				}
+
+				button {
+					margin-left: 35px;
 				}
 			}
 		}

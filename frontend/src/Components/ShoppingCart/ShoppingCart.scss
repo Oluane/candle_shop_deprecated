@@ -57,6 +57,7 @@
 	bottom: 0;
 	opacity: 0;
 	transform: translateX(+100%);
+	z-index: 2;
 
 	transition: opacity 0.2s ease, transform 0.4s ease-out;
 	&.displayed {
@@ -126,6 +127,16 @@
 
 		header {
 			padding: 30px 15px;
+		}
+
+		.cartContent {
+			height: 75%;
+			overflow-x: hidden;
+		}
+		.btnContainer {
+			height: 10%;
+			position: fixed;
+			bottom: 0;
 		}
 	}
 }

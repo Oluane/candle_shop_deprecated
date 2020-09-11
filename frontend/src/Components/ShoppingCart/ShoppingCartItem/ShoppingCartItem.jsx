@@ -2,6 +2,7 @@ import "./ShoppingCartItem.scss";
 
 import React, { useState } from "react";
 
+import IconSvg from "../../IconSvg/IconSvg";
 import cartActions from "../../../redux/actions/cartActions";
 import { useDebouncedEffect } from "../../../services/useDebouncedEffect";
 import { useDispatch } from "react-redux";
@@ -51,12 +52,15 @@ const ShoppingCartItem = ({ product, checkingProductsAvailability }) => {
 				/>
 			</div>
 			<div className="productInfos">
-				<p className="productTitle usualText mediumBold">
-					{`${sizeEnName} 
+				<div className="titlePriceWrapper">
+					<p className="productTitle usualText mediumBold">
+						{`${sizeEnName} 
                 ${scentsEnName} 
                 ${typeEnName} candle`}
-				</p>
-				<p className="mediumText mediumBold">{price} €</p>
+					</p>
+					<p className="mediumText mediumBold">{price} €</p>
+				</div>
+
 				<div className="productActions">
 					<div className="quantityInput">
 						<input
@@ -68,9 +72,17 @@ const ShoppingCartItem = ({ product, checkingProductsAvailability }) => {
 							onChange={(e) => setQuantityValue(e.target.value)}
 						/>
 					</div>
-					<button onClick={() => deleteCandleFromCart()}>Delete</button>
+					<button className="mediumText" onClick={() => deleteCandleFromCart()}>
+						Delete
+					</button>
 				</div>
-				<div className="availabilityIndic">{isAvailable ? "Available" : "No stock"}</div>
+				<div className={"availabilityIndic smallText"}>
+					<div className={"availabilityIcon" + (isAvailable ? " success" : " failed")}>
+						<IconSvg iconName={isAvailable ? "checkArrow" : "closeCross"} />
+					</div>
+
+					<p>{isAvailable ? "Available" : "No stock"}</p>
+				</div>
 			</div>
 		</div>
 	);
