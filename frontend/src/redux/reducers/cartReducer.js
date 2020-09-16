@@ -71,14 +71,9 @@ export default (state = initial, action) => {
 			return { ...state, products: productsWithAvailability };
 
 		case cartActions.CART_CALCULATE_TOTAL_COST.type:
-			console.log(state.products);
 			const total = state.products.reduce((acc, value) => {
-				console.log(acc);
-				console.log(value);
 				return acc + value.price * value.quantity;
 			}, 0);
-			console.log(total);
-			console.log("============================================");
 			return { ...state, totalCost: total };
 
 		default:

@@ -13,7 +13,8 @@ const ToastBody = ({ toast, dispatch }) => {
 		return () => {
 			clearTimeout(timeOut);
 		};
-	}, []);
+	}, [dispatch, toast.id]);
+
 	return (
 		<div id={toast.id} className="toastBody mediumText fadeIn">
 			<div className="statusIcon">

@@ -37,13 +37,9 @@ const ShoppingCart = () => {
 			.catch((e) => console.log(e));
 	};
 
-	// const calculateCartTotalCost = () => {
-
-	// }
-
 	useEffect(() => {
 		dispatch({ ...cartActions.CART_CALCULATE_TOTAL_COST });
-	}, [cartProducts]);
+	}, [cartProducts, dispatch]);
 
 	return (
 		<>

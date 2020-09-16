@@ -30,7 +30,7 @@ const NavbarDesktop = ({ isLoggedUser }) => {
 			<div className="navRight smallText">
 				<ul>
 					<li>
-						<Link to="/" className="navLinks ">
+						<Link to="/about_us" className="navLinks ">
 							ABOUT US
 						</Link>
 					</li>

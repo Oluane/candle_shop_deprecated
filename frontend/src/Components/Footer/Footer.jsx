@@ -20,7 +20,7 @@ const Footer = () => {
 			<footer>
 				<div className="socialContainer">
 					<div className="footerLogo">
-						<img src="/images/content/logo.png" alt="" />
+						<img src="/images/content/logoAlt.png" alt="Candle Shop" />
 					</div>
 					<div className="socialLinksContainer">
 						<a href="/" className="socialLinks">
