@@ -96,6 +96,7 @@ const ShoppingCart = () => {
 						text="You haven't any candle in your cart yet !"
 						linkText="Start shopping !"
 						linkPath="/candles"
+						linkCallback={() => setIsShoppingCartDisplayed(false)}
 					/>
 				)}
 			</div>

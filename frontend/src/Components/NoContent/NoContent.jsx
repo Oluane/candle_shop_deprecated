@@ -1,9 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import "./NoContent.scss";
-import IconSvg from "../../Components/IconSvg/IconSvg";
 
-const NoContent = ({ iconName, text, linkText, linkPath }) => {
+import IconSvg from "../../Components/IconSvg/IconSvg";
+import { Link } from "react-router-dom";
+import React from "react";
+
+const NoContent = ({ iconName, text, linkText, linkPath, linkCallback }) => {
 	return (
 		<div className="noContentContainer">
 			<div className="noContentIcon">
@@ -11,7 +12,11 @@ const NoContent = ({ iconName, text, linkText, linkPath }) => {
 			</div>
 			<p className="usualText">{text} </p>
 
-			<Link className="buttonLink mediumText mediumBold " to={linkPath}>
+			<Link
+				className="buttonLink mediumText mediumBold "
+				to={linkPath}
+				onClick={linkCallback}
+			>
 				{linkText}
 			</Link>
 		</div>
