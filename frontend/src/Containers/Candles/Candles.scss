@@ -15,3 +15,12 @@
 	.pageDesc {
 	}
 }
+
+@media screen and (max-width: 688px) {
+	.candlesHeader {
+		.pageDesc {
+			padding: 0 15px;
+			line-height: 18px;
+		}
+	}
+}

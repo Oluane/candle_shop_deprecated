@@ -1,17 +1,19 @@
 import "./ScentFamily.scss";
 
 import { Link, useParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import IconSvg from "../../Components/IconSvg/IconSvg";
 import SkeletonItem from "../../Components/SkeletonItem/SkeletonItem";
 import apiInstance from "../../services/api/api";
+import { viewportContext } from "../../Components/ViewportProvider/ViewportProvider";
 
 const ScentFamily = (props) => {
 	const [currentFamily, setCurrentFamily] = useState(null);
 	const [scents, setScents] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const { catId } = useParams();
+	const { deviceWidth } = useContext(viewportContext);
 
 	useEffect(() => {
 		apiInstance
@@ -109,7 +111,7 @@ const ScentFamily = (props) => {
 								{scents !== null &&
 									scents.map((scent, i) => {
 										return (
-											<React.Fragment key={i}>
+											<React.Fragment key={"scentItem" + i}>
 												<div
 													className={
 														"scentItem " +
@@ -124,7 +126,7 @@ const ScentFamily = (props) => {
 														alt={`${scent.enName} perfume`}
 														className="scentThumbnail"
 													/>
-													<h4>{scent.enName}</h4>
+													<h4 className="usualText">{scent.enName}</h4>
 												</div>
 												{i < scents.length - 1 && (
 													<div className="separation"></div>
@@ -133,7 +135,7 @@ const ScentFamily = (props) => {
 										);
 									})}
 							</div>
-							{scrollIndex > 0 && (
+							{scrollIndex > 0 && deviceWidth > 688 && (
 								<div
 									className="leftArrowContainer"
 									onClick={() => scrollToNextElements("left")}
@@ -143,7 +145,7 @@ const ScentFamily = (props) => {
 									</div>
 								</div>
 							)}
-							{!isScrollMax && (
+							{!isScrollMax && deviceWidth > 688 && (
 								<div
 									className="rightArrowContainer"
 									onClick={() => scrollToNextElements("right")}
