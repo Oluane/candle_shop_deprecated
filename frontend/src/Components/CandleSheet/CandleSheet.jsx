@@ -82,7 +82,7 @@ const CandleSheet = ({
 				<div className="candleSheetInfoWrapper">
 					<h4 className="candleTitle mediumBold">{typeSizes[0].typeEnName} Candle</h4>
 					<div className="candleInfoContainer mediumText">
-						<p className="mediumBold">{selectedTypeSize.price}€</p>
+						<p className="mediumBold">{selectedTypeSize.price.toFixed(2)}€</p>
 						<p className="separatorBefore">{selectedTypeSize.weightInGr}gr</p>
 						<p className="separatorBefore">{selectedTypeSize.durationInHours}h</p>
 						{selectedScentId && selectedScent && (

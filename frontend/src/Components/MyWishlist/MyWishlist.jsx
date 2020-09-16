@@ -123,7 +123,9 @@ const MyWishlist = () => {
 											{product.scentsEnName} {product.typeEnName} Candle
 										</h4>
 										<div className="candleInfoContainer mediumText">
-											<p className="mediumBold">{product.price}€</p>
+											<p className="mediumBold">
+												{product.price.toFixed(2)}€
+											</p>
 											<p className="separatorBefore">{product.sizeEnName}</p>
 											<p className="separatorBefore">
 												{product.weightInGr}gr

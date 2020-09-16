@@ -1,6 +1,6 @@
 import "./ShoppingCart.scss";
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import IconSvg from "../IconSvg/IconSvg";
@@ -25,6 +25,7 @@ const fetchStockData = (productArr) => {
 const ShoppingCart = () => {
 	const dispatch = useDispatch();
 	const cartProducts = useSelector((state) => state.cart.products);
+	const cartTotalCost = useSelector((state) => state.cart.totalCost);
 	const { deviceWidth, deviceHeight } = useContext(viewportContext);
 	const [isShoppingCartDisplayed, setIsShoppingCartDisplayed] = useState(false);
 
@@ -35,6 +36,14 @@ const ShoppingCart = () => {
 			})
 			.catch((e) => console.log(e));
 	};
+
+	// const calculateCartTotalCost = () => {
+
+	// }
+
+	useEffect(() => {
+		dispatch({ ...cartActions.CART_CALCULATE_TOTAL_COST });
+	}, [cartProducts]);
 
 	return (
 		<>
@@ -76,7 +85,9 @@ const ShoppingCart = () => {
 							})}
 						</div>
 						<div className="btnContainer">
-							<button className="mediumText mediumBold">CHECKOUT | 150€</button>
+							<button className="mediumText mediumBold">
+								CHECKOUT | {cartTotalCost.toFixed(2)}€
+							</button>
 						</div>
 					</>
 				) : (

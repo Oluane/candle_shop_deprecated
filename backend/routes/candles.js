@@ -3,6 +3,19 @@ const router = express.Router();
 
 const { db } = require("../conf");
 
+router.get("/types", (req, res) => {
+	db.query(`SELECT id, en_name, en_desc FROM type`, (err, results) => {
+		if (err) {
+			console.log(err);
+			return res.status(500).json({ message: "Internal Error" });
+		}
+
+		if (results) {
+			res.status(200).json(results);
+		}
+	});
+});
+
 //return candle info by a given candle id
 
 router.get("/:candleId", (req, res) => {
@@ -71,19 +84,6 @@ router.get("/type_size/:typeSizeId/scent/:scentId", (req, res) => {
 });
 
 //subroutes
-
-router.get("/types", (req, res) => {
-	db.query(`SELECT id, en_name, en_desc FROM type`, (err, results) => {
-		if (err) {
-			console.log(err);
-			return res.status(500).json({ message: "Internal Error" });
-		}
-
-		if (results.length) {
-			res.status(200).json(results);
-		}
-	});
-});
 
 router.get("/types/:typeId/details", (req, res) => {
 	const { typeId } = req.params;
