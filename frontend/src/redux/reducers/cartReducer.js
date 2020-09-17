@@ -1,6 +1,7 @@
 import cartActions from "../actions/cartActions";
+import { loadCartStateFromLocalStorage } from "../../services/utils/localStorageUtils";
 
-const initial = {
+const initialState = {
 	totalCost: 0,
 	products: [
 		{
@@ -15,6 +16,8 @@ const initial = {
 		},
 	],
 };
+
+const initial = loadCartStateFromLocalStorage() || initialState;
 
 export default (state = initial, action) => {
 	switch (action.type) {
@@ -38,7 +41,7 @@ export default (state = initial, action) => {
 			);
 			return {
 				totalCost: totalWithoutItems,
-				products: newProducts.length === 0 ? initial.products : newProducts,
+				products: newProducts.length === 0 ? initialState.products : newProducts,
 			};
 
 		case cartActions.CART_EDIT_QUANTITY_PRODUCT.type:
