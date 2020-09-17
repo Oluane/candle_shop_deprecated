@@ -8,6 +8,7 @@ import NoContent from "../NoContent/NoContent";
 import ShoppingCartItem from "./ShoppingCartItem/ShoppingCartItem";
 import apiInstance from "../../services/api/api";
 import cartActions from "../../redux/actions/cartActions";
+import { useHistory } from "react-router-dom";
 import { viewportContext } from "../ViewportProvider/ViewportProvider";
 
 //fetching func that can check stock for multiple candles
@@ -29,12 +30,18 @@ const ShoppingCart = () => {
 	const { deviceWidth, deviceHeight } = useContext(viewportContext);
 	const [isShoppingCartDisplayed, setIsShoppingCartDisplayed] = useState(false);
 
+	const history = useHistory();
+
 	const checkingProductsAvailability = (productArr) => {
 		fetchStockData(productArr)
 			.then((res) => {
 				dispatch({ ...cartActions.CART_EDIT_STOCK_PRODUCT, payload: res });
 			})
 			.catch((e) => console.log(e));
+	};
+
+	const checkingCartValidityForCheckout = () => {
+		return cartProducts.every((product) => product.isAvailable);
 	};
 
 	return (
@@ -77,7 +84,16 @@ const ShoppingCart = () => {
 							})}
 						</div>
 						<div className="btnContainer">
-							<button className="mediumText mediumBold">
+							<button
+								className="mediumText mediumBold"
+								disabled={!checkingCartValidityForCheckout()}
+								onClick={() => {
+									if (checkingCartValidityForCheckout()) {
+										setIsShoppingCartDisplayed(false);
+										history.push("/checkout");
+									}
+								}}
+							>
 								CHECKOUT | {cartTotalCost.toFixed(2)}€
 							</button>
 						</div>

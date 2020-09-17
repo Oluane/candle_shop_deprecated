@@ -105,6 +105,13 @@
 			padding: 10px;
 			border: solid 1px $lightDark;
 			margin: auto;
+			cursor: pointer;
+
+			&[disabled] {
+				background-color: $lightGrey;
+				border: solid 1px $lightGrey;
+				cursor: not-allowed;
+			}
 		}
 	}
 }
