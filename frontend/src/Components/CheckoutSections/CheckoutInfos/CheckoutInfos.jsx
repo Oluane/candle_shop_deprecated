@@ -1,11 +1,11 @@
 import "./CheckoutInfos.scss";
 
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import IconSvg from "../../IconSvg/IconSvg";
 import Input from "../../Input/Input";
 import ShoppingCartItem from "../../ShoppingCart/ShoppingCartItem/ShoppingCartItem";
+import { useSelector } from "react-redux";
 
 const CheckoutInfos = () => {
 	const currentUser = useSelector((state) => state.user.data);
@@ -116,7 +116,13 @@ const CheckoutInfos = () => {
 				<h4>Cart summary</h4>
 
 				{cart.products.map((candle, i) => {
-					return <ShoppingCartItem product={candle} isCheckout={true} />;
+					return (
+						<ShoppingCartItem
+							product={candle}
+							isCheckout={true}
+							key={"checkoutProduct" + i}
+						/>
+					);
 				})}
 			</div>
 		</section>
