@@ -1,12 +1,12 @@
 import "./Account.scss";
 
 import React, { useContext, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import IconSvg from "../../Components/IconSvg/IconSvg";
 import MyOrders from "../../Components/MyOrders/MyOrders";
 import MyProfile from "../../Components/MyProfile/MyProfile";
 import MyWishlist from "../../Components/MyWishlist/MyWishlist";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import userActions from "../../redux/actions/userActions";
 import { viewportContext } from "../../Components/ViewportProvider/ViewportProvider";
@@ -20,7 +20,7 @@ const navSections = [
 ];
 
 const Account = () => {
-	const currentUser = useSelector((state) => state.user.data);
+	//const currentUser = useSelector((state) => state.user.data);
 	const dispatch = useDispatch();
 
 	const history = useHistory();

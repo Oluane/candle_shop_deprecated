@@ -48,7 +48,6 @@ router.post("/:wishlistId/candle", isAuthenticated, (req, res) => {
 			console.log(err);
 			return res.status(500).json({ message: "Internal Error" });
 		}
-		console.log(results);
 		res.status(201).send(results);
 	});
 });

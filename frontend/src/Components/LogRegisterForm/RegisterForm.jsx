@@ -118,35 +118,6 @@ const RegisterForm = () => {
 						specialClasses={true}
 					/>
 
-					{/* <div className={"inputLabel" + (isInputFilled(password) ? " filled" : "")}>
-						<input
-							type="password"
-							name="password"
-							value={password}
-							onChange={(e) => {
-								setPassword(e.target.value);
-								isPasswordsIso(e);
-							}}
-							className="formInput usualText"
-						/>
-						<span className="smallText inputPlaceholder">Password</span>
-					</div>
-					<div
-						className={"inputLabel" + (isInputFilled(passwordConfirm) ? " filled" : "")}
-					>
-						<input
-							type="password"
-							name="passwordConfirm"
-							value={passwordConfirm}
-							onChange={(e) => {
-								setPasswordConfirm(e.target.value);
-								isPasswordsIso(e);
-							}}
-							className="formInput usualText"
-						/>
-						<span className="smallText inputPlaceholder">Confirm your password</span>
-					</div> */}
-
 					<Input
 						type="password"
 						name="password"

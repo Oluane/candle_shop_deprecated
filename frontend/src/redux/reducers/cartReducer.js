@@ -1,6 +1,7 @@
 import cartActions from "../actions/cartActions";
+import { loadCartStateFromLocalStorage } from "../../services/utils/localStorageUtils";
 
-const initial = {
+const initialState = {
 	totalCost: 0,
 	products: [
 		{
@@ -16,11 +17,14 @@ const initial = {
 	],
 };
 
+const initial = loadCartStateFromLocalStorage() || initialState;
+
 export default (state = initial, action) => {
 	switch (action.type) {
 		case cartActions.CART_ADD_PRODUCT.type:
+			const newTotal = state.totalCost + action.payload.price;
 			return {
-				...state,
+				totalCost: newTotal,
 				products:
 					state.products[0].candleId === -1
 						? [action.payload]
@@ -28,12 +32,16 @@ export default (state = initial, action) => {
 			};
 
 		case cartActions.CART_DELETE_PRODUCT.type:
+			const currentItem = state.products.find(
+				(item) => item.candleId === action.payload.candleId
+			);
+			const totalWithoutItems = state.totalCost - currentItem.price * currentItem.quantity;
 			const newProducts = state.products.filter(
 				(product) => product.candleId !== action.payload.candleId
 			);
 			return {
-				...state,
-				products: newProducts.length === 0 ? initial.products : newProducts,
+				totalCost: totalWithoutItems,
+				products: newProducts.length === 0 ? initialState.products : newProducts,
 			};
 
 		case cartActions.CART_EDIT_QUANTITY_PRODUCT.type:
@@ -42,10 +50,23 @@ export default (state = initial, action) => {
 			);
 
 			const editedProducts = state.products;
-			editedProducts[candleIdx].quantity = Number(action.payload.newQuantity);
+			const currentProduct = editedProducts[candleIdx];
+			let newTotalQ = state.totalCost;
+
+			if (action.payload.newQuantity > currentProduct.quantity) {
+				newTotalQ =
+					newTotalQ +
+					currentProduct.price * (action.payload.newQuantity - currentProduct.quantity);
+			} else {
+				newTotalQ =
+					newTotalQ -
+					currentProduct.price * (currentProduct.quantity - action.payload.newQuantity);
+			}
+
+			currentProduct.quantity = Number(action.payload.newQuantity);
 
 			return {
-				...state,
+				totalCost: newTotalQ,
 				products: editedProducts,
 			};
 
@@ -69,17 +90,6 @@ export default (state = initial, action) => {
 			});
 
 			return { ...state, products: productsWithAvailability };
-
-		case cartActions.CART_CALCULATE_TOTAL_COST.type:
-			console.log(state.products);
-			const total = state.products.reduce((acc, value) => {
-				console.log(acc);
-				console.log(value);
-				return acc + value.price * value.quantity;
-			}, 0);
-			console.log(total);
-			console.log("============================================");
-			return { ...state, totalCost: total };
 
 		default:
 			return state;
