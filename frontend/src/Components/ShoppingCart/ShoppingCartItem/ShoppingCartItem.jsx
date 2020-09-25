@@ -4,10 +4,11 @@ import React, { useState } from "react";
 
 import IconSvg from "../../IconSvg/IconSvg";
 import cartActions from "../../../redux/actions/cartActions";
+import { checkingProductsAvailability } from "../../../services/utils/productUtils";
 import { useDebouncedEffect } from "../../../services/useDebouncedEffect";
 import { useDispatch } from "react-redux";
 
-const ShoppingCartItem = ({ product, checkingProductsAvailability }) => {
+const ShoppingCartItem = ({ product, isCheckout }) => {
 	const dispatch = useDispatch();
 	const {
 		candleId,
@@ -29,7 +30,7 @@ const ShoppingCartItem = ({ product, checkingProductsAvailability }) => {
 				...cartActions.CART_EDIT_QUANTITY_PRODUCT,
 				payload: { candleId: product.candleId, newQuantity: quantityValue },
 			});
-			checkingProductsAvailability([product]);
+			checkingProductsAvailability([product], dispatch, cartActions.CART_EDIT_STOCK_PRODUCT);
 		},
 
 		550,
@@ -62,21 +63,29 @@ const ShoppingCartItem = ({ product, checkingProductsAvailability }) => {
 				</div>
 
 				<div className="productActions">
-					<div className="quantityInput">
-						<input
-							id="number"
-							value={quantityValue}
-							type="number"
-							min="1"
-							max="15"
-							onChange={(e) => setQuantityValue(e.target.value)}
-						/>
-					</div>
-					<button className="mediumText" onClick={() => deleteCandleFromCart()}>
-						Delete
-					</button>
+					{!isCheckout ? (
+						<>
+							<div className="quantityInput">
+								<input
+									id="number"
+									value={quantityValue}
+									type="number"
+									min="1"
+									max="15"
+									onChange={(e) => setQuantityValue(e.target.value)}
+								/>
+							</div>
+
+							<button className="mediumText" onClick={() => deleteCandleFromCart()}>
+								Delete
+							</button>
+						</>
+					) : (
+						<></>
+					)}
 				</div>
-				<div className={"availabilityIndic smallText"}>
+
+				<div className="availabilityIndic smallText">
 					<div className={"availabilityIcon" + (isAvailable ? " success" : " failed")}>
 						<IconSvg iconName={isAvailable ? "checkArrow" : "closeCross"} />
 					</div>

@@ -1,44 +1,21 @@
 import "./ShoppingCart.scss";
 
-import React, { useContext, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useContext, useState } from "react";
 
 import IconSvg from "../IconSvg/IconSvg";
 import NoContent from "../NoContent/NoContent";
 import ShoppingCartItem from "./ShoppingCartItem/ShoppingCartItem";
-import apiInstance from "../../services/api/api";
-import cartActions from "../../redux/actions/cartActions";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { viewportContext } from "../ViewportProvider/ViewportProvider";
 
-//fetching func that can check stock for multiple candles
-const fetchStockData = (productArr) => {
-	return Promise.all(
-		productArr.map((product) => {
-			return apiInstance
-				.get(`/candles/${product.candleId}/stock`)
-				.then(({ data }) => data[0])
-				.catch((err) => console.log(err));
-		})
-	);
-};
-
 const ShoppingCart = () => {
-	const dispatch = useDispatch();
 	const cartProducts = useSelector((state) => state.cart.products);
 	const cartTotalCost = useSelector((state) => state.cart.totalCost);
 	const { deviceWidth, deviceHeight } = useContext(viewportContext);
 	const [isShoppingCartDisplayed, setIsShoppingCartDisplayed] = useState(false);
 
 	const history = useHistory();
-
-	const checkingProductsAvailability = (productArr) => {
-		fetchStockData(productArr)
-			.then((res) => {
-				dispatch({ ...cartActions.CART_EDIT_STOCK_PRODUCT, payload: res });
-			})
-			.catch((e) => console.log(e));
-	};
 
 	const checkingCartValidityForCheckout = () => {
 		return cartProducts.every((product) => product.isAvailable);
@@ -78,7 +55,7 @@ const ShoppingCart = () => {
 									<ShoppingCartItem
 										product={product}
 										key={"cartItem" + product.candleId}
-										checkingProductsAvailability={checkingProductsAvailability}
+										isCheckout={false}
 									/>
 								);
 							})}
