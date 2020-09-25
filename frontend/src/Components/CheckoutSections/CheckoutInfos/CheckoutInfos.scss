@@ -1,0 +1,97 @@
+@import "../../../style/generalVariables.scss";
+
+.checkoutInfosWrapper {
+	display: flex;
+	justify-content: center;
+	margin-top: 25px;
+
+	.customerInfos,
+	.cartSum {
+		padding: 15px;
+	}
+
+	.customerInfos {
+		width: 48%;
+	}
+
+	.cartSum {
+		width: 40%;
+	}
+
+	.contactInfos,
+	.billingAddressWrapper,
+	.cartSum {
+		h4 {
+			margin-bottom: 25px;
+			text-transform: uppercase;
+			font-size: 20px;
+			letter-spacing: 0.1em;
+		}
+	}
+
+	.contactInfos {
+		margin-bottom: 60px;
+		p {
+			margin-bottom: 10px;
+		}
+	}
+
+	//TODO -> moving this to general style
+	.inputLabel.checkboxInput {
+		display: flex;
+		align-items: center;
+		.customCheckbox {
+			width: 14px;
+			height: 14px;
+			position: relative;
+			bottom: -1px;
+			border: solid 1px $lightDark;
+			background-color: transparent;
+			cursor: pointer;
+
+			&::after {
+				content: "";
+				position: absolute;
+				top: -1px;
+				left: -1px;
+				background-color: $roseGold;
+				width: 14px;
+				height: 14px;
+				opacity: 0;
+			}
+
+			&:checked::after {
+				opacity: 1;
+
+				.checkIcon {
+					width: 12px;
+					height: 12px;
+				}
+			}
+		}
+
+		.checkboxText {
+			line-height: 15px;
+			margin-left: 10px;
+		}
+
+		.checkIcon {
+			width: 12px;
+			height: 12px;
+			color: $primary;
+			position: absolute;
+			left: 5px;
+			top: 3px;
+			pointer-events: none;
+		}
+	}
+
+	.formContainer {
+		padding-right: 35px;
+	}
+
+	.midWidthInputWrapper {
+		display: flex;
+		justify-content: space-between;
+	}
+}
