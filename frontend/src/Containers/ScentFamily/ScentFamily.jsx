@@ -60,9 +60,6 @@ const ScentFamily = (props) => {
 			behavior: "smooth",
 		});
 
-		console.log(Math.floor(index * ratio + ratio));
-		console.log(scents.length);
-
 		if (Math.floor(index * ratio + ratio) >= scents.length) {
 			setIsScrollMax(true);
 		} else {
