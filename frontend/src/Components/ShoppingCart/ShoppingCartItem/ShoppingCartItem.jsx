@@ -45,7 +45,10 @@ const ShoppingCartItem = ({ product, isCheckout }) => {
 	};
 
 	return (
-		<div className="productRow" key={"candleCart" + candleId}>
+		<div
+			className={"productRow" + (isCheckout ? " checkoutDisplay" : "")}
+			key={"candleCart" + candleId}
+		>
 			<div className="productImg">
 				<img
 					src={`/images/candle_types/candle_type_${typeId}_1.jpg`}
@@ -59,30 +62,30 @@ const ShoppingCartItem = ({ product, isCheckout }) => {
                 ${scentsEnName} 
                 ${typeEnName} candle`}
 					</p>
-					<p className="mediumText mediumBold">{price} €</p>
+					<p className="mediumText mediumBold">{price.toFixed(2)} €</p>
 				</div>
 
 				<div className="productActions">
 					{!isCheckout ? (
-						<>
-							<div className="quantityInput">
-								<input
-									id="number"
-									value={quantityValue}
-									type="number"
-									min="1"
-									max="15"
-									onChange={(e) => setQuantityValue(e.target.value)}
-								/>
-							</div>
-
-							<button className="mediumText" onClick={() => deleteCandleFromCart()}>
-								Delete
-							</button>
-						</>
+						<div className="quantityInput">
+							<input
+								id="number"
+								value={quantityValue}
+								type="number"
+								min="1"
+								max="15"
+								onChange={(e) => setQuantityValue(e.target.value)}
+							/>
+						</div>
 					) : (
-						<></>
+						<div className="smallText">
+							<p>Quantity : {quantityValue}</p>
+						</div>
 					)}
+
+					<button className="mediumText" onClick={() => deleteCandleFromCart()}>
+						Delete
+					</button>
 				</div>
 
 				<div className="availabilityIndic smallText">

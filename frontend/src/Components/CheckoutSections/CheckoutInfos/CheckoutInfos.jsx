@@ -111,19 +111,36 @@ const CheckoutInfos = () => {
 						</div>
 					</form>
 				</div>
+				<div className="btnContainer usualText">
+					<button className="mediumBold">Continue to expedition</button>
+				</div>
 			</div>
 			<div className="cartSum">
 				<h4>Cart summary</h4>
+				<div className="cartSumProductsContainer">
+					{cart.products.map((candle, i) => {
+						return (
+							<ShoppingCartItem
+								product={candle}
+								isCheckout={true}
+								key={"checkoutProduct" + i}
+							/>
+						);
+					})}
+				</div>
 
-				{cart.products.map((candle, i) => {
-					return (
-						<ShoppingCartItem
-							product={candle}
-							isCheckout={true}
-							key={"checkoutProduct" + i}
-						/>
-					);
-				})}
+				<div className="cartSumTotal usualText">
+					<div className="subtotalValues">
+						<p>Subtotal</p>
+						<p className="alignRight">{cart.totalCost.toFixed(2)} €</p>
+						<p>Delivery</p>
+						<p className="alignRight">Calculated at the next step</p>
+					</div>
+					<div className="totalValues mediumBold">
+						<p>Total</p>
+						<p>{cart.totalCost.toFixed(2)} €</p>
+					</div>
+				</div>
 			</div>
 		</section>
 	);

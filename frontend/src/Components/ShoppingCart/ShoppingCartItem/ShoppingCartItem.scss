@@ -10,7 +10,7 @@
 		&:after {
 			content: "";
 			display: inline-block;
-			width: 600px;
+			width: 100%;
 			height: 1px;
 			background-color: $lightGreyTrans;
 			position: absolute;
@@ -54,7 +54,7 @@
 
 		.productActions {
 			display: flex;
-			align-items: baseline;
+			align-items: center;
 
 			.quantityInput {
 				width: 60px;
@@ -102,6 +102,15 @@
 				}
 			}
 		}
+	}
+}
+
+.checkoutDisplay {
+	padding-left: 0;
+	padding-right: 0;
+
+	.productInfos {
+		padding-right: 0;
 	}
 }
 
