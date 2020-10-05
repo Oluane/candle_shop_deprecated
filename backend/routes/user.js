@@ -12,10 +12,11 @@ router.get("/", isAuthenticated, (req, res) => {
 	}
 
 	db.query(
-		`SELECT id, first_name , last_name , mail_address , 
-        address, address_complement , city, zip_code , 
-        DATE_FORMAT(birthdate, '%Y-%m-%d') as birthdate, phone_number, cgu_checked , 
-        newsletter_checked, DATE_FORMAT(sign_up_datetime, '%Y-%m-%d') as signUpDate FROM customer WHERE id = ?`,
+		`SELECT c.id, c.first_name, c.last_name, c.mail_address, 
+        DATE_FORMAT(c.birthdate, '%Y-%m-%d') as birthdate, c.phone_number, c.cgu_checked , 
+        c.newsletter_checked, DATE_FORMAT(c.sign_up_datetime, '%Y-%m-%d') as sign_up_date 
+        FROM customer c
+        WHERE c.id = ?`,
 		[userId],
 		(err, results) => {
 			if (err) {
@@ -48,5 +49,6 @@ router.put("/", isAuthenticated, (req, res) => {
 });
 
 router.use("/:userId/wishlist", require("./wishlist"));
+router.use("/:userId/address", require("./address"));
 
 module.exports = router;
