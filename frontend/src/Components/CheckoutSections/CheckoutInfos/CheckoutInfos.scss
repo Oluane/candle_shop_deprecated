@@ -171,6 +171,47 @@
 			color: $primary;
 			width: 100%;
 			padding: 15px;
+			cursor: pointer;
+
+			&:hover {
+				background-color: $roseGold;
+				border-color: $roseGold;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 688px) {
+	.checkoutInfosWrapper {
+		flex-direction: column;
+
+		.contactInfos,
+		.billingAddressWrapper,
+		.cartSum {
+			h4 {
+				margin-bottom: 15px;
+				text-transform: uppercase;
+				font-size: 18px;
+				letter-spacing: 0.1em;
+			}
+		}
+
+		.contactInfos {
+			margin-bottom: 35px;
+			order: 2;
+		}
+
+		.customerInfos {
+			width: 100%;
+			padding: 10px;
+			order: 3;
+		}
+
+		.cartSum {
+			min-width: 100%;
+			order: 1;
+			padding: 10px;
+			margin-bottom: 15px;
 		}
 	}
 }

@@ -17,6 +17,8 @@ const Checkout = () => {
 	const { deviceWidth, deviceHeight } = useContext(viewportContext);
 	const [displayedSectionIdx, setDisplayedSectionIdx] = useState(0);
 
+	const isMobile = deviceWidth < 688;
+
 	return (
 		<div className="checkoutWrapper" style={{ width: deviceWidth, height: deviceHeight }}>
 			<header className="checkoutHeader">
@@ -24,7 +26,7 @@ const Checkout = () => {
 					<div className="arrowBackIcon">
 						<IconSvg iconName="leftArrow" />
 					</div>
-					Go back shopping
+					{!isMobile && "Go back shopping"}
 				</Link>
 
 				<div className="brandLogo desktop">
@@ -44,8 +46,11 @@ const Checkout = () => {
 								key={"breadCrumb" + i}
 								id={section.id}
 							>
-								<span className="stepIndex">{i + 1}</span>
-								{section.name}
+								{(!isMobile || (isMobile && displayedSectionIdx !== i)) && (
+									<span className="stepIndex">{i + 1}</span>
+								)}
+								{(!isMobile || (isMobile && displayedSectionIdx === i)) &&
+									section.name}
 							</li>
 						);
 					})}

@@ -97,3 +97,19 @@
 		}
 	}
 }
+
+@media screen and (max-width: 688px) {
+	.checkoutWrapper {
+		overflow-y: scroll;
+		.checkoutBreadCrumbs {
+			.breadCrumb {
+				width: 33.3%;
+				padding: 15px 0px;
+
+				.stepIndex {
+					margin-right: 0;
+				}
+			}
+		}
+	}
+}
