@@ -6,6 +6,7 @@ import IconSvg from "../../Components/IconSvg/IconSvg";
 import MyOrders from "../../Components/MyOrders/MyOrders";
 import MyProfile from "../../Components/MyProfile/MyProfile";
 import MyWishlist from "../../Components/MyWishlist/MyWishlist";
+import addressesActions from "../../redux/actions/addressesActions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import userActions from "../../redux/actions/userActions";
@@ -30,6 +31,7 @@ const Account = () => {
 	const logOut = () => {
 		dispatch(userActions.USER_LOGOUT);
 		dispatch(wishlistActions.WISHLIST_LOGOUT_INITIAL);
+		dispatch(addressesActions.ADDRESSES_LOGOUT_INITIAL);
 		localStorage.removeItem("xsrfToken");
 		history.push("/");
 	};

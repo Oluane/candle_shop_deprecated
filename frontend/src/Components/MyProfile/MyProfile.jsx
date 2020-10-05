@@ -19,10 +19,6 @@ const MyProfile = () => {
 	const [firstName, setFirstName] = useState(currentUser.firstName);
 	const [lastName, setLastName] = useState(currentUser.lastName);
 	const [birthdate, setBirthdate] = useState(currentUser.birthdate);
-	const [address, setAddress] = useState(currentUser.address);
-	const [addressComplement, setAddressComplement] = useState(currentUser.addressComplement);
-	const [city, setCity] = useState(currentUser.city);
-	const [zipCode, setZipCode] = useState(currentUser.zipCode);
 	const [phoneNumber, setPhoneNumber] = useState(currentUser.phoneNumber);
 
 	const editCustomer = (e) => {
@@ -33,10 +29,6 @@ const MyProfile = () => {
 			firstName,
 			lastName,
 			birthdate,
-			address,
-			addressComplement,
-			city,
-			zipCode,
 			phoneNumber,
 		};
 
@@ -118,51 +110,16 @@ const MyProfile = () => {
 					/>
 				</div>
 
-				<Input
-					type="date"
-					name="birthdate"
-					value={birthdate}
-					onChange={setBirthdate}
-					isMidWidth={false}
-					placeHolder="Birthdate"
-				/>
-
-				<Input
-					type="text"
-					name="address"
-					value={address}
-					onChange={setAddress}
-					isMidWidth={false}
-					placeHolder="Address"
-				/>
-
 				<div className="midWidthInputWrapper">
 					<Input
-						type="text"
-						name="addressComplement"
-						value={addressComplement}
-						onChange={setAddressComplement}
+						type="date"
+						name="birthdate"
+						value={birthdate}
+						onChange={setBirthdate}
 						isMidWidth={true}
-						placeHolder="Additional address"
+						placeHolder="Birthdate"
 					/>
-					<Input
-						type="text"
-						name="zipCode"
-						value={zipCode}
-						onChange={setZipCode}
-						isMidWidth={true}
-						placeHolder="ZIP Code"
-					/>
-				</div>
-				<div className="midWidthInputWrapper">
-					<Input
-						type="text"
-						name="city"
-						value={city}
-						onChange={setCity}
-						isMidWidth={true}
-						placeHolder="City"
-					/>
+
 					<Input
 						type="text"
 						name="phoneNumber"
