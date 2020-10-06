@@ -16,10 +16,80 @@ router.get("/", isAuthenticated, (req, res) => {
 		[userId],
 		(err, results) => {
 			if (err) {
-				console.log("here " + err);
+				console.log(err);
 				return res.status(500).json({ message: "Internal Error" });
 			} else {
 				res.status(200).json(results);
+			}
+		}
+	);
+});
+
+router.post("/", isAuthenticated, (req, res) => {
+	const userId = req.params.userId;
+	const newAddressData = req.body;
+
+	if (!userId) {
+		return res.status(401).json({ message: "OOPS! Missing userId" });
+	}
+
+	db.query(`INSERT INTO customer_address SET ?`, [newAddressData], (err, results) => {
+		if (err) {
+			console.log(err);
+			return res.status(500).json({ message: "Internal Error" });
+		}
+		res.status(200).json(results);
+	});
+});
+
+router.put("/:addressId", isAuthenticated, (req, res) => {
+	const addressId = req.params.addressId;
+	const userId = req.params.userId;
+	const addressData = req.body;
+
+	if (!addressId) {
+		return res.status(401).json({ message: "OOPS! Missing addressId" });
+	}
+
+	if (!userId) {
+		return res.status(401).json({ message: "OOPS! Missing userId" });
+	}
+
+	db.query(
+		`UPDATE customer_address ca SET ? WHERE ca.customer_id = ? AND ca.id = ?;`,
+		[addressData, userId, addressId],
+		(err, results) => {
+			if (err) {
+				console.log(err);
+				return res.status(500).json({ message: "Internal Error" });
+			} else {
+				res.status(204).send();
+			}
+		}
+	);
+});
+
+router.delete("/:addressId", isAuthenticated, (req, res) => {
+	const addressId = req.params.addressId;
+	const userId = req.params.userId;
+
+	if (!addressId) {
+		return res.status(401).json({ message: "OOPS! Missing addressId" });
+	}
+
+	if (!userId) {
+		return res.status(401).json({ message: "OOPS! Missing addressId" });
+	}
+
+	db.query(
+		`DELETE FROM customer_address WHERE id = ? AND customer_id = ?;`,
+		[addressId, userId],
+		(err, results) => {
+			if (err) {
+				console.log(err);
+				return res.status(500).json({ message: "Internal Error" });
+			} else {
+				res.status(200).send();
 			}
 		}
 	);
