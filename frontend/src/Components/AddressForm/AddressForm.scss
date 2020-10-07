@@ -20,6 +20,7 @@
 	.inputLabel.checkboxInput {
 		display: flex;
 		align-items: center;
+		cursor: pointer;
 		.customCheckbox {
 			width: 14px;
 			height: 14px;
@@ -27,7 +28,6 @@
 			bottom: -1px;
 			border: solid 1px $lightDark;
 			background-color: transparent;
-			cursor: pointer;
 
 			&::after {
 				content: "";
