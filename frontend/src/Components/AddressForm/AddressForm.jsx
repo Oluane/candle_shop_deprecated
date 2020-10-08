@@ -8,6 +8,7 @@ import Input from "../Input/Input";
 import { ToastContext } from "../Toasts/ToastProvider";
 import addressesActions from "../../redux/actions/addressesActions";
 import apiInstance from "../../services/api/api";
+import { checkingNullableField } from "../../services/utils/inputsUtils";
 
 const AddressForm = ({ addressObj = {} }) => {
 	const currentUser = useSelector((state) => state.user.data);
@@ -28,10 +29,10 @@ const AddressForm = ({ addressObj = {} }) => {
 
 		const newAddressData = {
 			address,
-			addressComplement,
+			addressComplement: checkingNullableField(addressComplement),
 			city,
 			zipCode,
-			name,
+			name: checkingNullableField(addressComplement),
 			isFavorite,
 			id: addressObj.id,
 		};
@@ -67,10 +68,10 @@ const AddressForm = ({ addressObj = {} }) => {
 
 		const newAddressData = {
 			address,
-			addressComplement,
+			addressComplement: checkingNullableField(addressComplement),
 			city,
 			zipCode,
-			name,
+			name: checkingNullableField(addressComplement),
 			isFavorite,
 		};
 
@@ -118,6 +119,7 @@ const AddressForm = ({ addressObj = {} }) => {
 						onChange={setAddress}
 						isMidWidth={false}
 						placeHolder="Address"
+						required={true}
 					/>
 					<div className="midWidthInputWrapper">
 						<Input
@@ -127,6 +129,7 @@ const AddressForm = ({ addressObj = {} }) => {
 							onChange={setAddressComplement}
 							isMidWidth={true}
 							placeHolder="Additional address"
+							required={false}
 						/>
 						<Input
 							type="text"
@@ -135,6 +138,8 @@ const AddressForm = ({ addressObj = {} }) => {
 							onChange={setZipCode}
 							isMidWidth={true}
 							placeHolder="ZIP Code"
+							required={true}
+							pattern={"/[0-9]{5}/"}
 						/>
 					</div>
 
@@ -145,6 +150,7 @@ const AddressForm = ({ addressObj = {} }) => {
 						onChange={setCity}
 						isMidWidth={false}
 						placeHolder="City"
+						required={true}
 					/>
 
 					<Input
@@ -154,6 +160,7 @@ const AddressForm = ({ addressObj = {} }) => {
 						onChange={setName}
 						isMidWidth={false}
 						placeHolder="Addresse Name (optional)"
+						required={false}
 					/>
 
 					{!addressObj.isFavorite && (
@@ -164,8 +171,9 @@ const AddressForm = ({ addressObj = {} }) => {
 							<input
 								type="checkbox"
 								name="isFavAddress"
-								checked={isFavorite && true}
+								checked={isFavorite ? true : false}
 								className="customCheckbox"
+								onChange={() => {}}
 							/>
 							<span className="checkIcon">
 								<IconSvg iconName="checkArrow" />

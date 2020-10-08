@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Input from "../Input/Input";
 import { ToastContext } from "../Toasts/ToastProvider";
 import apiInstance from "../../services/api/api";
+import { checkingNullableField } from "../../services/utils/inputsUtils";
 import userActions from "../../redux/actions/userActions";
 
 //import { format } from "date-fns";
@@ -29,7 +30,7 @@ const MyProfile = () => {
 			firstName,
 			lastName,
 			birthdate,
-			phoneNumber,
+			phoneNumber: checkingNullableField(phoneNumber),
 		};
 
 		apiInstance
@@ -90,6 +91,7 @@ const MyProfile = () => {
 					onChange={setMailAddress}
 					isMidWidth={false}
 					placeHolder="Email"
+					required={true}
 				/>
 				<div className="midWidthInputWrapper">
 					<Input
@@ -99,6 +101,7 @@ const MyProfile = () => {
 						onChange={setFirstName}
 						isMidWidth={true}
 						placeHolder="First name"
+						required={true}
 					/>
 					<Input
 						type="text"
@@ -107,6 +110,7 @@ const MyProfile = () => {
 						onChange={setLastName}
 						isMidWidth={true}
 						placeHolder="Last name"
+						required={true}
 					/>
 				</div>
 
@@ -118,6 +122,7 @@ const MyProfile = () => {
 						onChange={setBirthdate}
 						isMidWidth={true}
 						placeHolder="Birthdate"
+						required={true}
 					/>
 
 					<Input
@@ -127,9 +132,10 @@ const MyProfile = () => {
 						onChange={setPhoneNumber}
 						isMidWidth={true}
 						placeHolder="Phone number"
+						required={false}
 					/>
 				</div>
-				<button type="submit" value="Register" className="submitButton">
+				<button type="submit" className="submitButton">
 					<span className="mediumText bold">Edit</span>
 				</button>
 			</form>
