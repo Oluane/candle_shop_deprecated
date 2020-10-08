@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import AddressForm from "../AddressForm/AddressForm";
+import NoContent from "../NoContent/NoContent";
 import { ToastContext } from "../Toasts/ToastProvider";
 import addressesActions from "../../redux/actions/addressesActions";
 import apiInstance from "../../services/api/api";
@@ -62,6 +63,9 @@ const MyAddresses = () => {
 		<div className="myAddresses">
 			<h2 className="sectionTitle">MY ADDRESSES</h2>
 			<div className="mainWrapper">
+				{userAddresses.length <= 1 && userAddresses[0].id === -1 && (
+					<NoContent iconName="addressBook" text="You haven't save your address yet !" />
+				)}
 				{userAddresses.length < 5 && (
 					<div className="addingNewAddressWrapper">
 						{!showAddingAddress ? (
@@ -72,7 +76,7 @@ const MyAddresses = () => {
 									setShowEditingAddressId(null);
 								}}
 							>
-								ADD A NEW ADDRESS
+								Add a new address
 							</button>
 						) : (
 							<>
@@ -106,7 +110,7 @@ const MyAddresses = () => {
 						</div>
 						{showEditingAddressId === favAddress.id && (
 							<div className="editingForm">
-								<h4 className="alignCenter">EDIT MY ADDRESS</h4>
+								<h4 className="alignCenter">Edit my address</h4>
 								<AddressForm addressObj={favAddress} />
 							</div>
 						)}
@@ -138,7 +142,7 @@ const MyAddresses = () => {
 							</div>
 							{showEditingAddressId === address.id && (
 								<div className="editingForm">
-									<h4 className="alignCenter">EDIT MY ADDRESS</h4>
+									<h4 className="alignCenter">Edit my address</h4>
 									<AddressForm addressObj={address} />
 								</div>
 							)}
