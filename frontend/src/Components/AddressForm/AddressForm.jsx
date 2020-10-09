@@ -12,6 +12,7 @@ import { checkingNullableField } from "../../services/utils/inputsUtils";
 
 const AddressForm = ({ addressObj = {} }) => {
 	const currentUser = useSelector((state) => state.user.data);
+	const userAddresses = useSelector((state) => state.addresses);
 	const dispatch = useDispatch();
 	const [, dispatchToast] = useContext(ToastContext);
 
@@ -71,9 +72,15 @@ const AddressForm = ({ addressObj = {} }) => {
 			addressComplement: checkingNullableField(addressComplement),
 			city,
 			zipCode,
-			name: checkingNullableField(addressComplement),
+			name: checkingNullableField(name),
 			isFavorite,
 		};
+
+		if (userAddresses[0].id === -1) {
+			newAddressData.isFavorite = 1;
+        }
+        
+       
 
 		apiInstance
 			.post(`/user/${currentUser.id}/address`, newAddressData)
@@ -108,7 +115,6 @@ const AddressForm = ({ addressObj = {} }) => {
 				<form
 					className="addressFormContainer"
 					onSubmit={(e) => {
-						console.log(addressObj);
 						Object.keys(addressObj).length !== 0 ? editAddress(e) : addAddress(e);
 					}}
 				>
@@ -139,7 +145,7 @@ const AddressForm = ({ addressObj = {} }) => {
 							isMidWidth={true}
 							placeHolder="ZIP Code"
 							required={true}
-							pattern={"/[0-9]{5}/"}
+							pattern={"[0-9]{5}"}
 						/>
 					</div>
 
