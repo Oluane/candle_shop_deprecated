@@ -4,10 +4,11 @@ import React, { useState } from "react";
 
 import IconSvg from "../../IconSvg/IconSvg";
 import cartActions from "../../../redux/actions/cartActions";
+import { checkingProductsAvailability } from "../../../services/utils/productUtils";
 import { useDebouncedEffect } from "../../../services/useDebouncedEffect";
 import { useDispatch } from "react-redux";
 
-const ShoppingCartItem = ({ product, checkingProductsAvailability }) => {
+const ShoppingCartItem = ({ product, isCheckout }) => {
 	const dispatch = useDispatch();
 	const {
 		candleId,
@@ -29,7 +30,7 @@ const ShoppingCartItem = ({ product, checkingProductsAvailability }) => {
 				...cartActions.CART_EDIT_QUANTITY_PRODUCT,
 				payload: { candleId: product.candleId, newQuantity: quantityValue },
 			});
-			checkingProductsAvailability([product]);
+			checkingProductsAvailability([product], dispatch, cartActions.CART_EDIT_STOCK_PRODUCT);
 		},
 
 		550,
@@ -44,7 +45,10 @@ const ShoppingCartItem = ({ product, checkingProductsAvailability }) => {
 	};
 
 	return (
-		<div className="productRow" key={"candleCart" + candleId}>
+		<div
+			className={"productRow" + (isCheckout ? " checkoutDisplay" : "")}
+			key={"candleCart" + candleId}
+		>
 			<div className="productImg">
 				<img
 					src={`/images/candle_types/candle_type_${typeId}_1.jpg`}
@@ -58,25 +62,33 @@ const ShoppingCartItem = ({ product, checkingProductsAvailability }) => {
                 ${scentsEnName} 
                 ${typeEnName} candle`}
 					</p>
-					<p className="mediumText mediumBold">{price} €</p>
+					<p className="mediumText mediumBold">{price.toFixed(2)} €</p>
 				</div>
 
 				<div className="productActions">
-					<div className="quantityInput">
-						<input
-							id="number"
-							value={quantityValue}
-							type="number"
-							min="1"
-							max="15"
-							onChange={(e) => setQuantityValue(e.target.value)}
-						/>
-					</div>
+					{!isCheckout ? (
+						<div className="quantityInput">
+							<input
+								id="number"
+								value={quantityValue}
+								type="number"
+								min="1"
+								max="15"
+								onChange={(e) => setQuantityValue(e.target.value)}
+							/>
+						</div>
+					) : (
+						<div className="smallText">
+							<p>Quantity : {quantityValue}</p>
+						</div>
+					)}
+
 					<button className="mediumText" onClick={() => deleteCandleFromCart()}>
 						Delete
 					</button>
 				</div>
-				<div className={"availabilityIndic smallText"}>
+
+				<div className="availabilityIndic smallText">
 					<div className={"availabilityIcon" + (isAvailable ? " success" : " failed")}>
 						<IconSvg iconName={isAvailable ? "checkArrow" : "closeCross"} />
 					</div>

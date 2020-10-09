@@ -3,7 +3,17 @@ import "./Input.scss";
 import React from "react";
 import { isInputFilled } from "../../services/utils/inputsUtils";
 
-const Input = ({ type, name, value, onChange, specialClasses, isMidWidth, placeHolder }) => {
+const Input = ({
+	type,
+	name,
+	value,
+	onChange,
+	specialClasses,
+	isMidWidth,
+	placeHolder,
+	required,
+	pattern,
+}) => {
 	return (
 		<div
 			className={
@@ -23,6 +33,8 @@ const Input = ({ type, name, value, onChange, specialClasses, isMidWidth, placeH
 				onChange={({ target: { value } }) => onChange(value)}
 				className="formInput usualText"
 				maxLength="90"
+				required={required}
+				pattern={pattern}
 			/>
 			<span className="smallText inputPlaceholder">{placeHolder}</span>
 		</div>

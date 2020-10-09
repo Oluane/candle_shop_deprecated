@@ -92,7 +92,7 @@ const AddToCartBtn = ({ btnType, typeSize, scent, candleId }) => {
 					onClick={() => handleAddToCartWithoutId(typeSize, scent)}
 				>
 					<span>ADD TO CART</span>{" "}
-					<span className="separatorBefore">{typeSize.price}€</span>
+					<span className="separatorBefore">{typeSize.price.toFixed(2)}€</span>
 				</button>
 			)}
 

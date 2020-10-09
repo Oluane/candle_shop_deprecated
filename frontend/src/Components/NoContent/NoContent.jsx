@@ -12,13 +12,15 @@ const NoContent = ({ iconName, text, linkText, linkPath, linkCallback }) => {
 			</div>
 			<p className="usualText">{text} </p>
 
-			<Link
-				className="buttonLink mediumText mediumBold "
-				to={linkPath}
-				onClick={linkCallback}
-			>
-				{linkText}
-			</Link>
+			{(linkText !== undefined || linkPath !== undefined || linkCallback !== undefined) && (
+				<Link
+					className="buttonLink mediumText mediumBold "
+					to={linkPath}
+					onClick={linkCallback}
+				>
+					{linkText}
+				</Link>
+			)}
 		</div>
 	);
 };

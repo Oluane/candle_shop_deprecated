@@ -1,28 +1,26 @@
 @import "../../style/generalVariables.scss";
 
-.formWrapper {
+.addressFormContainer {
 	margin: auto;
-	max-width: 550px;
-	width: 100%;
 
-	.formContent {
-		background-color: $primary;
-		padding: 30px 45px;
-	}
+	button {
+		width: 100%;
+		padding: 15px;
+		background-color: $lightDark;
+		border: solid 1px $lightDark;
+		color: $primary;
+		cursor: pointer;
 
-	.formHeader {
-		margin-bottom: 35px;
-	}
-
-	.formContainer {
-		display: flex;
-		flex-direction: column;
-		margin-bottom: 25px;
+		&:hover {
+			background-color: $roseGold;
+			border-color: $roseGold;
+		}
 	}
 
 	.inputLabel.checkboxInput {
 		display: flex;
 		align-items: center;
+		cursor: pointer;
 		.customCheckbox {
 			width: 14px;
 			height: 14px;
@@ -30,7 +28,6 @@
 			bottom: -1px;
 			border: solid 1px $lightDark;
 			background-color: transparent;
-			cursor: pointer;
 
 			&::after {
 				content: "";
@@ -67,22 +64,5 @@
 			top: 3px;
 			pointer-events: none;
 		}
-	}
-
-	.submitButton {
-		padding: 15px;
-		background-color: $lightDark;
-		border: solid 1px $lightDark;
-		cursor: pointer;
-		transition: all 0.3s ease;
-
-		& > span {
-			color: $primary;
-		}
-	}
-
-	.submitButton:hover {
-		background-color: $roseGold;
-		border-color: $roseGold;
 	}
 }

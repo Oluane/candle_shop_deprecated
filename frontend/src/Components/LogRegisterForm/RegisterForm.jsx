@@ -88,6 +88,7 @@ const RegisterForm = () => {
 						onChange={setMailAddress}
 						isMidWidth={false}
 						placeHolder="Email"
+						required={true}
 					/>
 					<div className="midWidthInputWrapper">
 						<Input
@@ -97,6 +98,7 @@ const RegisterForm = () => {
 							onChange={setFirstName}
 							isMidWidth={true}
 							placeHolder="First name"
+							required={true}
 						/>
 						<Input
 							type="text"
@@ -105,6 +107,7 @@ const RegisterForm = () => {
 							onChange={setLastName}
 							isMidWidth={true}
 							placeHolder="Last name"
+							required={true}
 						/>
 					</div>
 
@@ -116,36 +119,8 @@ const RegisterForm = () => {
 						isMidWidth={false}
 						placeHolder="Birthdate"
 						specialClasses={true}
+						required={true}
 					/>
-
-					{/* <div className={"inputLabel" + (isInputFilled(password) ? " filled" : "")}>
-						<input
-							type="password"
-							name="password"
-							value={password}
-							onChange={(e) => {
-								setPassword(e.target.value);
-								isPasswordsIso(e);
-							}}
-							className="formInput usualText"
-						/>
-						<span className="smallText inputPlaceholder">Password</span>
-					</div>
-					<div
-						className={"inputLabel" + (isInputFilled(passwordConfirm) ? " filled" : "")}
-					>
-						<input
-							type="password"
-							name="passwordConfirm"
-							value={passwordConfirm}
-							onChange={(e) => {
-								setPasswordConfirm(e.target.value);
-								isPasswordsIso(e);
-							}}
-							className="formInput usualText"
-						/>
-						<span className="smallText inputPlaceholder">Confirm your password</span>
-					</div> */}
 
 					<Input
 						type="password"
@@ -154,6 +129,7 @@ const RegisterForm = () => {
 						onChange={setPassword}
 						isMidWidth={false}
 						placeHolder="Password"
+						required={true}
 					/>
 					<Input
 						type="password"
@@ -162,6 +138,7 @@ const RegisterForm = () => {
 						onChange={setPasswordConfirm}
 						isMidWidth={false}
 						placeHolder="Confirm your password"
+						required={true}
 					/>
 
 					<div className="inputLabel checkboxInput">

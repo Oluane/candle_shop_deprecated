@@ -1,15 +1,19 @@
 import "./CandleInfoDisplayer.scss";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+
+import { viewportContext } from "../ViewportProvider/ViewportProvider";
 
 const sectionsToDisplay = [
 	{ id: "candle", title: "The candle" },
 	{ id: "scent", title: "The scent" },
-	{ id: "technical", title: "Technical Infos" },
+	{ id: "technical", title: "Technical Infos", mobileTitle: "Tech. Infos" },
 ];
 
 const CandleInfoDisplayer = ({ typeSize, scent }) => {
 	const [displayedSection, setDisplayedSection] = useState("candle");
+
+	const { deviceWidth } = useContext(viewportContext);
 
 	return (
 		<div className="candleInfoDisplayerWrapper">
@@ -25,7 +29,9 @@ const CandleInfoDisplayer = ({ typeSize, scent }) => {
 							onClick={() => setDisplayedSection(section.id)}
 							key={"section " + section.id}
 						>
-							{section.title}
+							{deviceWidth <= 688 && section.mobileTitle
+								? section.mobileTitle
+								: section.title}
 						</h4>
 					);
 				})}
