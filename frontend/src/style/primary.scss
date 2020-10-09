@@ -192,6 +192,11 @@ a {
 	color: inherit;
 }
 
+.midWidthInputWrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
 .bgSecondary {
 	background-color: $secondary;
 }

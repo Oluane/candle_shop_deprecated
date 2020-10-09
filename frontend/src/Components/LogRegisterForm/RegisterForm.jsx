@@ -88,6 +88,7 @@ const RegisterForm = () => {
 						onChange={setMailAddress}
 						isMidWidth={false}
 						placeHolder="Email"
+						required={true}
 					/>
 					<div className="midWidthInputWrapper">
 						<Input
@@ -97,6 +98,7 @@ const RegisterForm = () => {
 							onChange={setFirstName}
 							isMidWidth={true}
 							placeHolder="First name"
+							required={true}
 						/>
 						<Input
 							type="text"
@@ -105,6 +107,7 @@ const RegisterForm = () => {
 							onChange={setLastName}
 							isMidWidth={true}
 							placeHolder="Last name"
+							required={true}
 						/>
 					</div>
 
@@ -116,6 +119,7 @@ const RegisterForm = () => {
 						isMidWidth={false}
 						placeHolder="Birthdate"
 						specialClasses={true}
+						required={true}
 					/>
 
 					<Input
@@ -125,6 +129,7 @@ const RegisterForm = () => {
 						onChange={setPassword}
 						isMidWidth={false}
 						placeHolder="Password"
+						required={true}
 					/>
 					<Input
 						type="password"
@@ -133,6 +138,7 @@ const RegisterForm = () => {
 						onChange={setPasswordConfirm}
 						isMidWidth={false}
 						placeHolder="Confirm your password"
+						required={true}
 					/>
 
 					<div className="inputLabel checkboxInput">

@@ -3,9 +3,11 @@ import "./Account.scss";
 import React, { useContext, useState } from "react";
 
 import IconSvg from "../../Components/IconSvg/IconSvg";
+import MyAddresses from "../../Components/MyAddresses/MyAddresses";
 import MyOrders from "../../Components/MyOrders/MyOrders";
 import MyProfile from "../../Components/MyProfile/MyProfile";
 import MyWishlist from "../../Components/MyWishlist/MyWishlist";
+import addressesActions from "../../redux/actions/addressesActions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import userActions from "../../redux/actions/userActions";
@@ -15,7 +17,7 @@ import wishlistActions from "../../redux/actions/wishlistActions";
 const navSections = [
 	{ id: "profile", name: "MY PROFILE", component: <MyProfile /> },
 	{ id: "orders", name: "MY ORDERS", component: <MyOrders /> },
-	{ id: "addresses", name: "MY ADDRESSES", component: null },
+	{ id: "addresses", name: "MY ADDRESSES", component: <MyAddresses /> },
 	{ id: "wishlist", name: "MY WISHLIST", component: <MyWishlist /> },
 ];
 
@@ -30,11 +32,12 @@ const Account = () => {
 	const logOut = () => {
 		dispatch(userActions.USER_LOGOUT);
 		dispatch(wishlistActions.WISHLIST_LOGOUT_INITIAL);
+		dispatch(addressesActions.ADDRESSES_LOGOUT_INITIAL);
 		localStorage.removeItem("xsrfToken");
 		history.push("/");
 	};
 
-	const [displayedSectionIndex, setDisplayedSectionIndex] = useState(0);
+	const [displayedSectionIndex, setDisplayedSectionIndex] = useState(2);
 
 	const [showDropdown, setShowDropdown] = useState(false);
 
