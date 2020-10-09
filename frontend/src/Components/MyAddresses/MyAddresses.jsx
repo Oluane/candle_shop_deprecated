@@ -31,11 +31,13 @@ const MyAddresses = () => {
 	const deleteAddress = (addressId) => {
 		apiInstance
 			.delete(`/user/${currentUser.id}/address/${addressId}`)
-			.then(() => {
+			.then(({data}) => {
+                const actionPayload = {deletedAddressId: addressId, nextFavAddressId : data !== "" ? data.newFavId : null}
+
 				dispatch({
 					...addressesActions.ADDRESSES_DELETE_ONE,
-					payload: { addressId: addressId },
-				});
+					payload: actionPayload,
+                });
 
 				dispatchToast({
 					type: "ADD_TOAST",
