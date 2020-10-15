@@ -1,4 +1,4 @@
-export const saveCartStateToLocalStorage = (state) => {
+export const saveCartStateToLocalStorage = state => {
 	if (state.cart.products[0].candleId !== -1) {
 		const serializedState = JSON.stringify(state);
 		localStorage.setItem("cartState", serializedState);
