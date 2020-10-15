@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 require("../passport-strategies");
 const crypto = require("crypto");
 const router = express.Router();
-const isAuthenticated = require("../middlewares/isAuthenticated");
 const {
 	CONFIG: { jwtSecret, saltRounds, accessTokenExpiresIn },
 	db,
@@ -75,7 +74,7 @@ router.post("/login", (req, res) => {
 				info,
 			});
 		}
-		req.login(user, { session: false }, (loginErr) => {
+		req.login(user, { session: false }, loginErr => {
 			if (loginErr) {
 				return res.status(500).json({
 					message: "Couldn't log you in, try again later !",
@@ -83,6 +82,7 @@ router.post("/login", (req, res) => {
 					loginErr,
 				});
 			}
+			console.log(user);
 			user.password = undefined;
 			const xsrfToken = crypto.randomBytes(64).toString("hex");
 
@@ -110,23 +110,6 @@ router.post("/login", (req, res) => {
 				.json({ accessTokenExpiresIn: accessTokenExpiresIn, xsrfToken, userId: user.id });
 		});
 	})(req, res);
-});
-
-router.get("/", isAuthenticated, (req, res) => {
-	const userId = req.user;
-	return res.status(200).json({ isValid: true, userId });
-});
-
-// router.get("/protected", isAuthenticated, (req, res) => {
-// 	const { user } = req;
-// 	console.log(req);
-// 	res.status(200).send(user);
-// });
-
-router.get("/protected", passport.authenticate("jwt", { session: false }), (req, res) => {
-	const { user } = req;
-	//console.log(req);
-	res.status(200).send(user);
 });
 
 module.exports = router;

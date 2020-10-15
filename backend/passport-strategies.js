@@ -1,8 +1,8 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const { Strategy: JWTStrategy, ExtractJwt } = require("passport-jwt");
+//const { Strategy: JWTStrategy, ExtractJwt } = require("passport-jwt");
 const bcrypt = require("bcrypt");
-const cookieExtractor = require("./middlewares/cookieExtractor");
+//const cookieExtractor = require("./middlewares/cookieExtractor");
 const {
 	CONFIG: { jwtSecret },
 	db,
@@ -39,18 +39,18 @@ passport.use(
 	)
 );
 
-let opts = {};
-opts.jwtFromRequest = cookieExtractor;
-opts.secretOrKey = jwtSecret;
-opts.issuer = "candleshop.com";
+// let opts = {};
+// opts.jwtFromRequest = cookieExtractor;
+// opts.secretOrKey = jwtSecret;
+// opts.issuer = "candleshop.com";
 
-passport.use(
-	new JWTStrategy(opts, (jwtPayload, done) => {
-		if (!jwtPayload) {
-			return done(err, false);
-		}
+// passport.use(
+// 	new JWTStrategy(opts, (jwtPayload, done) => {
+// 		if (!jwtPayload) {
+// 			return done(err, false);
+// 		}
 
-		//TODO adding some verifications or logic here
-		return done(null, jwtPayload);
-	})
-);
+// 		//TODO adding some verifications or logic here
+// 		return done(null, jwtPayload);
+// 	})
+// );
