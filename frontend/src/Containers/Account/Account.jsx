@@ -37,7 +37,7 @@ const Account = () => {
 		history.push("/");
 	};
 
-	const [displayedSectionIndex, setDisplayedSectionIndex] = useState(2);
+	const [displayedSectionIndex, setDisplayedSectionIndex] = useState(0);
 
 	const [showDropdown, setShowDropdown] = useState(false);
 
@@ -55,7 +55,7 @@ const Account = () => {
 										"accountNavListItems lightDarkColor" +
 										(displayedSectionIndex === i ? " active" : "")
 									}
-									onClick={(e) => setDisplayedSectionIndex(i)}
+									onClick={e => setDisplayedSectionIndex(i)}
 								>
 									{section.name}
 								</li>
